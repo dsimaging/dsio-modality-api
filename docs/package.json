@@ -1,0 +1,14 @@
+{
+  "name": "ds-io-modality-api-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "redoc-cli": "redoc-cli"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "redoc-cli": "^0.9.6"
+  }
+}
