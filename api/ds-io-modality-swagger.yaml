@@ -17,22 +17,26 @@ tags:
   - name: Images
     description: >
       The Acquisition API provides methods to acquire one or more images from a device. To acquire images from a device, you must first create an `AcquisitionSession`. When a session is created for a device, that device is marked as in use (Device Status changes to `inUse`). The session and the images associated with it persists until the session is deleted. When you have finished all image acquisition and retrieved all images, you can delete the `AcquisitionSession` and make the device available again.
-          
+
+
       Once a session has been created, the client subscribes to the `AcquisitionStatus` Events to keep updated on the current status of the device and its exposure readiness. Alternatively, the client may poll for `AcquisitionStatus`, but the subscription API is the recommended method. To initiate an exposure, you must use the `AcquisitionInfo` API to enable acquisition and provide information about how the sensor is oriented. The `AcquisitionStatus` API will report the state `NoAcquisitionInfo` if you have not yet provided the `AcquisitionInfo`. `AcquisitionInfo` must be sent prior to every image exposure. When the `AcquisitionStatus` call returns true for the `ready` property, the user is ready to expose the sensor. When the exposure is finished, you can use the `ImageInfo` API to retrieve information about the image and the image data itself.
-      
+
+
       The `ImageInfo` object describes the image that was acquired. It provides detailed information about the format of the image data and URLs that can be used to retrieve the image data. The device does not perform any enhancements or processing of the image, however, it will apply a contrast map to the image so that the image delivered is suitable for display. The contrast map is a nonlinear reversible gamma map and it is described in the `LutInfo` property (see `LutInfo` for a description of how to reverse the mapping if you want to use the unmapped image data).
-  
+
+
       To summarize, the steps needed to acquire an image are:
-      1. Create a new session with an `available` device
-          1. Subscribe to `AcquisitionStatus` Event in order react to exposure readiness
-          1. Send `AcquisitionInfo` with `enable` set to true
-          1. Wait for `AcquisitionStatus` to report `ready` as true
-          1. Inform user that they may initiate x-ray exposure
-          1. Wait for `AcquisitionStatus` to report `NewImage`
-          1. Retrieve `ImageInfo` for the newly acquired image
-          1. Use the `imageUrl` property to download the image just acquired
-          1. Close the `AcquisitionStatus` Event
-      1. Delete the acquisition session
+      
+        - Create a new session with an `available` device
+        - Subscribe to `AcquisitionStatus` Event in order react to exposure readiness
+        - Send `AcquisitionInfo` with `enable` set to true
+        - Wait for `AcquisitionStatus` to report `ready` as true
+        - Inform user that they may initiate x-ray exposure
+        - Wait for `AcquisitionStatus` to report `NewImage` or a new `lastImageId` is provided 
+        - Retrieve `ImageInfo` for the newly acquired image
+        - Use the `imageUrl` property to download the image and present it to the user
+        - Close the `AcquisitionStatus` Event
+        - Delete the acquisition session
 
 
 paths:
