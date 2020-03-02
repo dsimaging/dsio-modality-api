@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "redoc-cli --options.expand-responses='200,201' bundle ../api/ds-io-modality-swagger.yaml"
+    "build-redoc": "redoc-cli --options.expand-responses='200,201' --output ./redoc/ds-io-modality-doc.html bundle ../api/ds-io-modality-swagger.yaml"
   },
   "author": "",
   "license": "MIT",
