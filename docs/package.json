@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "redoc-cli": "redoc-cli"
+    "build": "redoc-cli bundle -- "
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "redoc": "^2.0.0-rc.23",
     "redoc-cli": "^0.9.6"
   }
 }
