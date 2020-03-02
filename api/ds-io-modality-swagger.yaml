@@ -8,6 +8,8 @@ info:
 servers:
   - url: 'https://localhost:43808/api/v1'
     description: Default endpoint for local Sensor Plugin service
+  - url: 'http://localhost:43808/api'
+    description: Development server
 
 tags:
   - name: Devices

@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-redoc": "redoc-cli --options.expand-responses='200,201' --output ./redoc/ds-io-modality-doc.html bundle ../api/ds-io-modality-swagger.yaml"
+    "build-redoc": "redoc-cli --options.expand-responses='200,201' --output ./redoc/ds-io-modality-doc.html bundle ../api/ds-io-modality-swagger.yaml",
+    "swagger": "node ./swagger/app.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.17.1",
     "redoc": "^2.0.0-rc.23",
-    "redoc-cli": "^0.9.6"
+    "redoc-cli": "^0.9.6",
+    "swagger-ui-express": "^4.1.3",
+    "yamljs": "^0.3.0"
   }
 }
