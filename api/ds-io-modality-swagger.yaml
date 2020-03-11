@@ -642,7 +642,7 @@ components:
 
     LutInfo:
         description: |
-          Describes the lookup table (LUT) mapping applied to an image. Images acquired by this service may be mapped using a non-linear LUT in order to provide an image suitable for presentation (see the `applyLut' property of `AcquisitionInfo`). The LUT is created according to the following equation:
+          Describes the lookup table (LUT) mapping applied to an image. Images acquired by this service may be mapped using a non-linear LUT in order to provide an image suitable for presentation (see the `applyLut` property of `AcquisitionInfo`). The LUT is created according to the following equation:
 
             Y = m(x&prime;<sup>&gamma;</sup>) + b
             
