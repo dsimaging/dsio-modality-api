@@ -1,0 +1,1491 @@
+{
+	"info": {
+		"_postman_id": "bcd8a0b7-21fa-4c32-bf68-d3acd7cb2410",
+		"name": "Dentsply Sirona Intraoral Modality API",
+		"description": "This API is used for acquisition and control of Intraoral sensors. The Devices section provides methods for retrieving information about available intraoral devices (i.e., USB or WiFi interfaces). The Acquisition section provides methods for acquisition of images from a device.\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "devices",
+			"item": [
+				{
+					"name": "{device Id}",
+					"item": [
+						{
+							"name": "Get Device Information",
+							"request": {
+								"auth": {
+									"type": "basic"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/devices/:deviceId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"devices",
+										":deviceId"
+									],
+									"variable": [
+										{
+											"key": "deviceId",
+											"value": "<string>",
+											"description": "(Required) The Id of the device"
+										}
+									]
+								},
+								"description": "Returns detailed information about a device."
+							},
+							"response": [
+								{
+									"name": "Device not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/devices/:deviceId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"devices",
+												":deviceId"
+											],
+											"variable": [
+												{
+													"key": "deviceId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/devices/:deviceId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"devices",
+												":deviceId"
+											],
+											"variable": [
+												{
+													"key": "deviceId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"deviceId\": -987654321,\n \"name\": \"Schick 33: 213402981\",\n \"iconUrl\": \"http://example.com/api/devices/-987654321/icon.png\",\n \"status\": \"Available\",\n \"interfaceType\": \"usb\",\n \"modelName\": \"Schick AE USB Interface\",\n \"serialNumber\": \"34-05921813233\",\n \"version\": 1.2,\n \"battery\": {\n  \"hasBattery\": true,\n  \"percentRemaining\": 78,\n  \"level\": \"Good\"\n }\n}"
+								}
+							]
+						},
+						{
+							"name": "Get Sensor Information",
+							"request": {
+								"auth": {
+									"type": "basic"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/devices/:deviceId/sensor",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"devices",
+										":deviceId",
+										"sensor"
+									],
+									"variable": [
+										{
+											"key": "deviceId",
+											"value": "<string>",
+											"description": "(Required) The Id of the device"
+										}
+									]
+								},
+								"description": "Returns information about the currently connected sensor. An empty response indicates no sensor connected."
+							},
+							"response": [
+								{
+									"name": "Device not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/devices/:deviceId/sensor",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"devices",
+												":deviceId",
+												"sensor"
+											],
+											"variable": [
+												{
+													"key": "deviceId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/devices/:deviceId/sensor",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"devices",
+												":deviceId",
+												"sensor"
+											],
+											"variable": [
+												{
+													"key": "deviceId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"modelName\": \"Schick 33\",\n \"serialNumber\": 213402981,\n \"brand\": \"Schick\",\n \"family\": \"Synergy\",\n \"size\": 2,\n \"width\": 2400,\n \"height\": 1708,\n \"version\": 0.15\n}"
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Get All Devices",
+					"request": {
+						"auth": {
+							"type": "basic"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/devices",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"devices"
+							]
+						},
+						"description": "Returns a summary list of the devices that this service currently provides."
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/devices",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"devices"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"deviceId\": -987654321,\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"<string>\",\n  \"status\": \"Available\"\n },\n {\n  \"deviceId\": -987654321,\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"<string>\",\n  \"status\": \"Available\"\n }\n]"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "acquisition",
+			"item": [
+				{
+					"name": "{session Id}",
+					"item": [
+						{
+							"name": "status",
+							"item": [
+								{
+									"name": "Get Acquisition Status",
+									"request": {
+										"auth": {
+											"type": "basic"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/acquisition/:sessionId/status",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"acquisition",
+												":sessionId",
+												"status"
+											],
+											"variable": [
+												{
+													"key": "sessionId",
+													"value": "<string>",
+													"description": "(Required) The session Id"
+												}
+											]
+										},
+										"description": "Returns current status of an exposure. This may be used to poll the status of the current exposure."
+									},
+									"response": [
+										{
+											"name": "Session not found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/acquisition/:sessionId/status",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"acquisition",
+														":sessionId",
+														"status"
+													],
+													"variable": [
+														{
+															"key": "sessionId"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/acquisition/:sessionId/status",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"acquisition",
+														":sessionId",
+														"status"
+													],
+													"variable": [
+														{
+															"key": "sessionId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"ready\": true,\n \"state\": \"Ready\",\n \"lastImageId\": \"04d2b36f-3613-4c29-b130-923c93a6187f\",\n \"totalImages\": 4\n}"
+										}
+									]
+								},
+								{
+									"name": "Subscribe to Acquisition Status Events",
+									"request": {
+										"auth": {
+											"type": "basic"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/acquisition/:sessionId/status/subscribe",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"acquisition",
+												":sessionId",
+												"status",
+												"subscribe"
+											],
+											"variable": [
+												{
+													"key": "sessionId",
+													"value": "<string>",
+													"description": "(Required) The session Id"
+												}
+											]
+										},
+										"description": "Subscribe to the exposure status using Server Sent Events (EventSource). The API service will send status updates whenever the Acquisition state changes. By subscribing to exposure status, a client may react quickly to state transitions making the application feel more responsive."
+									},
+									"response": [
+										{
+											"name": "Session not found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/acquisition/:sessionId/status/subscribe",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"acquisition",
+														":sessionId",
+														"status",
+														"subscribe"
+													],
+													"variable": [
+														{
+															"key": "sessionId"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Subscription started",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/acquisition/:sessionId/status/subscribe",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"acquisition",
+														":sessionId",
+														"status",
+														"subscribe"
+													],
+													"variable": [
+														{
+															"key": "sessionId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/event-stream"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "info",
+							"item": [
+								{
+									"name": "Get Acquisition Information",
+									"request": {
+										"auth": {
+											"type": "basic"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/acquisition/:sessionId/info",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"acquisition",
+												":sessionId",
+												"info"
+											],
+											"variable": [
+												{
+													"key": "sessionId",
+													"value": "<string>",
+													"description": "(Required) The session Id"
+												}
+											]
+										},
+										"description": "Returns AcquisitionInfo for the next exposure."
+									},
+									"response": [
+										{
+											"name": "Session not found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/acquisition/:sessionId/info",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"acquisition",
+														":sessionId",
+														"info"
+													],
+													"variable": [
+														{
+															"key": "sessionId"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/acquisition/:sessionId/info",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"acquisition",
+														":sessionId",
+														"info"
+													],
+													"variable": [
+														{
+															"key": "sessionId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"enable\": true,\n \"rotation\": 90,\n \"binning\": \"Unbinned\",\n \"applyLut\": true\n}"
+										}
+									]
+								},
+								{
+									"name": "Update Acquisition Information",
+									"request": {
+										"auth": {
+											"type": "basic"
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"enable\": \"<boolean>\",\n    \"rotation\": \"<number>\",\n    \"binning\": \"<string>\",\n    \"applyLut\": \"<boolean>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/acquisition/:sessionId/info",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"acquisition",
+												":sessionId",
+												"info"
+											],
+											"variable": [
+												{
+													"key": "sessionId",
+													"value": "<string>",
+													"description": "(Required) The session Id"
+												}
+											]
+										},
+										"description": "Set AcquisitionInfo for the next exposure. To initiate an exposure, you must use this method to enable acquisition and provide information about how the sensor is oriented. `AcquisitionStatus` will report the state `NoAcquisitionInfo` if you have not yet provided `AcquisitionInfo`."
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"enable\": true,\n    \"rotation\": 90,\n    \"binning\": \"Unbinned\",\n    \"applyLut\": true\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/acquisition/:sessionId/info",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"acquisition",
+														":sessionId",
+														"info"
+													],
+													"variable": [
+														{
+															"key": "sessionId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"enable\": true,\n \"rotation\": 90,\n \"binning\": \"Unbinned\",\n \"applyLut\": true\n}"
+										},
+										{
+											"name": "Session not found",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"enable\": true,\n    \"rotation\": 90,\n    \"binning\": \"Unbinned\",\n    \"applyLut\": true\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/acquisition/:sessionId/info",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"acquisition",
+														":sessionId",
+														"info"
+													],
+													"variable": [
+														{
+															"key": "sessionId"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "images",
+							"item": [
+								{
+									"name": "Get All Images",
+									"request": {
+										"auth": {
+											"type": "basic"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/acquisition/:sessionId/images",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"acquisition",
+												":sessionId",
+												"images"
+											],
+											"variable": [
+												{
+													"key": "sessionId",
+													"value": "<string>",
+													"description": "(Required) The session Id"
+												}
+											]
+										},
+										"description": "Returns information about all images acquired in the session"
+									},
+									"response": [
+										{
+											"name": "Session not found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/acquisition/:sessionId/images",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"acquisition",
+														":sessionId",
+														"images"
+													],
+													"variable": [
+														{
+															"key": "sessionId"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/acquisition/:sessionId/images",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"acquisition",
+														":sessionId",
+														"images"
+													],
+													"variable": [
+														{
+															"key": "sessionId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"pixelDataUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/pixels\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": 213402981,\n   \"brand\": \"Schick\",\n   \"family\": \"Synergy\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"version\": 0.15\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n },\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"pixelDataUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/pixels\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": 213402981,\n   \"brand\": \"Schick\",\n   \"family\": \"Synergy\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"version\": 0.15\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n }\n]"
+										}
+									]
+								},
+								{
+									"name": "Get Image",
+									"request": {
+										"auth": {
+											"type": "basic"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/acquisition/:sessionId/images/:imageId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"acquisition",
+												":sessionId",
+												"images",
+												":imageId"
+											],
+											"variable": [
+												{
+													"key": "sessionId",
+													"value": "<string>",
+													"description": "(Required) The session Id"
+												},
+												{
+													"key": "imageId",
+													"value": "<string>",
+													"description": "(Required) The image Id"
+												}
+											]
+										},
+										"description": "Returns information about the specified image"
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/acquisition/:sessionId/images/:imageId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"acquisition",
+														":sessionId",
+														"images",
+														":imageId"
+													],
+													"variable": [
+														{
+															"key": "sessionId"
+														},
+														{
+															"key": "imageId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n \"width\": 2400,\n \"height\": 1708,\n \"bitsPerPixel\": 12,\n \"bytesPerPixel\": 2,\n \"pixelSizeX\": 0.015,\n \"pixelSizeY\": 0.015,\n \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n \"pixelDataUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/pixels\",\n \"pixelHash\": {\n  \"alg\": \"MD5\",\n  \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n },\n \"sensorInfo\": {\n  \"modelName\": \"Schick 33\",\n  \"serialNumber\": 213402981,\n  \"brand\": \"Schick\",\n  \"family\": \"Synergy\",\n  \"size\": 2,\n  \"width\": 2400,\n  \"height\": 1708,\n  \"version\": 0.15\n },\n \"acquisitionInfo\": {\n  \"enable\": true,\n  \"rotation\": 90,\n  \"binning\": \"Unbinned\",\n  \"applyLut\": true\n },\n \"lutInfo\": {\n  \"gamma\": 2.3,\n  \"slope\": 65535,\n  \"offset\": 0,\n  \"totalGrays\": 4096,\n  \"minimumGray\": 3612,\n  \"maximumGray\": 418\n },\n \"exposureInfo\": {\n  \"low\": -0.5,\n  \"high\": 0.5,\n  \"optimum\": 0,\n  \"value\": -0.24723\n }\n}"
+										},
+										{
+											"name": "Session or image not found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/acquisition/:sessionId/images/:imageId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"acquisition",
+														":sessionId",
+														"images",
+														":imageId"
+													],
+													"variable": [
+														{
+															"key": "sessionId"
+														},
+														{
+															"key": "imageId"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Get Acquisition Session",
+							"request": {
+								"auth": {
+									"type": "basic"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/acquisition/:sessionId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition",
+										":sessionId"
+									],
+									"variable": [
+										{
+											"key": "sessionId",
+											"value": "<string>",
+											"description": "(Required) The session Id"
+										}
+									]
+								},
+								"description": "Retrieve acquisition session information."
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/acquisition/:sessionId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"acquisition",
+												":sessionId"
+											],
+											"variable": [
+												{
+													"key": "sessionId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": -987654321,\n \"clientName\": \"OP4 Workstation\"\n}"
+								},
+								{
+									"name": "Session not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/acquisition/:sessionId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"acquisition",
+												":sessionId"
+											],
+											"variable": [
+												{
+													"key": "sessionId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Update Acquisition Session",
+							"request": {
+								"auth": {
+									"type": "basic"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/acquisition/:sessionId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition",
+										":sessionId"
+									],
+									"variable": [
+										{
+											"key": "sessionId",
+											"value": "<string>",
+											"description": "(Required) The session Id"
+										}
+									]
+								},
+								"description": "Update an acquisition session. You may use this method to switch devices or change the client name."
+							},
+							"response": [
+								{
+									"name": "Session not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"deviceId\": -987654321,\n    \"clientName\": \"OP4 Workstation\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/acquisition/:sessionId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"acquisition",
+												":sessionId"
+											],
+											"variable": [
+												{
+													"key": "sessionId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Session was successfully updated",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"deviceId\": -987654321,\n    \"clientName\": \"OP4 Workstation\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/acquisition/:sessionId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"acquisition",
+												":sessionId"
+											],
+											"variable": [
+												{
+													"key": "sessionId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": -987654321,\n \"clientName\": \"OP4 Workstation\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Acquisition Session",
+							"request": {
+								"auth": {
+									"type": "basic"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/acquisition/:sessionId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition",
+										":sessionId"
+									],
+									"variable": [
+										{
+											"key": "sessionId",
+											"value": "<string>",
+											"description": "(Required) The session Id"
+										}
+									]
+								},
+								"description": "Delete an acquisition session. When you have finished image acquisition and retrieved all images, delete the `AcquisitionSession` to make the device available again. Deleting the session will delete all images associated with it."
+							},
+							"response": [
+								{
+									"name": "Successfully deleted session",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/acquisition/:sessionId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"acquisition",
+												":sessionId"
+											],
+											"variable": [
+												{
+													"key": "sessionId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Session not found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/acquisition/:sessionId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"acquisition",
+												":sessionId"
+											],
+											"variable": [
+												{
+													"key": "sessionId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Create Acquisition Session",
+					"request": {
+						"auth": {
+							"type": "basic"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/acquisition",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"acquisition"
+							]
+						},
+						"description": "Creates an acquisition session using the supplied device. \n\n  To acquire images from a device, you must first create an `AcquisitionSession`. When a session is created for a device, that device is marked as in use (Device Status changes to `InUse`). The session and the images associated with it persists until the session is deleted. The basic steps needed to acquire an image are:\n  - Create a new session with an `Available` device\n    - Subscribe to `AcquisitionStatus` Event in order react to exposure readiness\n    - Send `AcquisitionInfo` with `enable` set to true\n    - Wait for `AcquisitionStatus` to report `ready` as true\n    - Inform user that they may initiate x-ray exposure\n    - Wait for `AcquisitionStatus` to report `NewImage` or a new `lastImageId` is provided \n    - Retrieve `ImageInfo` for the newly acquired image and download the image using the `imageUrl` property\n  - Delete the acquisition session\n"
+					},
+					"response": [
+						{
+							"name": "Device is in use",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceId\": -987654321,\n    \"clientName\": \"OP4 Workstation\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/acquisition",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition"
+									]
+								}
+							},
+							"status": "Locked (WebDAV) (RFC 4918)",
+							"code": 423,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": -987654321,\n \"clientName\": \"OP4 Workstation\"\n}"
+						},
+						{
+							"name": "Conflict - use configuration app to resolve issue",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceId\": -987654321,\n    \"clientName\": \"OP4 Workstation\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/acquisition",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Device not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceId\": -987654321,\n    \"clientName\": \"OP4 Workstation\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/acquisition",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Session was successfully created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceId\": -987654321,\n    \"clientName\": \"OP4 Workstation\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/acquisition",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": -987654321,\n \"clientName\": \"OP4 Workstation\"\n}"
+						},
+						{
+							"name": "Internal error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceId\": -987654321,\n    \"clientName\": \"OP4 Workstation\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/acquisition",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Not enough storage available",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceId\": -987654321,\n    \"clientName\": \"OP4 Workstation\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/acquisition",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition"
+									]
+								}
+							},
+							"status": "Insufficient Storage (WebDAV) (RFC 4918)",
+							"code": 507,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Invalid request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceId\": -987654321,\n    \"clientName\": \"OP4 Workstation\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/acquisition",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"variable": [
+		{
+			"id": "baseUrl",
+			"key": "baseUrl",
+			"value": "https://localhost:43808/api/v1",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
