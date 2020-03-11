@@ -8,38 +8,15 @@ info:
 servers:
   - url: 'https://localhost:43808/api/v1'
     description: Default endpoint for local Sensor Plugin service
-  - url: 'http://localhost:43808/api'
-    description: Development server
 
 tags:
   - name: Devices
     description: >
-      Use the device management API to retrieve information about available devices. Device names, icons and the current status of devices may be retrieved. The current status must be `available` in order to use it for an acquisition. If the device status returns `inUse`, it indicates that the device is currently being used for an acquisition.
+      The device management API provides methods to retrieve information, such as names, icons and status for devices.
 
   - name: Images
     description: >
-      The Acquisition API provides methods to acquire one or more images from a device. To acquire images from a device, you must first create an `AcquisitionSession`. When a session is created for a device, that device is marked as in use (Device Status changes to `inUse`). The session and the images associated with it persists until the session is deleted. When you have finished all image acquisition and retrieved all images, you can delete the `AcquisitionSession` and make the device available again.
-
-
-      Once a session has been created, the client subscribes to the `AcquisitionStatus` Events to keep updated on the current status of the device and its exposure readiness. Alternatively, the client may poll for `AcquisitionStatus`, but the subscription API is the recommended method. To initiate an exposure, you must use the `AcquisitionInfo` API to enable acquisition and provide information about how the sensor is oriented. The `AcquisitionStatus` API will report the state `NoAcquisitionInfo` if you have not yet provided the `AcquisitionInfo`. `AcquisitionInfo` must be sent prior to every image exposure. When the `AcquisitionStatus` call returns true for the `ready` property, the user is ready to expose the sensor. When the exposure is finished, you can use the `ImageInfo` API to retrieve information about the image and the image data itself.
-
-
-      The `ImageInfo` object describes the image that was acquired. It provides detailed information about the format of the image data and URLs that can be used to retrieve the image data. The device does not perform any enhancements or processing of the image, however, it will apply a contrast map to the image so that the image delivered is suitable for display. The contrast map is a nonlinear reversible gamma map and it is described in the `LutInfo` property (see `LutInfo` for a description of how to reverse the mapping if you want to use the unmapped image data).
-
-
-      To summarize, the steps needed to acquire an image are:
-      
-        - Create a new session with an `available` device
-        - Subscribe to `AcquisitionStatus` Event in order react to exposure readiness
-        - Send `AcquisitionInfo` with `enable` set to true
-        - Wait for `AcquisitionStatus` to report `ready` as true
-        - Inform user that they may initiate x-ray exposure
-        - Wait for `AcquisitionStatus` to report `NewImage` or a new `lastImageId` is provided 
-        - Retrieve `ImageInfo` for the newly acquired image
-        - Use the `imageUrl` property to download the image and present it to the user
-        - Close the `AcquisitionStatus` Event
-        - Delete the acquisition session
-
+      The Acquisition API provides methods to acquire one or more images from a device.
 
 paths:
 #-----------------------------------------
@@ -50,7 +27,7 @@ paths:
       tags: [Devices]
       operationId: getAllDevices
       summary: Get All Devices
-      description: Returns a summary list of all supported devices
+      description: Returns a summary list of the devices that this service currently provides.
       responses:
         '200':
           description: Success
@@ -66,7 +43,7 @@ paths:
       tags: [Devices]
       operationId: getDeviceInfo
       summary: Get Device Information
-      description: Returns detailed information about a device
+      description: Returns detailed information about a device.
       parameters:
         - name: deviceId
           in: path
@@ -84,35 +61,12 @@ paths:
         '404':
           description: Device not found
 
-  /devices/{deviceId}/status:
-    get:
-      tags: [Devices]
-      operationId: getDeviceStatus
-      summary: Get Device Status
-      description: Returns current status of a device
-      parameters:
-        - name: deviceId
-          in: path
-          description: The Id of the device
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DeviceStatus'
-        '404':
-          description: Device not found
-
   /devices/{deviceId}/sensor:
     get:
       tags: [Devices]
       operationId: getSensorInfo
       summary: Get Sensor Information
-      description: 'Returns information about the currently connected sensor. An empty response indicates no sensor connected.'
+      description: Returns information about the currently connected sensor. An empty response indicates no sensor connected.
       parameters:
         - name: deviceId
           in: path
@@ -138,7 +92,19 @@ paths:
       tags: [Images]
       operationId: createAcquisitionSession
       summary: Create Acquisition Session
-      description: Creates an acquisition session using provided device
+      description: >
+        Creates an acquisition session using the supplied device. 
+        
+          To acquire images from a device, you must first create an `AcquisitionSession`. When a session is created for a device, that device is marked as in use (Device Status changes to `InUse`). The session and the images associated with it persists until the session is deleted. The basic steps needed to acquire an image are:
+          - Create a new session with an `Available` device
+            - Subscribe to `AcquisitionStatus` Event in order react to exposure readiness
+            - Send `AcquisitionInfo` with `enable` set to true
+            - Wait for `AcquisitionStatus` to report `ready` as true
+            - Inform user that they may initiate x-ray exposure
+            - Wait for `AcquisitionStatus` to report `NewImage` or a new `lastImageId` is provided 
+            - Retrieve `ImageInfo` for the newly acquired image and download the image using the `imageUrl` property
+          - Delete the acquisition session
+
       requestBody:
         content:
           application/json:
@@ -173,7 +139,7 @@ paths:
       tags: [Images]
       operationId: getAcquisitionSession
       summary: Get Acquisition Session
-      description: Returns acquisition session info
+      description: Retrieve acquisition session information.
       parameters:
         - name: sessionId
           in: path
@@ -194,7 +160,7 @@ paths:
       tags: [Images]
       operationId: updateAcquisitionSession
       summary: Update Acquisition Session
-      description: Update an acquisition session. May be used to switch devices or change the client name
+      description: Update an acquisition session. You may use this method to switch devices or change the client name.
       parameters:
         - name: sessionId
           in: path
@@ -220,7 +186,7 @@ paths:
       tags: [Images]
       operationId: deleteAcquisitionSession
       summary: Delete Acquisition Session
-      description: Close an acquisition session. Deletes all images and frees the device for use.
+      description: Delete an acquisition session. When you have finished image acquisition and retrieved all images, delete the `AcquisitionSession` to make the device available again. Deleting the session will delete all images associated with it.
       parameters:
         - name: sessionId
           in: path
@@ -239,7 +205,7 @@ paths:
       tags: [Images]
       operationId: getAcquisitionStatus
       summary: Get Acquisition Status
-      description: Returns current status of an exposure. This API may be used to poll the status of the current exposure. 
+      description: Returns current status of an exposure. This may be used to poll the status of the current exposure.
       parameters:
         - name: sessionId
           in: path
@@ -285,7 +251,7 @@ paths:
       tags: [Images]
       operationId: getAcquisitionInfo
       summary: Get Acquisition Information
-      description: Returns AcquisitionInfo for the next exposure
+      description: Returns AcquisitionInfo for the next exposure.
       parameters:
         - name: sessionId
           in: path
@@ -307,7 +273,7 @@ paths:
       tags: [Images]
       operationId: setAcquisitionInfo
       summary: Update Acquisition Information
-      description: Set AcquisitionInfo for the next exposure. A client must call this API prior to each exposure with enable set to *true*.
+      description: Set AcquisitionInfo for the next exposure. To initiate an exposure, you must use this method to enable acquisition and provide information about how the sensor is oriented. `AcquisitionStatus` will report the state `NoAcquisitionInfo` if you have not yet provided `AcquisitionInfo`.
       parameters:
         - name: sessionId
           in: path
@@ -401,16 +367,19 @@ components:
     DeviceStatus:
       description: >
         Describes the current status of the device:
-          * `available` - Device is available for an acquisition
-          * `inUse` - Device is currently being used for an acquisition
-          * `unavailable` - Device is not available at this time
-          * `error` Device encountered an unspecified error
+          * `Available` - Device is available for an acquisition
+          * `InUse` - Device is currently being used for an acquisition
+          * `Unavailable` - Device is not available at this time
+          * `Error` Device encountered an unspecified error
+          
+          The current status must be `Available` in order to use it for an acquisition. If the device status returns `InUse`, it indicates that the device is currently being used for an acquisition.
       type: string
       enum:
-        - available
-        - inUse
-        - unavailable
-        - error
+        - Available
+        - InUse
+        - Unavailable
+        - Error
+      example: Available
       
     DeviceSummary:
       description: Summary information about a device
@@ -428,7 +397,7 @@ components:
           description: Url for an icon representing the device
           type: string
         status:
-          $ref: '#/components/schemas/DeviceStatus'
+            $ref: '#/components/schemas/DeviceStatus'
 
     DeviceInfo:
       description: Detailed information about a device
@@ -448,6 +417,10 @@ components:
           example: http://example.com/api/devices/-987654321/icon.png
         status:
           $ref: '#/components/schemas/DeviceStatus'
+        interfaceType:
+          description: The interface used to connect the device to the system. For example, a USB device may report *usb*, while a network based device may report *network*.
+          type: string
+          example: usb
         modelName:
           description: Manufacturer's model name
           type: string
@@ -483,11 +456,11 @@ components:
               * `good` - The battery level is sufficient
               * `full` - The battery was recently recharged
           type: string
-          enum: [low, good, full]
-          example: good
+          enum: [Low, Good, Full]
+          example: Good
 
     SensorInfo:
-      description: Detailed information about the connected sensor. This object may be null or empty if no sensor is connected.
+      description: Detailed information about the connected sensor.
       type: object
       properties:
         modelName:
@@ -533,7 +506,7 @@ components:
           type: string
           example: -987654321
         clientName:
-          description: A client provided string used to identify the client that created this session
+          description: A client provided string used to identify the client that created the session
           type: string
           example: OP4 Workstation
 
@@ -559,14 +532,16 @@ components:
       type: object
       properties:
         ready:
-          description: Indicates exposure readiness. Use this property to update the user with information regarding exposure readiness.
+          description: Indicates exposure readiness of the sensor. Use this property to update the user with information regarding exposure readiness.
           type: boolean
           example: true
         state:
           description: >
-            The state of the current exposure:
-              * `Error` - An error has occurred
-              * `LowBattery` - A warning that the device does not have enough power to continue
+            The state of the current exposure. For a typical exposure, the acquisition state property will start with `NoAcquisitionInfo`. Once the client has supplied AcquisitionInfo with `enable` set to true and the sensor is ready to acquire, the state will transition to `Ready`. When the user exposes the sensor, the state will automatically transition to `Reading`, followed by `Processing`, `Storing`, `NewImage` and finally return to `NoAcquisitionInfo` as it prepares for the next exposure. 
+            
+              The state property will contain one of the following values:
+              * `Error` - An error has occurred and acquisition is unavailable.
+              * `LowBattery` - A warning that the device does not have enough power to continue. The device must be recharged.
               * `InsufficientStorage` - There is not enough space available to store the next exposure
               * `NoHardware` - The device has been lost or is no longer connected
               * `NoSensor` - There is no sensor connected to the device
@@ -575,7 +550,7 @@ components:
               * `Ready` - The device is ready for an exposure. Note that the device may be ready, but the client has disabled acquisition. In this case, the ready property above would be false.
               * `Reading` - An exposure occurred and the sensor is being read.
               * `Processing` - The device is processing image data received from the sensor
-              * `Storing` - The device is storing image data lcoally
+              * `Storing` - The device is storing image data
               * `NewImage` - Indicates that an exposure just completed and a new image is available.
           type: string
           enum:
@@ -593,11 +568,11 @@ components:
             - NewImage
           example: Ready
         lastImageId:
-          description: The id of the most recent image acquired
+          description: The id of the most recent image acquired. This property will be updated when an image is acquired and the state transitions to `NewImage`.
           type: string
           example: 04d2b36f-3613-4c29-b130-923c93a6187f
-        imagesAcquired:
-          description: The total number of images acquired in this session
+        totalImages:
+          description: The total number of images acquired so far in this session. This property will be updated when an image is acquired and the state transitions to `NewImage`.
           type: number
           example: 4
 
@@ -609,19 +584,19 @@ components:
           $ref: '#/components/schemas/AcquisitionStatus'
 
     AcquisitionInfo:
-      description: Provides information regarding the next acquisition. AcquisitionInfo must be provided prior to each exposure.
+      description: Provides information regarding an acquisition. AcquisitionInfo must be provided prior to each exposure.
       type: object
       properties:
         enable:
-          description: Enable or disable the current acquisition. Note that a client may enable acquisition, but the device may not be ready or able to perform an acquisition (i.e., no sensor connected). See acquisition status to determine exposure readiness.
+          description: Enable or disable the current acquisition. Note that a client may enable acquisition, but the device may not be ready or able to perform an acquisition (i.e., no sensor connected). See `AcquisitionStatus` to determine exposure readiness.
           type: boolean
           example: true
         rotation:
           description: >
             Amount in degrees that the sensor is rotated in a clockwise direction with respect to the neutral position (cable exits south) as viewed from the perspective of the x-ray source. The device will rotate an acquired image accordingly based on this value.
           
-          
-            Here are some examples:
+              Here are some examples:
+            
               1. An anterior PA of the patient's maxilla should set this value to 0 (sensor is in the neutral position).
               1. A bitewing on the patient's left side should set this value to 90.
               1. An anterior PA of the patient's mandible should set this value to 180 (sensor is *upside down*).
@@ -631,10 +606,14 @@ components:
           enum: [0, 90, 180, 270]
           example: 90
         binning:
-          description: The binning mode used to acquire the image. When binning mode is set to Binned2x2, the sensor combines 4 pixels in a 2x2 neighborhood to create a single pixel. The resulting image is 1/4th the size of an Unbinned image, but with lower resolution.
+          description: The binning mode used to acquire the image. When binning mode is set to Binned2x2, the sensor combines 4 pixels in a 2x2 neighborhood to create a single pixel. The resulting image is 1/4th the size of an Unbinned image, but with lower resolution. Note that some sensors may not support binning, in which case the binning property cannot be changed.
           type: string
           enum: [Unbinned, Binned2x2]
           example: Unbinned
+        applyLut:
+          description: Flag to indicate if a dynamic gamma map should be applied to the image to optimize contrast. When this value is true, the image will be enhanced with a nonlinear map described by `LutInfo`.
+          type: boolean
+          example: true
           
     ExposureInfo:
       description: Describes the quality of the exposure. If the value is higher than the optimal, the user could reduce the x-ray exposure to improve image quality. Likewise, if the value is lower than the optimal, the user could increase the x-ray exposure to improve image quality.
@@ -650,7 +629,7 @@ components:
           type: number
           format: double
           example: +0.50
-        optimal:
+        optimum:
           description: The optimal value for a good exposure in the range [low, high]
           type: number
           format: double
@@ -663,7 +642,7 @@ components:
 
     LutInfo:
         description: |
-          Describes the lookup table (LUT) mapping applied to an image. Images acquired by this service are mapped using a non-linear LUT in order to provide an image suitable for presentation. The LUT is created according to the following equation:
+          Describes the lookup table (LUT) mapping applied to an image. Images acquired by this service may be mapped using a non-linear LUT in order to provide an image suitable for presentation (see the `applyLut' property of `AcquisitionInfo`). The LUT is created according to the following equation:
 
             Y = m(x&prime;<sup>&gamma;</sup>) + b
             
@@ -718,23 +697,23 @@ components:
             example: 418
 
     HashInfo:
-      description: A hash used to verify integrity of a file or arbitrary data
+      description: A hash used to verify integrity of pixel data.
       type: object
       properties:
         alg:
           description: Algorithm used to compute the hash.
           type: string
           enum:
-            - md5
-            - sha256
-          example: md5
+            - MD5
+            - SHA256
+          example: MD5
         hash:
           description: The hash value
           type: string
           example: 536c36b632ea8256a50ec6396d4e7ea3
 
     ImageInfo:
-      description: Information about an acquired image.
+      description: Provides detailed information about acquired images, including the format of the image data and URLs that can be used to retrieve image data. The device does not perform any enhancements or processing of the image, however, it may apply a contrast map to the image so that the image delivered is suitable for display. The contrast map is a nonlinear reversible gamma map and it is described in the `LutInfo` property.
       type: object
       properties:
         id:
@@ -784,22 +763,12 @@ components:
           type: string
           example: http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/pixels
         pixelHash:
-          description: A hash of the pixel data that can be used to verify the integrity of the pixel data associated with this image.
-          allOf:
-            - $ref: '#/components/schemas/HashInfo'
+          $ref: '#/components/schemas/HashInfo'
         sensorInfo:
-          description: Describes the sensor used to acquire image
-          allOf:
-            - $ref: '#/components/schemas/SensorInfo'
+          $ref: '#/components/schemas/SensorInfo'
         acquisitionInfo:
-          description: The AcquisitionInfo used to acquire image
-          allOf:
-            - $ref: '#/components/schemas/AcquisitionInfo'
+          $ref: '#/components/schemas/AcquisitionInfo'
         lutInfo:
-          description: The LutInfo used to map the image
-          allOf:
-            - $ref: '#/components/schemas/LutInfo'
+          $ref: '#/components/schemas/LutInfo'
         exposureInfo:
-          description: The ExposureInfo describing the image exposure quality
-          allOf:
-            - $ref: '#/components/schemas/ExposureInfo'
+          $ref: '#/components/schemas/ExposureInfo'
