@@ -8,6 +8,11 @@ This repository contains specifications and documentation for the Intraoral Imag
 * docs - contains documentation and node project for generating docs
 * examples - contains example programs
 
+## API Specs
+The api folder contains the OpenAPI spec in yaml format. This file can be used with Swagger Hub or other swagger tools for vieweing or editing the API.
+
+Additionally, this folder contains a Postman collection in Json format. You can import this file into Postman and it will create a set of commands for each API in the spec. It is very useful to quickly configure Postman for testing the API.
+
 ## Building documentation
 NodeJS programs to generate documentation are in the docs folder. Switch to the ./docs folder before executing any node or npm commands.
 
