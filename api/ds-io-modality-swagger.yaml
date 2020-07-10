@@ -614,7 +614,11 @@ components:
           description: Flag to indicate if a dynamic gamma map should be applied to the image to optimize contrast. When this value is true, the image will be enhanced with a nonlinear map described by `LutInfo`.
           type: boolean
           example: true
-          
+        context:
+          description: An arbitrary object that can be used to store custom information about an acquisition. This data will be available in the `ImageInfo.acquisitionInfo` property of the resulting image.
+          type: object
+          additionalProperties: true
+
     ExposureInfo:
       description: Describes the quality of the exposure. If the value is higher than the optimal, the user could reduce the x-ray exposure to improve image quality. Likewise, if the value is lower than the optimal, the user could increase the x-ray exposure to improve image quality.
       type: object
