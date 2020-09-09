@@ -38,6 +38,21 @@ paths:
                 items:
                   $ref: '#/components/schemas/DeviceSummary'
 
+  /devices/subscribe:
+    get:
+      tags: [Devices]
+      operationId: subscribeDevices
+      summary: Subscribe to Device Events
+      description: >
+        Subscribe to changes in the Device list using Server Sent Events (EventSource). The API service will send this event when a device is added, removed or changed. The event data consists of a `DeviceSummary` object indicating the device that changed. API consumers can update their own list accordingly, or retrieve an updated list of devices using the `GET /devices` method.
+      responses:
+        '200':
+          description: Subscription started
+          content:
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/DeviceEventData'
+
   /devices/{deviceId}:
     get:
       tags: [Devices]
@@ -399,6 +414,20 @@ components:
         status:
             $ref: '#/components/schemas/DeviceStatus'
 
+    DeviceEventData:
+      description: Describes changes to the list of devices including added, removed and changed devices. A device may change if a different sensor is connected causing the name and icon to be modified or when a device is used for a session causing the status to be modified.
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            added:
+              $ref: '#/components/schemas/DeviceSummary'
+            removed:
+              $ref: '#/components/schemas/DeviceSummary'
+            changed:
+              $ref: '#/components/schemas/DeviceSummary'
+            
     DeviceInfo:
       description: Detailed information about a device
       type: object
