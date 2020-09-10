@@ -429,7 +429,7 @@ components:
               $ref: '#/components/schemas/DeviceSummary'
             
     DeviceInfo:
-      description: Detailed information about a device
+      description: Detailed information about an intraoral device (sensor interface)
       type: object
       properties:
         deviceId:
@@ -489,7 +489,7 @@ components:
           example: Good
 
     SensorInfo:
-      description: Detailed information about the connected sensor.
+      description: Detailed information about an intraoral sensor.
       type: object
       properties:
         modelName:
