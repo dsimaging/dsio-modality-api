@@ -481,9 +481,9 @@ components:
         level:
           description: >
             A coarse description of the battery power level. May be used to update a color scheme in the user interface 
-              * `low` - The battery is low and should be recharged
-              * `good` - The battery level is sufficient
-              * `full` - The battery was recently recharged
+              * `Low` - The battery is low and should be recharged
+              * `Good` - The battery level is sufficient
+              * `Full` - The battery was recently recharged
           type: string
           enum: [Low, Good, Full]
           example: Good
