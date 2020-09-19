@@ -137,8 +137,6 @@ paths:
         '404':
           description: Device not found
         '409':
-          description: Conflict - use configuration app to resolve issue
-        '423':
           description: Device is in use
           content:
             application/json:
@@ -197,6 +195,12 @@ paths:
                 $ref: '#/components/schemas/AcquisitionSession'
         '404':
           description: Session not found
+        '409':
+          description: Device is in use
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcquisitionSession'
     delete:
       tags: [Images]
       operationId: deleteAcquisitionSession
@@ -411,6 +415,9 @@ components:
         iconUrl:
           description: Url for an icon representing the device
           type: string
+        hasSensor:
+          description: Flag indicating if a sensor is connected to this device
+          type: boolean
         status:
             $ref: '#/components/schemas/DeviceStatus'
 
@@ -444,6 +451,9 @@ components:
           description: Url for an icon representing the device
           type: string
           example: http://example.com/api/devices/-987654321/icon.png
+        hasSensor:
+          description: Flag indicating if a sensor is connected to this device
+          type: boolean
         status:
           $ref: '#/components/schemas/DeviceStatus'
         interfaceType:
@@ -521,6 +531,9 @@ components:
           description: Height of sensor in pixels
           type: number
           example: 1708
+        supportsBinning:
+          description: Flag indicating if the sensor supports Binning (see `AcquisitionInfo`)
+          type: boolean
         version:
           description: Version of software running on the sensor
           type: string
@@ -538,6 +551,10 @@ components:
           description: A client provided string used to identify the client that created the session
           type: string
           example: OP4 Workstation
+        context:
+          description: An arbitrary object that can be used to store custom information about an acquisition session.
+          type: object
+          additionalProperties: {}
 
     AcquisitionSession:
       description: Information about an active acquisition session. This object is similar to AcquisitionSessionInfo, but with the addition of the session Id.
@@ -555,6 +572,10 @@ components:
           description: A client provided string used to identify the client that created this session
           type: string
           example: OP4 Workstation
+        context:
+          description: An arbitrary object that can be used to store custom information about an acquisition session.
+          type: object
+          additionalProperties: {}
     
     AcquisitionStatus:
       description: Describes the state of the current exposure
@@ -649,16 +670,26 @@ components:
           additionalProperties: {}
 
     ExposureInfo:
-      description: Describes the quality of the exposure. If the value is higher than the optimal, the user could reduce the x-ray exposure to improve image quality. Likewise, if the value is lower than the optimal, the user could increase the x-ray exposure to improve image quality.
+      description: Describes the quality of the exposure. The optimal range is defined by [`low`, `high`], with an optimal exposure value defined by `optimal` If the exposure `value` is higher than the optimal range, the user could reduce the x-ray exposure to improve image quality. Likewise, if the value is lower than the optimal range, the user could increase the x-ray exposure to improve image quality.
       type: object
       properties:
+        min:
+          description: The minimum value of the exposure scale
+          type: number
+          format: double
+          example: -1.0
+        max:
+          description: The maximum value of the exposure scale
+          type: number
+          format: double
+          example: +1.0
         low:
-          description: The low end of the exposure scale
+          description: The low end of the optimal exposure range
           type: number
           format: double
           example: -0.50
         high:
-          description: The high end of the exposure scale
+          description: The high end of the optimal exposure range
           type: number
           format: double
           example: +0.50
@@ -791,12 +822,20 @@ components:
           description: Url of the image. The image returned from this url will be represented as a standard uncompressed image format, such as, PNG or TIFF.
           type: string
           example: http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png
+        imagePixelHash:
+          description: Hash of the pixel data extracted from the image available via `imageUrl`
+          allOf:
+            - $ref: '#/components/schemas/HashInfo'
         pixelDataUrl:
           description: Url to retrieve unformatted byte stream of pixel data. The length of the stream matches width * height * bytesPerPixel.
           type: string
           example: http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/pixels
         pixelHash:
-          $ref: '#/components/schemas/HashInfo'
+          description: Hash of of the pixel data available via `pixelDataUrl`
+          allOf:
+            - $ref: '#/components/schemas/HashInfo'
+        deviceInfo:
+          $ref: '#/components/schemas/DeviceInfo'
         sensorInfo:
           $ref: '#/components/schemas/SensorInfo'
         acquisitionInfo:
