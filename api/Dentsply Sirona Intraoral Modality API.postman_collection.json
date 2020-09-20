@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f303754b-6e02-4a78-acaf-d75ea0028e16",
+		"_postman_id": "cb854e98-6d1c-42be-a972-ea389369c865",
 		"name": "Dentsply Sirona Intraoral Modality API",
 		"description": "This API is used for acquisition and control of Intraoral sensors. The Devices section provides methods for retrieving information about available intraoral devices (i.e., USB or WiFi interfaces). The Acquisition section provides methods for acquisition of images from a device.\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -51,7 +51,55 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n {\n  \"deviceId\": \"occaecat veniam\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"Lorem eu irure\",\n  \"status\": \"Available\"\n },\n {\n  \"deviceId\": \"pariatur cupidatat id culpa\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"fugiat Lorem volup\",\n  \"status\": \"Available\"\n }\n]"
+							"body": "[\n {\n  \"deviceId\": \"commodo magna ea\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"velit exercitation ut\",\n  \"hasSensor\": true,\n  \"status\": \"Available\"\n },\n {\n  \"deviceId\": \"a\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"in voluptate elit labore\",\n  \"hasSensor\": false,\n  \"status\": \"Available\"\n }\n]"
+						}
+					]
+				},
+				{
+					"name": "Subscribe to Device Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/devices/subscribe",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"devices",
+								"subscribe"
+							]
+						},
+						"description": "Subscribe to changes in the Device list using Server Sent Events (EventSource). The API service will send this event when a device is added, removed or changed. The event data consists of a `DeviceSummary` object indicating the device that changed. API consumers can update their own list accordingly, or retrieve an updated list of devices using the `GET /devices` method.\n"
+					},
+					"response": [
+						{
+							"name": "Subscription started",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/devices/subscribe",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"devices",
+										"subscribe"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/event-stream"
+								}
+							],
+							"cookie": [],
+							"body": ""
 						}
 					]
 				},
@@ -80,39 +128,6 @@
 						"description": "Returns detailed information about a device."
 					},
 					"response": [
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseUrl}}/devices/:deviceId",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"devices",
-										":deviceId"
-									],
-									"variable": [
-										{
-											"key": "deviceId"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"deviceId\": \"nisi pariatur consequat Ut in\",\n \"name\": \"Schick 33: 213402981\",\n \"iconUrl\": \"http://example.com/api/devices/-987654321/icon.png\",\n \"status\": \"Available\",\n \"interfaceType\": \"usb\",\n \"modelName\": \"Schick AE USB Interface\",\n \"serialNumber\": \"34-05921813233\",\n \"version\": \"i\",\n \"battery\": {\n  \"hasBattery\": true,\n  \"percentRemaining\": 78,\n  \"level\": \"Good\"\n }\n}"
-						},
 						{
 							"name": "Device not found",
 							"originalRequest": {
@@ -145,6 +160,39 @@
 							],
 							"cookie": [],
 							"body": ""
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/devices/:deviceId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"devices",
+										":deviceId"
+									],
+									"variable": [
+										{
+											"key": "deviceId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"deviceId\": \"elit sit eu cupidatat\",\n \"name\": \"Schick 33: 213402981\",\n \"iconUrl\": \"http://example.com/api/devices/-987654321/icon.png\",\n \"hasSensor\": true,\n \"status\": \"Available\",\n \"interfaceType\": \"usb\",\n \"modelName\": \"Schick AE USB Interface\",\n \"serialNumber\": \"34-05921813233\",\n \"version\": \"sunt cupidatat Duis\",\n \"battery\": {\n  \"hasBattery\": true,\n  \"percentRemaining\": 78,\n  \"level\": \"Good\"\n }\n}"
 						}
 					]
 				},
@@ -175,6 +223,40 @@
 					},
 					"response": [
 						{
+							"name": "Device not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/devices/:deviceId/sensor",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"devices",
+										":deviceId",
+										"sensor"
+									],
+									"variable": [
+										{
+											"key": "deviceId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
 							"name": "Success",
 							"originalRequest": {
 								"method": "GET",
@@ -206,41 +288,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"modelName\": \"Schick 33\",\n \"serialNumber\": \"qui exercitation\",\n \"brand\": \"Schick\",\n \"family\": \"Synergy\",\n \"size\": 2,\n \"width\": 2400,\n \"height\": 1708,\n \"version\": \"sed esse\"\n}"
-						},
-						{
-							"name": "Device not found",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseUrl}}/devices/:deviceId/sensor",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"devices",
-										":deviceId",
-										"sensor"
-									],
-									"variable": [
-										{
-											"key": "deviceId"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
+							"body": "{\n \"modelName\": \"Schick 33\",\n \"serialNumber\": \"occaecat Lorem\",\n \"brand\": \"Schick\",\n \"family\": \"Synergy\",\n \"size\": 2,\n \"width\": 2400,\n \"height\": 1708,\n \"supportsBinning\": true,\n \"version\": \"nisi dolor ut Excepteur\"\n}"
 						}
 					]
 				}
@@ -263,7 +311,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"<string>\"\n}"
+							"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"<string>\",\n    \"context\": \"<object>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/acquisition",
@@ -278,13 +326,13 @@
 					},
 					"response": [
 						{
-							"name": "Not enough storage available",
+							"name": "Invalid request",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\"\n}"
+									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": \"<object>\"\n}"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition",
@@ -296,8 +344,8 @@
 									]
 								}
 							},
-							"status": "Insufficient Storage (WebDAV) (RFC 4918)",
-							"code": 507,
+							"status": "Bad Request",
+							"code": 400,
 							"_postman_previewlanguage": "text",
 							"header": [
 								{
@@ -315,7 +363,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\"\n}"
+									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": \"<object>\"\n}"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition",
@@ -346,7 +394,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\"\n}"
+									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": \"<object>\"\n}"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition",
@@ -368,7 +416,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"sit officia\",\n \"clientName\": \"OP4 Workstation\"\n}"
+							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"consequat\",\n \"clientName\": \"OP4 Workstation\",\n \"context\": \"sint non aliquip anim\"\n}"
 						},
 						{
 							"name": "Device is in use",
@@ -377,38 +425,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/acquisition",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"acquisition"
-									]
-								}
-							},
-							"status": "Locked (WebDAV) (RFC 4918)",
-							"code": 423,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"sit officia\",\n \"clientName\": \"OP4 Workstation\"\n}"
-						},
-						{
-							"name": "Conflict - use configuration app to resolve issue",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\"\n}"
+									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": \"<object>\"\n}"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition",
@@ -422,6 +439,37 @@
 							},
 							"status": "Conflict",
 							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"consequat\",\n \"clientName\": \"OP4 Workstation\",\n \"context\": \"sint non aliquip anim\"\n}"
+						},
+						{
+							"name": "Not enough storage available",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": \"<object>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/acquisition",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition"
+									]
+								}
+							},
+							"status": "Insufficient Storage (WebDAV) (RFC 4918)",
+							"code": 507,
 							"_postman_previewlanguage": "text",
 							"header": [
 								{
@@ -439,7 +487,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\"\n}"
+									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": \"<object>\"\n}"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition",
@@ -453,37 +501,6 @@
 							},
 							"status": "Internal Server Error",
 							"code": 500,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Invalid request",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/acquisition",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"acquisition"
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
 							"_postman_previewlanguage": "text",
 							"header": [
 								{
@@ -552,7 +569,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"sit officia\",\n \"clientName\": \"OP4 Workstation\"\n}"
+							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"consequat\",\n \"clientName\": \"OP4 Workstation\",\n \"context\": \"sint non aliquip anim\"\n}"
 						},
 						{
 							"name": "Session not found",
@@ -601,7 +618,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"<string>\"\n}"
+							"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"<string>\",\n    \"context\": \"<object>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/acquisition/:sessionId",
@@ -624,13 +641,50 @@
 					},
 					"response": [
 						{
+							"name": "Session was successfully updated",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": \"<object>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/acquisition/:sessionId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition",
+										":sessionId"
+									],
+									"variable": [
+										{
+											"key": "sessionId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"consequat\",\n \"clientName\": \"OP4 Workstation\",\n \"context\": \"sint non aliquip anim\"\n}"
+						},
+						{
 							"name": "Session not found",
 							"originalRequest": {
 								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\"\n}"
+									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": \"<object>\"\n}"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition/:sessionId",
@@ -661,13 +715,13 @@
 							"body": ""
 						},
 						{
-							"name": "Session was successfully updated",
+							"name": "Device is in use",
 							"originalRequest": {
 								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\"\n}"
+									"raw": "{\n    \"deviceId\": \"<string>\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": \"<object>\"\n}"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition/:sessionId",
@@ -685,8 +739,8 @@
 									]
 								}
 							},
-							"status": "OK",
-							"code": 200,
+							"status": "Conflict",
+							"code": 409,
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
@@ -695,7 +749,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"sit officia\",\n \"clientName\": \"OP4 Workstation\"\n}"
+							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"consequat\",\n \"clientName\": \"OP4 Workstation\",\n \"context\": \"sint non aliquip anim\"\n}"
 						}
 					]
 				},
@@ -1014,6 +1068,40 @@
 					},
 					"response": [
 						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/acquisition/:sessionId/info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition",
+										":sessionId",
+										"info"
+									],
+									"variable": [
+										{
+											"key": "sessionId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"enable\": true,\n \"rotation\": 90,\n \"binning\": \"Unbinned\",\n \"applyLut\": true,\n \"context\": \"non\"\n}"
+						},
+						{
 							"name": "Session not found",
 							"originalRequest": {
 								"method": "GET",
@@ -1046,40 +1134,6 @@
 							],
 							"cookie": [],
 							"body": ""
-						},
-						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{baseUrl}}/acquisition/:sessionId/info",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"acquisition",
-										":sessionId",
-										"info"
-									],
-									"variable": [
-										{
-											"key": "sessionId"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"enable\": true,\n \"rotation\": 90,\n \"binning\": \"Unbinned\",\n \"applyLut\": true,\n \"context\": \"deserunt\"\n}"
 						}
 					]
 				},
@@ -1119,44 +1173,6 @@
 					},
 					"response": [
 						{
-							"name": "Success",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"enable\": true,\n    \"rotation\": 90,\n    \"binning\": \"Unbinned\",\n    \"applyLut\": true,\n    \"context\": \"<string>\"\n}"
-								},
-								"url": {
-									"raw": "{{baseUrl}}/acquisition/:sessionId/info",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"acquisition",
-										":sessionId",
-										"info"
-									],
-									"variable": [
-										{
-											"key": "sessionId"
-										}
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "{\n \"enable\": true,\n \"rotation\": 90,\n \"binning\": \"Unbinned\",\n \"applyLut\": true,\n \"context\": \"<string>\"\n}"
-						},
-						{
 							"name": "Session not found",
 							"originalRequest": {
 								"method": "PUT",
@@ -1193,6 +1209,44 @@
 							],
 							"cookie": [],
 							"body": ""
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"enable\": true,\n    \"rotation\": 90,\n    \"binning\": \"Unbinned\",\n    \"applyLut\": true,\n    \"context\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/acquisition/:sessionId/info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition",
+										":sessionId",
+										"info"
+									],
+									"variable": [
+										{
+											"key": "sessionId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"enable\": true,\n \"rotation\": 90,\n \"binning\": \"Unbinned\",\n \"applyLut\": true,\n \"context\": \"<string>\"\n}"
 						}
 					]
 				},
@@ -1254,7 +1308,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"pixelDataUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/pixels\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": \"ut mollit Ut est\",\n   \"brand\": \"Schick\",\n   \"family\": \"Synergy\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"version\": \"sed nostrud Ut adipisicing enim\"\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true,\n   \"context\": \"<string>\"\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n },\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"pixelDataUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/pixels\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": \"est nostrud\",\n   \"brand\": \"Schick\",\n   \"family\": \"Synergy\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"version\": \"minim nulla laborum\"\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true,\n   \"context\": \"<string>\"\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n }\n]"
+							"body": "[\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"imagePixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"pixelDataUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/pixels\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"deviceInfo\": {\n   \"deviceId\": \"laborum in anim exercitation\",\n   \"name\": \"Schick 33: 213402981\",\n   \"iconUrl\": \"http://example.com/api/devices/-987654321/icon.png\",\n   \"hasSensor\": true,\n   \"status\": \"Available\",\n   \"interfaceType\": \"usb\",\n   \"modelName\": \"Schick AE USB Interface\",\n   \"serialNumber\": \"34-05921813233\",\n   \"version\": \"Ut\",\n   \"battery\": {\n    \"hasBattery\": true,\n    \"percentRemaining\": 78,\n    \"level\": \"Good\"\n   }\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": \"reprehenderit in elit\",\n   \"brand\": \"Schick\",\n   \"family\": \"Synergy\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"supportsBinning\": false,\n   \"version\": \"velit minim dolore dolor\"\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true,\n   \"context\": \"<string>\"\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"min\": -1,\n   \"max\": 1,\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n },\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"imagePixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"pixelDataUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/pixels\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"deviceInfo\": {\n   \"deviceId\": \"in do eiusmod nisi\",\n   \"name\": \"Schick 33: 213402981\",\n   \"iconUrl\": \"http://example.com/api/devices/-987654321/icon.png\",\n   \"hasSensor\": true,\n   \"status\": \"Available\",\n   \"interfaceType\": \"usb\",\n   \"modelName\": \"Schick AE USB Interface\",\n   \"serialNumber\": \"34-05921813233\",\n   \"version\": \"Ut\",\n   \"battery\": {\n    \"hasBattery\": true,\n    \"percentRemaining\": 78,\n    \"level\": \"Good\"\n   }\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": \"aliquip dolor aute\",\n   \"brand\": \"Schick\",\n   \"family\": \"Synergy\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"supportsBinning\": true,\n   \"version\": \"ea ut cupidatat\"\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true,\n   \"context\": \"<string>\"\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"min\": -1,\n   \"max\": 1,\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n }\n]"
 						},
 						{
 							"name": "Session not found",
@@ -1398,7 +1452,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n \"width\": 2400,\n \"height\": 1708,\n \"bitsPerPixel\": 12,\n \"bytesPerPixel\": 2,\n \"pixelSizeX\": 0.015,\n \"pixelSizeY\": 0.015,\n \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n \"pixelDataUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/pixels\",\n \"pixelHash\": {\n  \"alg\": \"MD5\",\n  \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n },\n \"sensorInfo\": {\n  \"modelName\": \"Schick 33\",\n  \"serialNumber\": \"dolor\",\n  \"brand\": \"Schick\",\n  \"family\": \"Synergy\",\n  \"size\": 2,\n  \"width\": 2400,\n  \"height\": 1708,\n  \"version\": \"elit pariatur aute\"\n },\n \"acquisitionInfo\": {\n  \"enable\": true,\n  \"rotation\": 90,\n  \"binning\": \"Unbinned\",\n  \"applyLut\": true,\n  \"context\": \"<string>\"\n },\n \"lutInfo\": {\n  \"gamma\": 2.3,\n  \"slope\": 65535,\n  \"offset\": 0,\n  \"totalGrays\": 4096,\n  \"minimumGray\": 3612,\n  \"maximumGray\": 418\n },\n \"exposureInfo\": {\n  \"low\": -0.5,\n  \"high\": 0.5,\n  \"optimum\": 0,\n  \"value\": -0.24723\n }\n}"
+							"body": "{\n \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n \"width\": 2400,\n \"height\": 1708,\n \"bitsPerPixel\": 12,\n \"bytesPerPixel\": 2,\n \"pixelSizeX\": 0.015,\n \"pixelSizeY\": 0.015,\n \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n \"imagePixelHash\": {\n  \"alg\": \"MD5\",\n  \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n },\n \"pixelDataUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/pixels\",\n \"pixelHash\": {\n  \"alg\": \"MD5\",\n  \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n },\n \"deviceInfo\": {\n  \"deviceId\": \"magna ut consectetur est\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"http://example.com/api/devices/-987654321/icon.png\",\n  \"hasSensor\": false,\n  \"status\": \"Available\",\n  \"interfaceType\": \"usb\",\n  \"modelName\": \"Schick AE USB Interface\",\n  \"serialNumber\": \"34-05921813233\",\n  \"version\": \"pariatur\",\n  \"battery\": {\n   \"hasBattery\": true,\n   \"percentRemaining\": 78,\n   \"level\": \"Good\"\n  }\n },\n \"sensorInfo\": {\n  \"modelName\": \"Schick 33\",\n  \"serialNumber\": \"pariatur cillum\",\n  \"brand\": \"Schick\",\n  \"family\": \"Synergy\",\n  \"size\": 2,\n  \"width\": 2400,\n  \"height\": 1708,\n  \"supportsBinning\": false,\n  \"version\": \"id dolor\"\n },\n \"acquisitionInfo\": {\n  \"enable\": true,\n  \"rotation\": 90,\n  \"binning\": \"Unbinned\",\n  \"applyLut\": true,\n  \"context\": \"<string>\"\n },\n \"lutInfo\": {\n  \"gamma\": 2.3,\n  \"slope\": 65535,\n  \"offset\": 0,\n  \"totalGrays\": 4096,\n  \"minimumGray\": 3612,\n  \"maximumGray\": 418\n },\n \"exposureInfo\": {\n  \"min\": -1,\n  \"max\": 1,\n  \"low\": -0.5,\n  \"high\": 0.5,\n  \"optimum\": 0,\n  \"value\": -0.24723\n }\n}"
 						}
 					]
 				}
