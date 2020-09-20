@@ -707,7 +707,7 @@ components:
     LutInfo:
         description: |
           Describes the lookup table (LUT) mapping applied to an image. Images acquired by this service may be mapped using a non-linear LUT in order to provide an image suitable for presentation (see the `applyLut` property of `AcquisitionInfo`). The LUT is created according to the following equation:
-
+          
             Y = m(x&prime;<sup>&gamma;</sup>) + b
             
             where
@@ -715,7 +715,7 @@ components:
             * b is the offset
             * &gamma; is the gamma value
             * x&prime; is a normalized pixel scaled to the range [0,1]
-            
+          
           If desired, the original pixel data (X) can be recovered from the mapped pixel (Y) using the LutInfo:
             
             X = (X<sub>max</sub> - X<sub>min</sub>) * [(Y - b) / m]<sup>1/&gamma;</sup> + X<sub>min</sub>
@@ -726,6 +726,8 @@ components:
             * &gamma; is the gamma value
             * X<sub>min</sub> is the minimum gray value
             * X<sub>max</sub> is the maximum gray value
+          
+          It is typical for the minimum gray value to be larger than the maximum gray level. This way, the LUT mapping produces an inverted non-linear optimized image.
 
         type: object
         properties:
@@ -822,16 +824,8 @@ components:
           description: Url of the image. The image returned from this url will be represented as a standard uncompressed image format, such as, PNG or TIFF.
           type: string
           example: http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png
-        imagePixelHash:
-          description: Hash of the pixel data extracted from the image available via `imageUrl`
-          allOf:
-            - $ref: '#/components/schemas/HashInfo'
-        pixelDataUrl:
-          description: Url to retrieve unformatted byte stream of pixel data. The length of the stream matches width * height * bytesPerPixel.
-          type: string
-          example: http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/pixels
         pixelHash:
-          description: Hash of of the pixel data available via `pixelDataUrl`
+          description: Hash of the pixel data extracted from the image available via `imageUrl`
           allOf:
             - $ref: '#/components/schemas/HashInfo'
         deviceInfo:
