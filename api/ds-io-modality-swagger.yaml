@@ -429,11 +429,11 @@ components:
           type: object
           properties:
             added:
-              $ref: '#/components/schemas/DeviceSummary'
+              $ref: '#/components/schemas/DeviceInfo'
             removed:
-              $ref: '#/components/schemas/DeviceSummary'
+              $ref: '#/components/schemas/DeviceInfo'
             changed:
-              $ref: '#/components/schemas/DeviceSummary'
+              $ref: '#/components/schemas/DeviceInfo'
             
     DeviceInfo:
       description: Detailed information about an intraoral device (sensor interface)
