@@ -27,7 +27,7 @@ paths:
       tags: [Devices]
       operationId: getAllDevices
       summary: Get All Devices
-      description: Returns a summary list of the devices that this service currently provides.
+      description: Returns a list of the devices that this service currently provides.
       responses:
         '200':
           description: Success
@@ -36,7 +36,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DeviceSummary'
+                  $ref: '#/components/schemas/DeviceInfo'
 
   /devices/subscribe:
     get:
@@ -44,7 +44,7 @@ paths:
       operationId: subscribeDevices
       summary: Subscribe to Device Events
       description: >
-        Subscribe to changes in the Device list using Server Sent Events (EventSource). The API service will send this event when a device is added, removed or changed. The event data consists of a `DeviceSummary` object indicating the device that changed. API consumers can update their own list accordingly, or retrieve an updated list of devices using the `GET /devices` method.
+        Subscribe to changes in the Device list using Server Sent Events (EventSource). The API service will send this event when a device is added, removed or changed. The event data consists of a `DeviceInfo` object indicating the device that was affected. API consumers can update their own list accordingly, or retrieve an updated list of devices using the `GET /devices` method.
       responses:
         '200':
           description: Subscription started
@@ -58,7 +58,7 @@ paths:
       tags: [Devices]
       operationId: getDeviceInfo
       summary: Get Device Information
-      description: Returns detailed information about a device.
+      description: Returns information about a device.
       parameters:
         - name: deviceId
           in: path
@@ -399,27 +399,6 @@ components:
         - Unavailable
         - Error
       example: Available
-      
-    DeviceSummary:
-      description: Summary information about a device
-      type: object
-      properties:
-        deviceId:
-          description: Unique Id of the device
-          type: string
-          example: -987654321
-        name:
-          description: Descriptive name of the device 
-          type: string
-          example: "Schick 33: 213402981"
-        iconUrl:
-          description: Url for an icon representing the device
-          type: string
-        hasSensor:
-          description: Flag indicating if a sensor is connected to this device
-          type: boolean
-        status:
-            $ref: '#/components/schemas/DeviceStatus'
 
     DeviceEventData:
       description: Describes changes to the list of devices including added, removed and changed devices. A device may change if a different sensor is connected causing the name and icon to be modified or when a device is used for a session causing the status to be modified.
