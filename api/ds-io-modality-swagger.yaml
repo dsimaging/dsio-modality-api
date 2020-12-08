@@ -551,6 +551,11 @@ components:
           description: A client provided string used to identify the client that created this session
           type: string
           example: OP4 Workstation
+        createdOn:
+          description: Timestamp indicating the time that the session was created.
+          type: string
+          format: date-time
+          example: 11-01-2020
         context:
           description: An arbitrary object that can be used to store custom information about an acquisition session.
           type: object
@@ -765,6 +770,11 @@ components:
           description: Id of image
           type: string
           example: 160c98f9-d188-4118-94c4-697161fd5caf
+        createdOn:
+          description: Timestamp indicating the time that the image was created.
+          type: string
+          format: date-time
+          example: 11-01-2020
         width:
           description: Width of image in pixels
           type: number
