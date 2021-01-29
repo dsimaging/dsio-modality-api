@@ -45,6 +45,19 @@ paths:
       summary: Subscribe to Device Events
       description: >
         Subscribe to changes in the Device list using Server Sent Events (EventSource). The API service will send this event when a device is added, removed or changed. The event data consists of a `DeviceInfo` object indicating the device that was affected. API consumers can update their own list accordingly, or retrieve an updated list of devices using the `GET /devices` method.
+
+
+        The service will send a periodic heartbeat message in order to keep the connection active. The frequency of the heartbeat can be controlled by the optional query parameter, heartbeat.
+      parameters:
+        - name: heartbeat
+          in: query
+          description: An optional parameter specifying the desired heartbeat interval in ms.  A value of 0 will disable the heartbeat.
+          required: false
+          schema:
+            type: number
+            default: 20000
+            minimum: 1000
+            maximum: 60000
       responses:
         '200':
           description: Subscription started
@@ -266,7 +279,11 @@ paths:
       tags: [Images]
       operationId: subscribeAcquisitionStatus
       summary: Subscribe to Acquisition Status Events
-      description: Subscribe to the exposure status using Server Sent Events (EventSource). The API service will send status updates whenever the Acquisition state changes. By subscribing to exposure status, a client may react quickly to state transitions making the application feel more responsive.
+      description: >
+        Subscribe to the exposure status using Server Sent Events (EventSource). The API service will send status updates whenever the Acquisition state changes. By subscribing to exposure status, a client may react quickly to state transitions making the application feel more responsive.
+
+
+        The service will send a periodic heartbeat message in order to keep the connection active. The frequency of the heartbeat can be controlled by the optional query parameter, heartbeat.
       parameters:
         - name: sessionId
           in: path
@@ -274,13 +291,41 @@ paths:
           required: true
           schema:
             type: string
+        - name: heartbeat
+          in: query
+          description: An optional parameter specifying the desired heartbeat interval in ms.  A value of 0 will disable the heartbeat.
+          required: false
+          schema:
+            type: number
+            default: 1000
+            minimum: 1000
+            maximum: 10000
       responses:
         '200':
           description: Subscription started
           content:
             text/event-stream:
               schema:
-                $ref: '#/components/schemas/AcquisitionStatusEventData'
+                type: object
+                format: chunked
+                properties:
+                  event:
+                    type: string
+                    enum: [message, heartbeat]
+                  data:
+                    oneOf:
+                      - $ref: '#/components/schemas/AcquisitionStatus'
+                      - $ref: '#/components/schemas/Heartbeat'
+                    
+                example: >
+                  event: heartbeat
+                  
+                  data: { "heartbeatTimeout": 1000 }
+                  
+                  
+                  event: message
+                  
+                  data: { "ready": true, "state": "Ready", "lastImageId": "04d2b36f-3613-4c29-b130-923c93a6187f", "totalImages": 4 }
         '404':
           description: Session not found
 
@@ -432,7 +477,16 @@ components:
               example: 'changed'
             deviceInfo:
               $ref: '#/components/schemas/DeviceInfo'
-            
+    
+    Heartbeat:
+      description: Contains the timeout interval for a heartbeat message sent to subscribed clients.
+      type: object
+      properties:
+        heartbeatTimeout:
+          description: The heartbeat timeout interval in ms.
+          type: number
+          example: 1000
+    
     DeviceInfo:
       description: Detailed information about an intraoral device (sensor interface)
       type: object
@@ -628,13 +682,6 @@ components:
           description: The total number of images acquired so far in this session. This property will be updated when an image is acquired and the state transitions to `NewImage`.
           type: number
           example: 4
-
-    AcquisitionStatusEventData:
-      description: Server Side Event message data sent to subscribers when Acquisition Status changes
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/AcquisitionStatus'
 
     AcquisitionInfo:
       description: Provides information regarding an acquisition. AcquisitionInfo must be provided prior to each exposure.
