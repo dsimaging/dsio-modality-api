@@ -1,4 +1,4 @@
-﻿namespace DS.IO.ModalityApi.V1.Types
+﻿namespace DSIO.Modality.Api.Sdk.Types.V1
 {
     /// <summary>
     /// Describes the lookup table (LUT) mapping applied to an image. 

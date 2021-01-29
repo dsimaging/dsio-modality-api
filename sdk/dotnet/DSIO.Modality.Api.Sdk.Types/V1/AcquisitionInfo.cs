@@ -1,5 +1,5 @@
 ﻿
-namespace DS.IO.ModalityApi.V1.Types
+namespace DSIO.Modality.Api.Sdk.Types.V1
 {
     public class AcquisitionInfo
     {
