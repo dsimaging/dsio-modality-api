@@ -51,7 +51,26 @@ paths:
           content:
             text/event-stream:
               schema:
-                $ref: '#/components/schemas/DeviceEventData'
+                type: object
+                format: chunked
+                properties:
+                  event:
+                    type: string
+                    enum: [message, heartbeat]
+                  data:
+                    oneOf:
+                      - $ref: '#/components/schemas/DeviceEventData'
+                      - $ref: '#/components/schemas/Heartbeat'
+                    
+                example: >
+                  event: heartbeat
+                  
+                  data: { "heartbeatTimeout": 20000 }
+                  
+                  
+                  event: message
+                  
+                  data: { "action":"changed","deviceInfo":{"deviceId":"-987654321","name":"Schick 33: 213402981","iconUrl":"http://example.com/api/devices/-987654321/icon.png","hasSensor":false,"status":"Available","interfaceType":"usb","modelName":"Schick AE USB Interface","serialNumber":"34-05921813233","version":"1.2","battery":null} }
 
   /devices/{deviceId}:
     get:
@@ -407,11 +426,11 @@ components:
         data:
           type: object
           properties:
-            added:
-              $ref: '#/components/schemas/DeviceInfo'
-            removed:
-              $ref: '#/components/schemas/DeviceInfo'
-            changed:
+            action:
+              type: string
+              enum: ['added', 'removed', 'changed']
+              example: 'changed'
+            deviceInfo:
               $ref: '#/components/schemas/DeviceInfo'
             
     DeviceInfo:
