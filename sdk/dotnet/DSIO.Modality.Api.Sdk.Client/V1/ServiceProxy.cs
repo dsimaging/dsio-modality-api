@@ -50,6 +50,7 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
 
             return null;
         }
+
         public async Task<DeviceInfo> GetDevice(string id)
         {
             var response = await Client.GetAsync($"devices/{id}");
