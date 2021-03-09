@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSIO.Modality.Api.Sdk.Types", "DSIO.Modality.Api.Sdk.Types\DSIO.Modality.Api.Sdk.Types.csproj", "{BE352DB3-278C-4697-87EB-E902F8C8C769}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSIO.Modality.Api.Sdk.Client", "DSIO.Modality.Api.Sdk.Client\DSIO.Modality.Api.Sdk.Client.csproj", "{DD791D9E-4A19-4113-B6A7-D6D59156279E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE352DB3-278C-4697-87EB-E902F8C8C769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE352DB3-278C-4697-87EB-E902F8C8C769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE352DB3-278C-4697-87EB-E902F8C8C769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE352DB3-278C-4697-87EB-E902F8C8C769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD791D9E-4A19-4113-B6A7-D6D59156279E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD791D9E-4A19-4113-B6A7-D6D59156279E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD791D9E-4A19-4113-B6A7-D6D59156279E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD791D9E-4A19-4113-B6A7-D6D59156279E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8540A26C-6E01-4313-8554-B4041E1EB9D2}
+	EndGlobalSection
+EndGlobal
