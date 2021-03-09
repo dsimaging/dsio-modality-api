@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DSIO.Modality.Api.Sdk.Client">
+      <HintPath>..\..\..\sdk\dotnet\bin\netstandard2.0\DSIO.Modality.Api.Sdk.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="DSIO.Modality.Api.Sdk.Types">
+      <HintPath>..\..\..\sdk\dotnet\bin\netstandard2.0\DSIO.Modality.Api.Sdk.Types.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\sdk\dotnet\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -52,16 +58,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\sdk\dotnet\DSIO.Modality.Api.Sdk.Client\DSIO.Modality.Api.Sdk.Client.csproj">
-      <Project>{dd791d9e-4a19-4113-b6a7-d6d59156279e}</Project>
-      <Name>DSIO.Modality.Api.Sdk.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\sdk\dotnet\DSIO.Modality.Api.Sdk.Types\DSIO.Modality.Api.Sdk.Types.csproj">
-      <Project>{be352db3-278c-4697-87eb-e902f8c8c769}</Project>
-      <Name>DSIO.Modality.Api.Sdk.Types</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
