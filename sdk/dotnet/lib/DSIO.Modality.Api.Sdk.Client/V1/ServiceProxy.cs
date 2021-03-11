@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using DSIO.Modality.Api.Sdk.Types.V1;
-using Newtonsoft.Json;
 
 namespace DSIO.Modality.Api.Sdk.Client.V1
 {
@@ -57,6 +56,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
             return response.IsSuccessStatusCode;
         }
 
+        #region Devices
+
         /// <summary>
         /// Retrieves all devices currently available to the service
         /// </summary>
@@ -66,8 +67,7 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
             var response = await Client.GetAsync("devices");
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<IEnumerable<DeviceInfo>>(json);
+                return await response.Content.ReadAsAsync<IEnumerable<DeviceInfo>>();
             }
 
             return null;
@@ -83,8 +83,7 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
             var response = await Client.GetAsync($"devices/{id}");
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<DeviceInfo>(json);
+                return await response.Content.ReadAsAsync<DeviceInfo>();
             }
 
             return null;
@@ -101,12 +100,27 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
             var response = await Client.GetAsync($"devices/{id}/sensor");
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<SensorInfo>(json);
+                return await response.Content.ReadAsAsync<SensorInfo>();
             }
 
             return null;
         }
 
+        #endregion
+
+        #region Images
+
+        public async Task<AcquisitionSession> CreateAcquisitionSession(AcquisitionSessionInfo sessionInfo)
+        {
+            var response = await Client.PostAsJsonAsync<AcquisitionSessionInfo>("acquisition", sessionInfo);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<AcquisitionSession>();
+            }
+
+            return null;
+        }
+
+        #endregion
     }
 }
