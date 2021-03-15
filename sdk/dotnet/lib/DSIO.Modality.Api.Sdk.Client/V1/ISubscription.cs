@@ -8,16 +8,16 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         /// <summary>
         /// Start listening for event data
         /// </summary>
-         void Start();
+        void Start();
 
         /// <summary>
         /// Stop listening for event data
         /// </summary>
-         void Stop();
+        void Stop();
 
         /// <summary>
         /// An event that is triggered for every heartbeat.
         /// </summary>
-         event Action<Heartbeat> OnHeartbeat;
+        event Action<Heartbeat> OnHeartbeat;
     }
 }

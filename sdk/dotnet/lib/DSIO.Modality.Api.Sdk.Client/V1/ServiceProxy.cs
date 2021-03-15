@@ -213,6 +213,27 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         }
 
         /// <summary>
+        /// Creates a subscription that listens for Acquisition Status.
+        /// </summary>
+        /// <param name="sessionId">The Id of the session</param>
+        /// <param name="onStatus">A callback method that will be called for each event received</param>
+        /// <param name="heartbeat">Optional number specifying desired heartbeat frequency in ms. Default
+        ///  value is 1000.
+        /// <returns>A subscription <see cref="ISubscription" /></returns>
+        public async Task<ISubscription> SubscribeToAcquisitionStatus(string sessionId, Action<AcquisitionStatus> onStatus, int heartbeat = 1000)
+        {
+            // Use a dedicated instance of HttpClient to keep the connection open
+            var client = new HttpClient
+            {
+                BaseAddress = Client.BaseAddress
+            };
+            client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization;
+
+            var stream = await client.GetStreamAsync($"acquisition/{sessionId}/status/subscribe?heartbeat={heartbeat}");
+            return new AcquisitionStatusSubscription(stream, onStatus);
+        }
+
+        /// <summary>
         /// Retrieves <see cref="AcquisitionInfo" /> associated with the next exposure. 
         /// </summary>
         /// <param name="sessionId">The Id of the session</param>
