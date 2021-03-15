@@ -22,6 +22,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
             this._onDeviceEvent = onDeviceEvent;
         }
 
+        public event Action<Heartbeat> OnHeartbeat = delegate {};
+
         public void Start()
         {
             Stop();
@@ -48,7 +50,7 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
                     // Process this line
                     if (message.StartsWith("event: message"))
                     {
-                        // DeviceEventData folows
+                        // DeviceEventData follows
                         message = await reader.ReadLineAsync();
                         int jsonPosition = message.IndexOf("data: ");
                         if (jsonPosition >= 0)
@@ -57,6 +59,19 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
                             var json = message.Substring(jsonPosition + length);
                             var data = JsonConvert.DeserializeObject<DeviceEventData>(json);
                             _onDeviceEvent(data);
+                        }
+                    }
+                    else if (message.StartsWith("event: heartbeat"))
+                    {
+                        // Heartbeat follows
+                        message = await reader.ReadLineAsync();
+                        int jsonPosition = message.IndexOf("data: ");
+                        if (jsonPosition >= 0)
+                        {
+                            var length = "data: ".Length;
+                            var json = message.Substring(jsonPosition + length);
+                            var data = JsonConvert.DeserializeObject<Heartbeat>(json);
+                            OnHeartbeat(data);
                         }
                     }
                 }

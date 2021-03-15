@@ -77,8 +77,10 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         /// Creates a subscription that listens for Device Events.
         /// </summary>
         /// <param name="onDeviceEvent">A callback method that will be called for each event received</param>
+        /// <param name="heartbeat">Optional number specifying desired heartbeat frequency in ms. Default
+        ///  value is 20000.
         /// <returns>A subscription <see cref="ISubscription" /></returns>
-        public async Task<ISubscription> SubscribeToDeviceEvents(Action<DeviceEventData> onDeviceEvent)
+        public async Task<ISubscription> SubscribeToDeviceEvents(Action<DeviceEventData> onDeviceEvent, int heartbeat = 20000)
         {
             // Use a dedicated instance of HttpClient to keep the connection open
             var client = new HttpClient
@@ -87,7 +89,7 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
             };
             client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization;
 
-            var stream = await client.GetStreamAsync($"devices/subscribe");
+            var stream = await client.GetStreamAsync($"devices/subscribe?heartbeat={heartbeat}");
             return new DeviceEventSubscription(stream, onDeviceEvent);
         }
 

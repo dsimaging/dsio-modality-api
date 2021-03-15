@@ -59,10 +59,16 @@ namespace ConsoleApp
             Console.WriteLine("Subscribing to device events...");
             var subscription = await service.SubscribeToDeviceEvents(data =>
             {
-                Console.WriteLine("Subscription callback");
+                Console.WriteLine("\nSubscription callback");
                 Console.WriteLine($"\tAction:      {data.Action}");
                 Console.WriteLine($"\tDevice Id:   {data.DeviceInfo.DeviceId}");
                 Console.WriteLine($"\tDevice Name: {data.DeviceInfo.Name}");
+            });
+
+            // Optionally listen to Heartbeats
+            subscription.OnHeartbeat += (data =>
+            {
+                Console.WriteLine($"\nHeartbeat timeout: {data.HeartbeatTimeout}ms");
             });
 
             // Start listening to events
