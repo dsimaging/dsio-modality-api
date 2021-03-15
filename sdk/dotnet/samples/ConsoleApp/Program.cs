@@ -1,4 +1,7 @@
-﻿using System;
+﻿using System.Threading;
+using System.Net.Security;
+using System.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -52,6 +55,22 @@ namespace ConsoleApp
                     }
                 }
             }
+
+            Console.WriteLine("Subscribing to device events...");
+            var subscription = await service.SubscribeToDeviceEvents(data =>
+            {
+                Console.WriteLine("Subscription callback");
+                Console.WriteLine($"\tAction:      {data.Action}");
+                Console.WriteLine($"\tDevice Id:   {data.DeviceInfo.DeviceId}");
+                Console.WriteLine($"\tDevice Name: {data.DeviceInfo.Name}");
+            });
+
+            // Start listening to events
+            subscription.Start();
+
+            Console.WriteLine("Press Enter to stop subscription...");
+            Console.ReadLine();
+            subscription.Stop();
 
             Console.WriteLine("Press Enter to exit.");
             Console.ReadLine();

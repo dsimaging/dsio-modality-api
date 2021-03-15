@@ -74,6 +74,24 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         }
 
         /// <summary>
+        /// Creates a subscription that listens for Device Events.
+        /// </summary>
+        /// <param name="onDeviceEvent">A callback method that will be called for each event received</param>
+        /// <returns>A subscription <see cref="ISubscription" /></returns>
+        public async Task<ISubscription> SubscribeToDeviceEvents(Action<DeviceEventData> onDeviceEvent)
+        {
+            // Use a dedicated instance of HttpClient to keep the connection open
+            var client = new HttpClient
+            {
+                BaseAddress = Client.BaseAddress
+            };
+            client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization;
+
+            var stream = await client.GetStreamAsync($"devices/subscribe");
+            return new DeviceEventSubscription(stream, onDeviceEvent);
+        }
+
+        /// <summary>
         /// Retrieves information about a device
         /// </summary>
         /// <param name="id">The Id of the device to retrieve</param>
