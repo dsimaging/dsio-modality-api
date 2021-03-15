@@ -176,6 +176,88 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
             return response.IsSuccessStatusCode;
         }
 
+        /// <summary>
+        /// Retrieves the current status of the Acquisition session. 
+        /// </summary>
+        /// <param name="sessionId">The Id of the session</param>
+        /// <returns>A <see cref="AcquisitionStatus" /> object</returns>
+        public async Task<AcquisitionStatus> GetAcquisitionStatus(string sessionId)
+        {
+            var response = await Client.GetAsync($"acquisition/{sessionId}/status");
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<AcquisitionStatus>();
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Retrieves <see cref="AcquisitionInfo" /> associated with the next exposure. 
+        /// </summary>
+        /// <param name="sessionId">The Id of the session</param>
+        /// <returns>A <see cref="AcquisitionInfo" /> object</returns>
+        public async Task<AcquisitionInfo> GetAcquisitionInfo(string sessionId)
+        {
+            var response = await Client.GetAsync($"acquisition/{sessionId}/info");
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<AcquisitionInfo>();
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Updates the <see cref="AcquisitionInfo" /> associated with the next exposure. 
+        /// </summary>
+        /// <param name="sessionId">The Id of the session</param>
+        /// <param name="acquisitionInfo">The <see cref="AcquisitionInfo" /> to update.
+        /// <returns>The updated <see cref="AcquisitionInfo" /> object</returns>
+        public async Task<AcquisitionInfo> UpdateAcquisitionInfo(string sessionId, AcquisitionInfo acquisitionInfo)
+        {
+            var response = await Client.PutAsJsonAsync<AcquisitionInfo>($"acquisition/{sessionId}/info", acquisitionInfo);
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<AcquisitionInfo>();
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Retrieves all images for a session.
+        /// </summary>
+        /// <param name="sessionId">The Id of the sesion</param>
+        /// <returns>An enumerable collection of <see cref="ImageInfo" /> objects</returns>
+        public async Task<IEnumerable<ImageInfo>> GetAllImages(string sessionId)
+        {
+            var response = await Client.GetAsync($"acquisition/{sessionId}/images");
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<IEnumerable<ImageInfo>>();
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Retrieves an image from a session.
+        /// </summary>
+        /// <param name="sessionId">The Id of the session</param>
+        /// <param name="imageId">The Id of the image to retrieve</param>
+        /// <returns>An <see cref="ImageInfo" /> object</returns>
+        public async Task<ImageInfo> GetImage(string sessionId, string imageId)
+        {
+            var response = await Client.GetAsync($"acquisition/{sessionId}/images/{imageId}");
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<ImageInfo>();
+            }
+
+            return null;
+        }
+
         #endregion
     }
 }
