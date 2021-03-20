@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DSIO.Modality.Api.Sdk.Types.V1;
 
 namespace WpfSample
 {
@@ -41,6 +42,42 @@ namespace WpfSample
                         MessageBox.Show(task.Exception?.Message,"Login Error");
                     }
                 });
+        }
+
+        private void BtnUpdateDevices_OnClick(object sender, RoutedEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+            ViewModel.UpdateDeviceList()
+                .ContinueWith(task =>
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        Mouse.OverrideCursor = null;
+                    });
+                    // Display error message if exception occurred
+                    if (task.IsFaulted)
+                    {
+                        MessageBox.Show(task.Exception?.Message, "Update Devices Error");
+                    }
+                });
+        }
+
+        private void ComboDevices_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Update sensor info when selected device changes
+            if (ComboDevices.SelectedItem is DeviceInfo device)
+            {
+                ViewModel.SelectedSensor = null;
+                ViewModel.UpdateSensorInfo(device.DeviceId)
+                    .ContinueWith(task =>
+                    {
+                        // Display error message if exception occurred
+                        if (task.IsFaulted)
+                        {
+                            MessageBox.Show(task.Exception?.Message, "Update Sensor Error");
+                        }
+                    });
+            }
         }
     }
 }
