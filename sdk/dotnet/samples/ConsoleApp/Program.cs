@@ -60,6 +60,7 @@ namespace ConsoleApp
                     }
                 }
 
+                // Subscribe to the Device Events
                 Console.WriteLine("Subscribing to device events...");
                 var subscription = await service.SubscribeToDeviceEvents(data =>
                 {
@@ -78,6 +79,9 @@ namespace ConsoleApp
                 // Start listening to events
                 subscription.Start();
 
+                // We are now listening for changes in the Device list. Try
+                // changing the connected sensor of the Simulator to see examples
+                // of event data sent to this client.
                 Console.WriteLine("Press Enter to stop subscription...");
                 Console.ReadLine();
                 subscription.Stop();

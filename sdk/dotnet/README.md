@@ -3,7 +3,10 @@
 The dotnet SDK contains helpful libraries and sample code written in C#.
 
 ## The SDK Library
-The `lib` folder contains library projects that implement types used in the API and a client library that wraps HTTP calls to the service.
+The `lib` folder contains library projects that implement types used in the API and a client library that wraps HTTP calls to the service. The `ServiceProxy` class in the SDK wraps HTTP calls and converts JSON data allowing users to make simple calls to retrieve data. The `ServiceProxy` class will throw exceptions for most errors and appropriate exception handling should be used to handle these cases.
+
+### Subscriptions
+The API methods that are used to subscribe to events are different than standard REST calls. These methods maintain an open connection to the service and push data through this connection as needed. The SDK provides an `ISubscription` interface to handle subscriptions. Callback methods are supplied to the library and executed when event data arrives. The `ISubscription` interface allows the caller to start and stop the subscription.
 
 ## Sample Code
 The `samples` folder contains sample applications that demonstrate the use of the .Net SDK libraries.
