@@ -5,16 +5,32 @@
             // Use IntelliSense to find out which attributes exist for C# debugging
             // Use hover for the description of the existing attributes
             // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-            "name": ".NET Core Launch (console)",
+            "name": ".NET Core Launch (ConsoleApp)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "Build ConsoleApp",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/samples/ConsoleApp/bin/Debug/net5.0/ConsoleApp.dll",
             "args": [],
             "cwd": "${workspaceFolder}/samples/ConsoleApp",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "externalTerminal",
+            "stopAtEntry": false
+        },
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+            "name": ".NET Core Launch (WpfSample)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "Build WpfSample",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/samples/WpfSample/bin/Debug/net5.0-windows/Wpfsample.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}/samples/WpfSample",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
             "stopAtEntry": false
         },
         {

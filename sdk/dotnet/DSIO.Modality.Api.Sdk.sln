@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSIO.Modality.Api.Sdk.Clien
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "samples\ConsoleApp\ConsoleApp.csproj", "{4C8246CE-0BB4-48C2-A2AA-4A434055AFB5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfSample", "samples\WpfSample\WpfSample.csproj", "{656EEE9C-0FA3-47FA-883F-C18463A592F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{4C8246CE-0BB4-48C2-A2AA-4A434055AFB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C8246CE-0BB4-48C2-A2AA-4A434055AFB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C8246CE-0BB4-48C2-A2AA-4A434055AFB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{656EEE9C-0FA3-47FA-883F-C18463A592F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{656EEE9C-0FA3-47FA-883F-C18463A592F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{656EEE9C-0FA3-47FA-883F-C18463A592F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{656EEE9C-0FA3-47FA-883F-C18463A592F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{823F5731-7EF8-407B-B981-ED2AE43EE338} = {3F1FCC96-10ED-4C29-B6E8-612ACD8500A6}
 		{414581FB-6943-49B6-B045-F7C53F4F7010} = {3F1FCC96-10ED-4C29-B6E8-612ACD8500A6}
 		{4C8246CE-0BB4-48C2-A2AA-4A434055AFB5} = {712278E6-D21E-407A-8E05-89411B489F76}
+		{656EEE9C-0FA3-47FA-883F-C18463A592F1} = {712278E6-D21E-407A-8E05-89411B489F76}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E189D4C4-796F-4260-B48A-5BCE0EB1BEB0}
