@@ -23,6 +23,24 @@ namespace WpfSample
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainViewModel();
+        }
+
+        public MainViewModel ViewModel => DataContext as MainViewModel;
+
+        private void BtnLogin_OnClick(object sender, RoutedEventArgs e)
+        {
+            // Try to login with credentials
+            ViewModel.Login(ViewModel.ApiUserName, ViewModel.ApiKey)
+                .ContinueWith(task =>
+                {
+                    // Display error message if exception occurred
+                    if (task.IsFaulted)
+                    {
+                        MessageBox.Show(task.Exception?.Message,"Login Error");
+                    }
+                });
         }
     }
 }

@@ -6,7 +6,46 @@
         xmlns:local="clr-namespace:WpfSample"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
+        <!-- API Credentials Login -->
+        <GroupBox Grid.Row="0">
+            <GroupBox.Header>
+                <Label>Login</Label>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0">Api Username:</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ApiUserName}"></TextBox>
+                <Label Grid.Row="1" Grid.Column="0">Api Key:</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ApiKey}"></TextBox>
+
+                <Button x:Name="BtnLogin"
+                        Grid.Row="0" Grid.Column="2"
+                        Margin="5"
+                        Click="BtnLogin_OnClick"
+                        Width="150">
+                    Login
+                </Button>
+                <TextBlock Grid.Row="1" Grid.Column="2"
+                           Margin="5"
+                           TextAlignment="Center"
+                           Text="{Binding LoginStatus}" />
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>
