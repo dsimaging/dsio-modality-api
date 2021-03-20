@@ -35,48 +35,57 @@ namespace ConsoleApp
             var isAvailable = await service.IsServiceAvailable();
             Console.WriteLine($"Modality Api V1 service isAvailable: {isAvailable}");
 
-            if (isAvailable)
+            // ServiceProxy HttpClient calls will throw exceptions when
+            // unsuccessful. Handle exceptions and show errors
+            try
             {
-                // Retrieve all devices
-                Console.WriteLine("Retrieving device list...");
-                var devices = (await service.GetAllDevices())?.ToList();
-                if (devices != null)
+                if (isAvailable)
                 {
-                    Console.WriteLine($"Found {devices.Count} devices");
-                    foreach (var device in devices)
+                    // Retrieve all devices
+                    Console.WriteLine("Retrieving device list...");
+                    var devices = (await service.GetAllDevices())?.ToList();
+                    if (devices != null)
                     {
-                        Console.WriteLine($"Device with name '{device.Name}' and id {device.DeviceId} is {device.Status}");
-                        // get the sensor info
-                        var sensorInfo = await service.GetSensor(device.DeviceId);
-                        if (sensorInfo != null)
+                        Console.WriteLine($"Found {devices.Count} devices");
+                        foreach (var device in devices)
                         {
-                            Console.WriteLine($"\tSensor {sensorInfo.ModelName} attached with Serial Number {sensorInfo.SerialNumber}");
+                            Console.WriteLine($"Device with name '{device.Name}' and id {device.DeviceId} is {device.Status}");
+                            // get the sensor info
+                            var sensorInfo = await service.GetSensor(device.DeviceId);
+                            if (sensorInfo != null)
+                            {
+                                Console.WriteLine($"\tSensor {sensorInfo.ModelName} attached with Serial Number {sensorInfo.SerialNumber}");
+                            }
                         }
                     }
                 }
+
+                Console.WriteLine("Subscribing to device events...");
+                var subscription = await service.SubscribeToDeviceEvents(data =>
+                {
+                    Console.WriteLine("\nSubscription callback");
+                    Console.WriteLine($"\tAction:      {data.Action}");
+                    Console.WriteLine($"\tDevice Id:   {data.DeviceInfo.DeviceId}");
+                    Console.WriteLine($"\tDevice Name: {data.DeviceInfo.Name}");
+                });
+
+                // Optionally listen to Heartbeats
+                subscription.OnHeartbeat += (data =>
+                {
+                    Console.WriteLine($"\nHeartbeat timeout: {data.HeartbeatTimeout}ms");
+                });
+
+                // Start listening to events
+                subscription.Start();
+
+                Console.WriteLine("Press Enter to stop subscription...");
+                Console.ReadLine();
+                subscription.Stop();
             }
-
-            Console.WriteLine("Subscribing to device events...");
-            var subscription = await service.SubscribeToDeviceEvents(data =>
+            catch (Exception ex)
             {
-                Console.WriteLine("\nSubscription callback");
-                Console.WriteLine($"\tAction:      {data.Action}");
-                Console.WriteLine($"\tDevice Id:   {data.DeviceInfo.DeviceId}");
-                Console.WriteLine($"\tDevice Name: {data.DeviceInfo.Name}");
-            });
-
-            // Optionally listen to Heartbeats
-            subscription.OnHeartbeat += (data =>
-            {
-                Console.WriteLine($"\nHeartbeat timeout: {data.HeartbeatTimeout}ms");
-            });
-
-            // Start listening to events
-            subscription.Start();
-
-            Console.WriteLine("Press Enter to stop subscription...");
-            Console.ReadLine();
-            subscription.Stop();
+                Console.WriteLine($"Exception encountered: {ex.Message}");
+            }
 
             Console.WriteLine("Press Enter to exit.");
             Console.ReadLine();

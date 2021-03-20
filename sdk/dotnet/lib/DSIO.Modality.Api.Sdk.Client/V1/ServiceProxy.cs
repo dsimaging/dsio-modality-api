@@ -65,12 +65,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         public async Task<IEnumerable<DeviceInfo>> GetAllDevices()
         {
             var response = await Client.GetAsync("devices");
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<IEnumerable<DeviceInfo>>();
-            }
-
-            return null;
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<IEnumerable<DeviceInfo>>();
         }
 
         /// <summary>
@@ -101,12 +97,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         public async Task<DeviceInfo> GetDevice(string id)
         {
             var response = await Client.GetAsync($"devices/{id}");
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<DeviceInfo>();
-            }
-
-            return null;
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<DeviceInfo>();
         }
 
         /// <summary>
@@ -118,12 +110,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         public async Task<SensorInfo> GetSensor(string id)
         {
             var response = await Client.GetAsync($"devices/{id}/sensor");
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<SensorInfo>();
-            }
-
-            return null;
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<SensorInfo>();
         }
 
         #endregion
@@ -139,12 +127,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         public async Task<AcquisitionSession> CreateAcquisitionSession(AcquisitionSessionInfo sessionInfo)
         {
             var response = await Client.PostAsJsonAsync<AcquisitionSessionInfo>("acquisition", sessionInfo);
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<AcquisitionSession>();
-            }
-
-            return null;
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<AcquisitionSession>();
         }
 
         /// <summary>
@@ -155,12 +139,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         public async Task<AcquisitionSession> GetAcquisitionSession(string sessionId)
         {
             var response = await Client.GetAsync($"acquisition/{sessionId}");
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<AcquisitionSession>();
-            }
-
-            return null;
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<AcquisitionSession>();
         }
 
         /// <summary>
@@ -174,12 +154,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         public async Task<AcquisitionSession> UpdateAcquisitionSession(string sessionId, AcquisitionSessionInfo sessionInfo)
         {
             var response = await Client.PutAsJsonAsync<AcquisitionSessionInfo>($"acquisition/{sessionId}", sessionInfo);
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<AcquisitionSession>();
-            }
-
-            return null;
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<AcquisitionSession>();
         }
 
         /// <summary>
@@ -204,12 +180,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         public async Task<AcquisitionStatus> GetAcquisitionStatus(string sessionId)
         {
             var response = await Client.GetAsync($"acquisition/{sessionId}/status");
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<AcquisitionStatus>();
-            }
-
-            return null;
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<AcquisitionStatus>();
         }
 
         /// <summary>
@@ -241,12 +213,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         public async Task<AcquisitionInfo> GetAcquisitionInfo(string sessionId)
         {
             var response = await Client.GetAsync($"acquisition/{sessionId}/info");
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<AcquisitionInfo>();
-            }
-
-            return null;
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<AcquisitionInfo>();
         }
 
         /// <summary>
@@ -258,12 +226,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         public async Task<AcquisitionInfo> UpdateAcquisitionInfo(string sessionId, AcquisitionInfo acquisitionInfo)
         {
             var response = await Client.PutAsJsonAsync<AcquisitionInfo>($"acquisition/{sessionId}/info", acquisitionInfo);
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<AcquisitionInfo>();
-            }
-
-            return null;
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<AcquisitionInfo>();
         }
 
         /// <summary>
@@ -274,12 +238,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         public async Task<IEnumerable<ImageInfo>> GetAllImages(string sessionId)
         {
             var response = await Client.GetAsync($"acquisition/{sessionId}/images");
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<IEnumerable<ImageInfo>>();
-            }
-
-            return null;
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<IEnumerable<ImageInfo>>();
         }
 
         /// <summary>
@@ -291,12 +251,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         public async Task<ImageInfo> GetImage(string sessionId, string imageId)
         {
             var response = await Client.GetAsync($"acquisition/{sessionId}/images/{imageId}");
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<ImageInfo>();
-            }
-
-            return null;
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<ImageInfo>();
         }
 
         #endregion
