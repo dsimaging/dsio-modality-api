@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,8 +53,36 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         /// <returns>true if the service is available, false otherwise</returns>
         public async Task<bool> IsServiceAvailable()
         {
-            var response = await Client.GetAsync("");
-            return response.IsSuccessStatusCode;
+            // This method is intended to simply check if the service is running.
+            // When not running, an HTTP Request will generate a Socket exception
+            // with the error status ConnectionRefused. Handle this exception and
+            // return false, but rethrow all other exceptions.
+            try
+            {
+                var response = await Client.GetAsync("");
+                response.EnsureSuccessStatusCode();
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                // Check for expected exception when service not running (connection refused)
+                // iterate through all InnerExceptions looking for SocketException
+                var innerException = ex;
+                while (innerException != null)
+                {
+                    // Check for SocketException with ConnectionRefused error
+                    if (innerException is SocketException socketException &&
+                        socketException.SocketErrorCode == SocketError.ConnectionRefused)
+                    {
+                        // Expected error code when service is not running, just return false
+                        return false;
+                    }
+                    innerException = innerException.InnerException;
+                }
+
+                // rethrow exception if we land here
+                throw;
+            }
         }
 
         #region Devices

@@ -30,15 +30,15 @@ namespace ConsoleApp
             var service = new ServiceProxy();
             service.SetBasicAuthenticationHeader(username, apikey);
 
-            // Test availability
-            Console.WriteLine("Checking availability of service...");
-            var isAvailable = await service.IsServiceAvailable();
-            Console.WriteLine($"Modality Api V1 service isAvailable: {isAvailable}");
-
             // ServiceProxy HttpClient calls will throw exceptions when
             // unsuccessful. Handle exceptions and show errors
             try
             {
+                // Test availability
+                Console.WriteLine("Checking availability of service...");
+                var isAvailable = await service.IsServiceAvailable();
+                Console.WriteLine($"Modality Api V1 service isAvailable: {isAvailable}");
+
                 if (isAvailable)
                 {
                     // Retrieve all devices
@@ -58,33 +58,33 @@ namespace ConsoleApp
                             }
                         }
                     }
+
+                    // Subscribe to the Device Events
+                    Console.WriteLine("Subscribing to device events...");
+                    var subscription = await service.SubscribeToDeviceEvents(data =>
+                    {
+                        Console.WriteLine("\nSubscription callback");
+                        Console.WriteLine($"\tAction:      {data.Action}");
+                        Console.WriteLine($"\tDevice Id:   {data.DeviceInfo.DeviceId}");
+                        Console.WriteLine($"\tDevice Name: {data.DeviceInfo.Name}");
+                    });
+
+                    // Optionally listen to Heartbeats
+                    subscription.OnHeartbeat += (data =>
+                    {
+                        Console.WriteLine($"\nHeartbeat timeout: {data.HeartbeatTimeout}ms");
+                    });
+
+                    // Start listening to events
+                    subscription.Start();
+
+                    // We are now listening for changes in the Device list. Try
+                    // changing the connected sensor of the Simulator to see examples
+                    // of event data sent to this client.
+                    Console.WriteLine("Press Enter to stop subscription...");
+                    Console.ReadLine();
+                    subscription.Stop();
                 }
-
-                // Subscribe to the Device Events
-                Console.WriteLine("Subscribing to device events...");
-                var subscription = await service.SubscribeToDeviceEvents(data =>
-                {
-                    Console.WriteLine("\nSubscription callback");
-                    Console.WriteLine($"\tAction:      {data.Action}");
-                    Console.WriteLine($"\tDevice Id:   {data.DeviceInfo.DeviceId}");
-                    Console.WriteLine($"\tDevice Name: {data.DeviceInfo.Name}");
-                });
-
-                // Optionally listen to Heartbeats
-                subscription.OnHeartbeat += (data =>
-                {
-                    Console.WriteLine($"\nHeartbeat timeout: {data.HeartbeatTimeout}ms");
-                });
-
-                // Start listening to events
-                subscription.Start();
-
-                // We are now listening for changes in the Device list. Try
-                // changing the connected sensor of the Simulator to see examples
-                // of event data sent to this client.
-                Console.WriteLine("Press Enter to stop subscription...");
-                Console.ReadLine();
-                subscription.Stop();
             }
             catch (Exception ex)
             {
