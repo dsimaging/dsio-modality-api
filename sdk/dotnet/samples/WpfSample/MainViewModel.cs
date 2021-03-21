@@ -363,7 +363,9 @@ namespace WpfSample
                      status.TotalImages != Images?.Count)
             {
                 // New image arrived, update Images list
-                UpdateImages();
+                UpdateImages().ContinueWith(task => {
+                    SelectedImage = Images.FirstOrDefault(info => info.Id == status.LastImageId);
+                });
             }
         }
     }
