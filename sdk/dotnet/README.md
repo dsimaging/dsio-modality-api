@@ -15,7 +15,7 @@ The `samples` folder contains sample applications that demonstrate the use of th
 The `ConsoleApp` sample is a .Net Console Application that uses the Devices API and demonstrated a subscription to the device event.
 
 ### WpfSample
-The `Wpfsample` is a more complex sample that uses WPF. The MainViewModel uses async methods and `ServiceProxy` to update data from the service. The sample covers both Devices and Images API calls.
+The `Wpfsample` is a more advanced sample that uses WPF. The sample demonstrates use of the `ServiceProxy` to retrieve and update data from the service and covers both Devices and Images API calls.
 
 ## Build
 The SDK and samples were developed using the .Net SDK and Visual Studio Code. If you open this folder (sdk/dotnet) in Visual Studio Code, there are build and launch tasks available to build and run the source. A Powershell script, `build.ps1` is available that will use the dotnet CLI to build the SDK and samples. There is also a Visual Studio Solution available to build the SDK and Samples in Visual Studio 2019.
