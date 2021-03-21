@@ -13,11 +13,13 @@ The api folder contains the OpenAPI spec in yaml format. This file can be used w
 Additionally, this folder contains a Postman collection in Json format. You can import this file into Postman and it will create a set of commands for each API in the spec. It is very useful to quickly configure Postman for testing the API.
 
 ## Documentation
-NodeJS programs to generate documentation are in the docs folder. Switch to the ./docs folder before executing any node or npm commands.
+NodeJS programs to generate documentation are in the docs folder. Switch to the ./docs folder before executing any node or npm commands. Be sure to install local node modules requiresd for the NodeJS programs by executing the following:
+
+`npm install`
 
 ### ReDoc
 Build the ReDoc static HTML by executing the following:
-    
+
 `npm run build-redoc`
 
 The result will be an updated html file under the ./docs/redoc folder. This file can be opened
