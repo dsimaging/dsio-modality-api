@@ -218,7 +218,7 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         /// <param name="sessionId">The Id of the session</param>
         /// <param name="onStatus">A callback method that will be called for each event received</param>
         /// <param name="heartbeat">Optional number specifying desired heartbeat frequency in ms. Default
-        ///  value is 1000.
+        ///  value is 1000.</param>
         /// <returns>A subscription <see cref="ISubscription" /></returns>
         public async Task<ISubscription> SubscribeToAcquisitionStatus(string sessionId, Action<AcquisitionStatus> onStatus, int heartbeat = 1000)
         {
@@ -249,7 +249,7 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         /// Updates the <see cref="AcquisitionInfo" /> associated with the next exposure. 
         /// </summary>
         /// <param name="sessionId">The Id of the session</param>
-        /// <param name="acquisitionInfo">The <see cref="AcquisitionInfo" /> to update.
+        /// <param name="acquisitionInfo">The <see cref="AcquisitionInfo" /> to update.</param>
         /// <returns>The updated <see cref="AcquisitionInfo" /> object</returns>
         public async Task<AcquisitionInfo> UpdateAcquisitionInfo(string sessionId, AcquisitionInfo acquisitionInfo)
         {
@@ -261,7 +261,7 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         /// <summary>
         /// Retrieves all images for a session.
         /// </summary>
-        /// <param name="sessionId">The Id of the sesion</param>
+        /// <param name="sessionId">The Id of the session</param>
         /// <returns>An enumerable collection of <see cref="ImageInfo" /> objects</returns>
         public async Task<IEnumerable<ImageInfo>> GetAllImages(string sessionId)
         {
