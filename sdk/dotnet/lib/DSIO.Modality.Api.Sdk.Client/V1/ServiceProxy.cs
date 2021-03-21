@@ -193,9 +193,8 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         /// before deleting the session.
         /// </summary>
         /// <param name="sessionId">The Id of the session to delete</param>
-        /// the data to associate with the AcquisitionSession</param>
         /// <returns>True if the request succeeded</returns>
-        public async Task<bool> DeleteAcquisitionSession(string sessionId, AcquisitionSessionInfo sessionInfo)
+        public async Task<bool> DeleteAcquisitionSession(string sessionId)
         {
             var response = await Client.DeleteAsync($"acquisition/{sessionId}");
             return response.IsSuccessStatusCode;
