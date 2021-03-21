@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Closing="MainWindow_OnClosing"
         Title="WPF Sample"
-        Height="800" Width="1024">
+        Height="700" Width="800">
     <Grid Margin="6">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -62,11 +62,20 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
+                <Button x:Name="BtnUpdateDevices"
+                        Grid.Row="0" Grid.Column="0"
+                        Margin="6"
+                        HorizontalAlignment="Right"
+                        Click="BtnUpdateDevices_OnClick"
+                        Width="200">
+                    Update Device List
+                </Button>
                 <ComboBox x:Name="ComboDevices"
-                          Grid.Row="0" Grid.Column="0"
+                          Grid.Row="0" Grid.Column="1"
+                          MinWidth="300"
                           ItemsSource="{Binding Devices}"
                           SelectedItem="{Binding SelectedDevice}"
                           SelectionChanged="ComboDevices_OnSelectionChanged">
@@ -76,12 +85,7 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Button x:Name="BtnUpdateDevices"
-                        Grid.Row="0" Grid.Column="1"
-                        Margin="6"
-                        HorizontalAlignment="Right"
-                        Click="BtnUpdateDevices_OnClick"
-                        Width="200">Update Device List</Button>
+
                 <!-- display detailed device info in col 0 -->
                 <StackPanel Grid.Row="1" Grid.Column="0">
                     <StackPanel Orientation="Horizontal">
@@ -111,7 +115,7 @@
                 </StackPanel>
                 <!-- display detailed sensor info in col 1 -->
                 <StackPanel Grid.Row="1" Grid.Column="1">
-                    <TextBlock HorizontalAlignment="Center">Sensor Info</TextBlock>
+                    <TextBlock>Sensor Info</TextBlock>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock>Model:</TextBlock>
                         <TextBlock Margin="4,0" Text="{Binding SelectedSensor.ModelName}"></TextBlock>
@@ -202,9 +206,23 @@
                 </Grid>
 
                 <!-- Acquisition Status -->
-                <StackPanel Grid.Row="2" Grid.Column="0" Margin ="0,6" Orientation="Horizontal">
-                    <Label>Acquisition Status:</Label>
-                    <TextBlock Margin="4" Text="{Binding AcquisitionStatus.State}"></TextBlock>
+                <StackPanel Grid.Row="2" Grid.Column="0" Margin ="0,6" Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Acquisition Ready:</Label>
+                        <CheckBox Margin="4" IsEnabled="False" IsChecked="{Binding AcquisitionStatus.Ready, Mode=OneWay}"></CheckBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Acquisition State:</Label>
+                        <TextBlock Margin="4" Text="{Binding AcquisitionStatus.State}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Total Images:</Label>
+                        <TextBlock Margin="4" Text="{Binding AcquisitionStatus.TotalImages}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Last Images Id:</Label>
+                        <TextBlock Margin="4" Text="{Binding AcquisitionStatus.LastImageId}"></TextBlock>
+                    </StackPanel>
                 </StackPanel>
 
                 <!-- Image list -->
@@ -214,7 +232,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <Label>Images:</Label>
+                        <Label>Image List:</Label>
                         <ComboBox x:Name="ComboImages"
                                   MinWidth="300"
                                   ItemsSource="{Binding Images}"

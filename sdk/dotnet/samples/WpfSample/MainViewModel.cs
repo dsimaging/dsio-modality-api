@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+
 using DSIO.Modality.Api.Sdk.Client.V1;
 using DSIO.Modality.Api.Sdk.Types.V1;
 
@@ -164,6 +165,7 @@ namespace WpfSample
 
         public async Task<ObservableCollection<DeviceInfo>> UpdateDeviceList()
         {
+            // Disable current selection
             SelectedDevice = null;
             SelectedSensor = null;
 
@@ -289,6 +291,7 @@ namespace WpfSample
 
         public async Task<AcquisitionSession> ChangeDeviceForSession(string deviceId)
         {
+            // Switch the device used for this session
             if (Session != null)
             {
                 var sessionInfo = new AcquisitionSessionInfo
@@ -321,6 +324,8 @@ namespace WpfSample
 
         public async Task<AcquisitionInfo> UpdateAcquisitionInfo()
         {
+            // Set AcquisitionInfo for the next exposure using the
+            // AcquisitionInfo property of our ViewModel
             if (Session != null)
             {
                 AcquisitionInfo = await _serviceProxy.UpdateAcquisitionInfo(Session.SessionId, AcquisitionInfo);
@@ -331,6 +336,7 @@ namespace WpfSample
 
         public async Task<ObservableCollection<ImageInfo>> UpdateImages()
         {
+            // Update our collection of images
             if (Session != null)
             {
                 var images = await _serviceProxy.GetAllImages(Session.SessionId);
@@ -342,6 +348,9 @@ namespace WpfSample
 
         #endregion
 
+        /// <summary>
+        /// This callback is used to process current AcquisitionStatus from our subscription
+        /// </summary>
         private void ProcessAcquisitionStatus(AcquisitionStatus status)
         {
             AcquisitionStatus = status;
@@ -353,7 +362,7 @@ namespace WpfSample
             else if (status.State == AcquisitionStatus.AcquisitionState.NewImage ||
                      status.TotalImages != Images?.Count)
             {
-                // New images arrived, update Images list
+                // New image arrived, update Images list
                 UpdateImages();
             }
         }

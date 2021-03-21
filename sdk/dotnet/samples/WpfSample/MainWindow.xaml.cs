@@ -33,7 +33,7 @@ namespace WpfSample
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
-            // delete session when we close
+            // Don't forget to delete your session before you leave!
             if (ViewModel.Session != null)
             {
                 ViewModel.DeleteSession()
