@@ -67,8 +67,8 @@
                 <Button x:Name="BtnUpdateDevices"
                         Grid.Row="0" Grid.Column="0"
                         Margin="6"
-                        Click="BtnUpdateDevices_OnClick"
-                        Width="200">
+                        Padding="12, 6"
+                        Click="BtnUpdateDevices_OnClick">
                     Update Device List
                 </Button>
                 <ComboBox x:Name="ComboDevices"

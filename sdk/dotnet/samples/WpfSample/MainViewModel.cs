@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
+using System.Windows.Input;
 using DSIO.Modality.Api.Sdk.Client.V1;
 using DSIO.Modality.Api.Sdk.Types.V1;
 
@@ -95,28 +95,30 @@ namespace WpfSample
             }
         }
 
-        public async Task<bool> Login(string username, string apikey)
+        public void Login()
         {
-            // set credentials
-            ApiUserName = username;
-            ApiKey = apikey;
+            // Update status
             LoginStatus = "Logging in...";
             IsAuthenticated = false;
+
+            // configure credentials
             _serviceProxy.SetBasicAuthenticationHeader(ApiUserName, ApiKey);
 
             // Check availability to confirm credentials
-            try
+            _serviceProxy.IsServiceAvailable().ContinueWith(task =>
             {
-                IsAuthenticated = await _serviceProxy.IsServiceAvailable();
-                LoginStatus = IsAuthenticated ? "Login Successful" : "Service is unavailable";
-                return IsAuthenticated;
-            }
-            catch (Exception)
-            {
-                IsAuthenticated = false;
-                LoginStatus = "Error";
-                throw;
-            }
+                if (task.IsFaulted)
+                {
+                    // Show the error message
+                    LoginStatus = "Error";
+                    MessageBox.Show(task.Exception?.Message);
+                }
+                else if (task.IsCompleted)
+                {
+                    IsAuthenticated = task.Result;
+                    LoginStatus = IsAuthenticated ? "Login Successful" : "Service is unavailable";
+                }
+            });
         }
 
         #endregion
@@ -149,20 +151,32 @@ namespace WpfSample
             }
         }
 
-
-        public async Task<ObservableCollection<DeviceInfo>> UpdateDeviceList()
+        // Must be called from UI thread to properly update Devices list and Selected Device
+        public void UpdateDeviceList()
         {
             // Disable current selection
             SelectedDevice = null;
+            Mouse.OverrideCursor = Cursors.Wait;
 
             // Get all devices
-            var devices = await _serviceProxy.GetAllDevices();
-            Devices = new ObservableCollection<DeviceInfo>(devices);
+            _serviceProxy.GetAllDevices().ContinueWith(task =>
+            {
+                // Must be on UI thread to change Mouse
+                Mouse.OverrideCursor = null;
+                if (task.IsFaulted)
+                {
+                    MessageBox.Show(task.Exception?.Message);
+                }
+                else if (task.IsCompletedSuccessfully)
+                {
+                    var devices = task.Result;
+                    Devices = new ObservableCollection<DeviceInfo>(devices);
 
-            // Select first one by default
-            SelectedDevice = Devices.FirstOrDefault();
-
-            return Devices;
+                    // Select first device by default
+                    SelectedDevice = Devices.FirstOrDefault();
+                }
+                // We synchronize the Continuation task so we can make UI changes
+            }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         #endregion
@@ -241,31 +255,45 @@ namespace WpfSample
             }
         }
 
-        public async Task<AcquisitionSession> CreateSession(string deviceId)
+        public void CreateSession(string deviceId)
         {
+            DeleteSession();
+
             var sessionInfo = new AcquisitionSessionInfo
             {
                 ClientName = "WpfSample",
                 DeviceId = deviceId
             };
 
-            Session = await _serviceProxy.CreateAcquisitionSession(sessionInfo);
-            if (Session != null)
+            // Create the session
+            _serviceProxy.CreateAcquisitionSession(sessionInfo).ContinueWith(task =>
             {
-                // subscribe to Acquisition status
-                _acquisitionStatusSubscription = await _serviceProxy.SubscribeToAcquisitionStatus(Session.SessionId,
-                    ProcessAcquisitionStatus);
-                _acquisitionStatusSubscription?.Start();
+                if (task.IsFaulted)
+                {
+                    MessageBox.Show(task.Exception?.Message);
+                }
+                else if (task.IsCompleted)
+                {
+                    Session = task.Result;
+                    if (Session != null)
+                    {
+                        // subscribe to Acquisition status
+                        _serviceProxy.SubscribeToAcquisitionStatus(Session.SessionId, ProcessAcquisitionStatus)
+                            .ContinueWith(subTask =>
+                            {
+                                _acquisitionStatusSubscription = subTask.Result;
+                                _acquisitionStatusSubscription?.Start();
+                            });
 
-                // Initialize current status
-                AcquisitionStatus = await _serviceProxy.GetAcquisitionStatus(Session.SessionId);
-                ProcessAcquisitionStatus(AcquisitionStatus);
-
-            }
-            return Session;
+                        // Initialize current status
+                        _serviceProxy.GetAcquisitionStatus(Session.SessionId)
+                            .ContinueWith(subTask => ProcessAcquisitionStatus(subTask.Result));
+                    }
+                }
+            });
         }
 
-        public async Task<AcquisitionSession> ChangeDeviceForSession(string deviceId)
+        public void ChangeDeviceForSession(string deviceId)
         {
             // Switch the device used for this session
             if (Session != null)
@@ -276,13 +304,22 @@ namespace WpfSample
                     DeviceId = deviceId
                 };
 
-                Session = await _serviceProxy.UpdateAcquisitionSession(Session.SessionId, sessionInfo);
+                _serviceProxy.UpdateAcquisitionSession(Session.SessionId, sessionInfo)
+                    .ContinueWith(task =>
+                    {
+                        if (task.IsFaulted)
+                        {
+                            MessageBox.Show(task.Exception?.Message);
+                        }
+                        else if (task.IsCompleted)
+                        {
+                            Session = task.Result;
+                        }
+                    });
             }
-
-            return Session;
         }
 
-        public async Task<bool> DeleteSession()
+        public void DeleteSession()
         {
             if (Session != null)
             {
@@ -290,36 +327,68 @@ namespace WpfSample
                 _acquisitionStatusSubscription?.Stop();
                 _acquisitionStatusSubscription = null;
 
-                var result = await _serviceProxy.DeleteAcquisitionSession(Session.SessionId);
-                Session = null;
-                return result;
-            }
+                _serviceProxy.DeleteAcquisitionSession(Session.SessionId)
+                    .ContinueWith(task =>
+                    {
+                        if (task.IsFaulted)
+                        {
+                            MessageBox.Show(task.Exception?.Message);
+                        }
+                    });
 
-            return true;
+                // Cleanup session data
+                Session = null;
+                AcquisitionInfo = null;
+                AcquisitionStatus = null;
+                SelectedImage = null;
+                Images = null;
+            }
         }
 
-        public async Task<AcquisitionInfo> UpdateAcquisitionInfo()
+        public void UpdateAcquisitionInfo()
         {
             // Set AcquisitionInfo for the next exposure using the
             // AcquisitionInfo property of our ViewModel
-            if (Session != null)
+            if (Session != null && AcquisitionInfo != null)
             {
-                AcquisitionInfo = await _serviceProxy.UpdateAcquisitionInfo(Session.SessionId, AcquisitionInfo);
+                _serviceProxy.UpdateAcquisitionInfo(Session.SessionId, AcquisitionInfo)
+                    .ContinueWith(task =>
+                    {
+                        if (task.IsFaulted)
+                        {
+                            MessageBox.Show(task.Exception?.Message);
+                        }
+                        else if (task.IsCompleted)
+                        {
+                            AcquisitionInfo = task.Result;
+                        }
+                    });
             }
-
-            return AcquisitionInfo;
         }
 
-        public async Task<ObservableCollection<ImageInfo>> UpdateImages()
+        // Must be called from UI thread to properly update Images and SelectedImage
+        public void UpdateImageList(string selectImageId = null)
         {
             // Update our collection of images
             if (Session != null)
             {
-                var images = await _serviceProxy.GetAllImages(Session.SessionId);
-                Images = new ObservableCollection<ImageInfo>(images);
+                _serviceProxy.GetAllImages(Session.SessionId)
+                    .ContinueWith(task =>
+                    {
+                        if (task.IsFaulted)
+                        {
+                            MessageBox.Show(task.Exception?.Message);
+                        }
+                        else if (task.IsCompleted)
+                        {
+                            Images = new ObservableCollection<ImageInfo>(task.Result);
+                            
+                            // try to reselect the SelectedImage
+                            if (!string.IsNullOrEmpty(selectImageId))
+                                SelectedImage = Images.FirstOrDefault(info => info.Id == selectImageId);
+                        }
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
             }
-
-            return Images;
         }
 
         #endregion
@@ -338,9 +407,11 @@ namespace WpfSample
             else if (status.State == AcquisitionStatus.AcquisitionState.NewImage ||
                      status.TotalImages != Images?.Count)
             {
-                // New image arrived, update Images list
-                UpdateImages().ContinueWith(task => {
-                    SelectedImage = Images.FirstOrDefault(info => info.Id == status.LastImageId);
+                // New image arrived, update Images list (must be called from UI thread)
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    // Update the list and show latest image
+                    UpdateImageList(status.LastImageId);
                 });
             }
         }

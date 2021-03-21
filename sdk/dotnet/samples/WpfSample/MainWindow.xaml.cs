@@ -34,50 +34,18 @@ namespace WpfSample
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
             // Don't forget to delete your session before you leave!
-            if (ViewModel.Session != null)
-            {
-                ViewModel.DeleteSession()
-                    .ContinueWith(task =>
-                    {
-                        // Display error message if exception occurred
-                        if (task.IsFaulted)
-                        {
-                            MessageBox.Show(task.Exception?.Message, "Delete Session Error");
-                        }
-                    });
-            }
+            ViewModel.DeleteSession();
         }
 
         private void BtnLogin_OnClick(object sender, RoutedEventArgs e)
         {
             // Try to login with credentials
-            ViewModel.Login(ViewModel.ApiUserName, ViewModel.ApiKey)
-                .ContinueWith(task =>
-                {
-                    // Display error message if exception occurred
-                    if (task.IsFaulted)
-                    {
-                        MessageBox.Show(task.Exception?.Message,"Login Error");
-                    }
-                });
+            ViewModel.Login();
         }
 
         private void BtnUpdateDevices_OnClick(object sender, RoutedEventArgs e)
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-            ViewModel.UpdateDeviceList()
-                .ContinueWith(task =>
-                {
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        Mouse.OverrideCursor = null;
-                    });
-                    // Display error message if exception occurred
-                    if (task.IsFaulted)
-                    {
-                        MessageBox.Show(task.Exception?.Message, "Update Devices Error");
-                    }
-                });
+            ViewModel.UpdateDeviceList();
         }
 
         private void ComboDevices_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -88,15 +56,7 @@ namespace WpfSample
                 // If we have a session, switch the device to the selected one
                 if (ViewModel.Session != null)
                 {
-                    ViewModel.ChangeDeviceForSession(device.DeviceId)
-                        .ContinueWith(task =>
-                        {
-                            // Display error message if exception occurred
-                            if (task.IsFaulted)
-                            {
-                                MessageBox.Show(task.Exception?.Message, "Update Session Error");
-                            }
-                        });
+                    ViewModel.ChangeDeviceForSession(device.DeviceId);
                 }
             }
         }
@@ -104,60 +64,21 @@ namespace WpfSample
         private void BtnCreateSession_OnClick(object sender, RoutedEventArgs e)
         {
             // delete previous session
-            ViewModel.DeleteSession()
-                .ContinueWith(task =>
-                {
-                    // Display error message if exception occurred
-                    if (task.IsFaulted)
-                    {
-                        MessageBox.Show(task.Exception?.Message, "Delete Session Error");
-                    }
-                });
+            ViewModel.DeleteSession();
 
-            if (ViewModel.SelectedDevice != null)
-            {
-                ViewModel.CreateSession(ViewModel.SelectedDevice.DeviceId)
-                    .ContinueWith(task =>
-                    {
-                        // Display error message if exception occurred
-                        if (task.IsFaulted)
-                        {
-                            MessageBox.Show(task.Exception?.Message, "Create Session Error");
-                        }
-                    });
-
-            }
+            // Create a new session
+            ViewModel.CreateSession(ViewModel.SelectedDevice?.DeviceId);
         }
 
         private void BtnDeleteSession_OnClick(object sender, RoutedEventArgs e)
         {
             // delete session
-            ViewModel.DeleteSession()
-                .ContinueWith(task =>
-                {
-                    // Display error message if exception occurred
-                    if (task.IsFaulted)
-                    {
-                        MessageBox.Show(task.Exception?.Message, "Delete Session Error");
-                    }
-                });
+            ViewModel.DeleteSession();
         }
 
         private void BtnUpdateAcquisitionInfo_OnClick(object sender, RoutedEventArgs e)
         {
-            if (ViewModel.Session != null)
-            {
-                ViewModel.UpdateAcquisitionInfo()
-                    .ContinueWith(task =>
-                    {
-                        // Display error message if exception occurred
-                        if (task.IsFaulted)
-                        {
-                            MessageBox.Show(task.Exception?.Message, "Update Acquisition Info Error");
-                        }
-                    });
-
-            }
+            ViewModel.UpdateAcquisitionInfo();
         }
     }
 }
