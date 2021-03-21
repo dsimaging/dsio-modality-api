@@ -18,6 +18,7 @@ namespace WpfSample
     public class MainViewModel : INotifyPropertyChanged
     {
         private readonly ServiceProxy _serviceProxy;
+        private ISubscription _acquisitionStatusSubscription;
 
         public MainViewModel()
         {
@@ -187,5 +188,174 @@ namespace WpfSample
         }
 
         #endregion
+
+        #region Images
+
+        private AcquisitionSession _session;
+        public AcquisitionSession Session
+        {
+            get => _session;
+            set
+            {
+                if (value != _session)
+                {
+                    _session = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private AcquisitionInfo _acquisitionInfo;
+        public AcquisitionInfo AcquisitionInfo
+        {
+            get => _acquisitionInfo;
+            set
+            {
+                if (value != _acquisitionInfo)
+                {
+                    _acquisitionInfo = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private AcquisitionStatus _acquisitionStatus;
+        public AcquisitionStatus AcquisitionStatus
+        {
+            get => _acquisitionStatus;
+            set
+            {
+                if (value != _acquisitionStatus)
+                {
+                    _acquisitionStatus = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private ObservableCollection<ImageInfo> _images;
+
+        public ObservableCollection<ImageInfo> Images
+        {
+            get => _images;
+            set
+            {
+                if (value != _images)
+                {
+                    _images = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private ImageInfo _selectedImage;
+
+        public ImageInfo SelectedImage
+        {
+            get => _selectedImage;
+            set
+            {
+                if (value != _selectedImage)
+                {
+                    _selectedImage = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public async Task<AcquisitionSession> CreateSession(string deviceId)
+        {
+            var sessionInfo = new AcquisitionSessionInfo
+            {
+                ClientName = "WpfSample",
+                DeviceId = deviceId
+            };
+
+            Session = await _serviceProxy.CreateAcquisitionSession(sessionInfo);
+            if (Session != null)
+            {
+                // subscribe to Acquisition status
+                _acquisitionStatusSubscription = await _serviceProxy.SubscribeToAcquisitionStatus(Session.SessionId,
+                    ProcessAcquisitionStatus);
+                _acquisitionStatusSubscription?.Start();
+
+                // Initialize current status
+                AcquisitionStatus = await _serviceProxy.GetAcquisitionStatus(Session.SessionId);
+                ProcessAcquisitionStatus(AcquisitionStatus);
+
+            }
+            return Session;
+        }
+
+        public async Task<AcquisitionSession> ChangeDeviceForSession(string deviceId)
+        {
+            if (Session != null)
+            {
+                var sessionInfo = new AcquisitionSessionInfo
+                {
+                    ClientName = Session.ClientName,
+                    DeviceId = deviceId
+                };
+
+                Session = await _serviceProxy.UpdateAcquisitionSession(Session.SessionId, sessionInfo);
+            }
+
+            return Session;
+        }
+
+        public async Task<bool> DeleteSession()
+        {
+            if (Session != null)
+            {
+                // Unsubscribe status
+                _acquisitionStatusSubscription?.Stop();
+                _acquisitionStatusSubscription = null;
+
+                var result = await _serviceProxy.DeleteAcquisitionSession(Session.SessionId);
+                Session = null;
+                return result;
+            }
+
+            return true;
+        }
+
+        public async Task<AcquisitionInfo> UpdateAcquisitionInfo()
+        {
+            if (Session != null)
+            {
+                AcquisitionInfo = await _serviceProxy.UpdateAcquisitionInfo(Session.SessionId, AcquisitionInfo);
+            }
+
+            return AcquisitionInfo;
+        }
+
+        public async Task<ObservableCollection<ImageInfo>> UpdateImages()
+        {
+            if (Session != null)
+            {
+                var images = await _serviceProxy.GetAllImages(Session.SessionId);
+                Images = new ObservableCollection<ImageInfo>(images);
+            }
+
+            return Images;
+        }
+
+        #endregion
+
+        private void ProcessAcquisitionStatus(AcquisitionStatus status)
+        {
+            AcquisitionStatus = status;
+            if (status.State == AcquisitionStatus.AcquisitionState.NoAcquisitionInfo)
+            {
+                // Create a new instance of AcquisitionInfo so we can fill in properties
+                AcquisitionInfo = new AcquisitionInfo();
+            }
+            else if (status.State == AcquisitionStatus.AcquisitionState.NewImage ||
+                     status.TotalImages != Images?.Count)
+            {
+                // New images arrived, update Images list
+                UpdateImages();
+            }
+        }
     }
 }

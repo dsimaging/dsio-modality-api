@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,23 @@ namespace WpfSample
         }
 
         public MainViewModel ViewModel => DataContext as MainViewModel;
+
+        private void MainWindow_OnClosing(object sender, CancelEventArgs e)
+        {
+            // delete session when we close
+            if (ViewModel.Session != null)
+            {
+                ViewModel.DeleteSession()
+                    .ContinueWith(task =>
+                    {
+                        // Display error message if exception occurred
+                        if (task.IsFaulted)
+                        {
+                            MessageBox.Show(task.Exception?.Message, "Delete Session Error");
+                        }
+                    });
+            }
+        }
 
         private void BtnLogin_OnClick(object sender, RoutedEventArgs e)
         {
@@ -77,6 +95,79 @@ namespace WpfSample
                             MessageBox.Show(task.Exception?.Message, "Update Sensor Error");
                         }
                     });
+
+                // If we have a session, switch the device to the selected one
+                if (ViewModel.Session != null)
+                {
+                    ViewModel.ChangeDeviceForSession(device.DeviceId)
+                        .ContinueWith(task =>
+                        {
+                            // Display error message if exception occurred
+                            if (task.IsFaulted)
+                            {
+                                MessageBox.Show(task.Exception?.Message, "Update Session Error");
+                            }
+                        });
+                }
+            }
+        }
+
+        private void BtnCreateSession_OnClick(object sender, RoutedEventArgs e)
+        {
+            // delete previous session
+            ViewModel.DeleteSession()
+                .ContinueWith(task =>
+                {
+                    // Display error message if exception occurred
+                    if (task.IsFaulted)
+                    {
+                        MessageBox.Show(task.Exception?.Message, "Delete Session Error");
+                    }
+                });
+
+            if (ViewModel.SelectedDevice != null)
+            {
+                ViewModel.CreateSession(ViewModel.SelectedDevice.DeviceId)
+                    .ContinueWith(task =>
+                    {
+                        // Display error message if exception occurred
+                        if (task.IsFaulted)
+                        {
+                            MessageBox.Show(task.Exception?.Message, "Create Session Error");
+                        }
+                    });
+
+            }
+        }
+
+        private void BtnDeleteSession_OnClick(object sender, RoutedEventArgs e)
+        {
+            // delete session
+            ViewModel.DeleteSession()
+                .ContinueWith(task =>
+                {
+                    // Display error message if exception occurred
+                    if (task.IsFaulted)
+                    {
+                        MessageBox.Show(task.Exception?.Message, "Delete Session Error");
+                    }
+                });
+        }
+
+        private void BtnUpdateAcquisitionInfo_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.Session != null)
+            {
+                ViewModel.UpdateAcquisitionInfo()
+                    .ContinueWith(task =>
+                    {
+                        // Display error message if exception occurred
+                        if (task.IsFaulted)
+                        {
+                            MessageBox.Show(task.Exception?.Message, "Update Acquisition Info Error");
+                        }
+                    });
+
             }
         }
     }

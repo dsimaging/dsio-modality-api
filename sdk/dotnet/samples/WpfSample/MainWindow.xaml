@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSample"
         mc:Ignorable="d"
-        Title="WPF Sample" Height="450" Width="800">
+        Closing="MainWindow_OnClosing"
+        Title="WPF Sample"
+        Height="800" Width="1024">
     <Grid Margin="6">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -58,7 +60,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -100,10 +101,6 @@
                         <TextBlock Margin="4,0" Text="{Binding SelectedDevice.Status}"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock>Interface:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedDevice.InterfaceType}"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
                         <TextBlock>Model:</TextBlock>
                         <TextBlock Margin="4,0" Text="{Binding SelectedDevice.ModelName}"></TextBlock>
                     </StackPanel>
@@ -111,46 +108,128 @@
                         <TextBlock>Serial Number:</TextBlock>
                         <TextBlock Margin="4,0" Text="{Binding SelectedDevice.SerialNumber}"></TextBlock>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Version:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedDevice.Version}"></TextBlock>
-                    </StackPanel>
                 </StackPanel>
                 <!-- display detailed sensor info in col 1 -->
                 <StackPanel Grid.Row="1" Grid.Column="1">
+                    <TextBlock HorizontalAlignment="Center">Sensor Info</TextBlock>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock>Sensor Model:</TextBlock>
+                        <TextBlock>Model:</TextBlock>
                         <TextBlock Margin="4,0" Text="{Binding SelectedSensor.ModelName}"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock>Sensor Serial:</TextBlock>
+                        <TextBlock>Serial:</TextBlock>
                         <TextBlock Margin="4,0" Text="{Binding SelectedSensor.SerialNumber}"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock>Sensor Brand:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedSensor.Brand}"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Sensor Family:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedSensor.Family}"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Sensor Size:</TextBlock>
+                        <TextBlock>Size:</TextBlock>
                         <TextBlock Margin="4,0" Text="{Binding SelectedSensor.Size}"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock>Sensor Width:</TextBlock>
+                        <TextBlock>Width:</TextBlock>
                         <TextBlock Margin="4,0" Text="{Binding SelectedSensor.Width}"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock>Sensor Height:</TextBlock>
+                        <TextBlock>Height:</TextBlock>
                         <TextBlock Margin="4,0" Text="{Binding SelectedSensor.Height}"></TextBlock>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Sensor Version:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedSensor.Version}"></TextBlock>
-                    </StackPanel>
                 </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <!-- Images section -->
+        <GroupBox Grid.Row="2" Margin="4" IsEnabled="{Binding IsAuthenticated}">
+            <GroupBox.Header>
+                <Label>Images</Label>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!-- Session controls -->
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="BtnCreateSession"
+                            Grid.Row="0" Grid.Column="0"
+                            Margin="6,0"
+                            Click="BtnCreateSession_OnClick">Create Session</Button>
+                    <Button x:Name="BtnDeleteSession"
+                            Grid.Row="1" Grid.Column="0"
+                            Margin="6,0"
+                            Click="BtnDeleteSession_OnClick">Delete Session</Button>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Margin="4" Text="Session Id"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="4" Text="{Binding Session.SessionId}"></TextBlock>
+                </Grid>
+
+                <!-- AcquisitionInfo -->
+                <Grid Grid.Row="1" Grid.Column="0" Margin="0,6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="BtnUpdateAcquisitionInfo"
+                            Grid.Row="0" Grid.Column="0"
+                            Height="30"
+                            Margin="6,0"
+                            Click="BtnUpdateAcquisitionInfo_OnClick">Set Acquisition Info</Button>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+                        <TextBlock Margin="4" Text="Enable Acquisition:"></TextBlock>
+                        <TextBlock Margin="4" Text="Apply LUT:"></TextBlock>
+                        <TextBlock Margin="4" Text="Rotation:"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical">
+                        <CheckBox Margin="4" IsChecked="{Binding AcquisitionInfo.Enable}"></CheckBox>
+                        <CheckBox Margin="4" IsChecked="{Binding AcquisitionInfo.ApplyLut}"></CheckBox>
+                        <TextBox Margin="4" Width="120" HorizontalAlignment="Left" Text="{Binding AcquisitionInfo.Rotation}"></TextBox>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Acquisition Status -->
+                <StackPanel Grid.Row="2" Grid.Column="0" Margin ="0,6" Orientation="Horizontal">
+                    <Label>Acquisition Status:</Label>
+                    <TextBlock Margin="4" Text="{Binding AcquisitionStatus.State}"></TextBlock>
+                </StackPanel>
+
+                <!-- Image list -->
+                <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Margin="0,6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Label>Images:</Label>
+                        <ComboBox x:Name="ComboImages"
+                                  MinWidth="300"
+                                  ItemsSource="{Binding Images}"
+                                  SelectedItem="{Binding SelectedImage}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Id}"></TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <Image Grid.Row="1"
+                           Source="{Binding SelectedImage.ImageUrl}"/>
+                </Grid>
             </Grid>
         </GroupBox>
     </Grid>
