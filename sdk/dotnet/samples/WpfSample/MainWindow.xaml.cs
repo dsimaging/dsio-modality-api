@@ -82,20 +82,9 @@ namespace WpfSample
 
         private void ComboDevices_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Update sensor info when selected device changes
+            // Change device used in session when selected device changes
             if (ComboDevices.SelectedItem is DeviceInfo device)
             {
-                ViewModel.SelectedSensor = null;
-                ViewModel.UpdateSensorInfo(device.DeviceId)
-                    .ContinueWith(task =>
-                    {
-                        // Display error message if exception occurred
-                        if (task.IsFaulted)
-                        {
-                            MessageBox.Show(task.Exception?.Message, "Update Sensor Error");
-                        }
-                    });
-
                 // If we have a session, switch the device to the selected one
                 if (ViewModel.Session != null)
                 {

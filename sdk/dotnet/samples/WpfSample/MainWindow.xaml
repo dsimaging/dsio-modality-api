@@ -13,7 +13,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <!-- API Credentials Login -->
@@ -63,7 +62,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Button x:Name="BtnUpdateDevices"
                         Grid.Row="0" Grid.Column="0"
@@ -80,61 +79,30 @@
                           SelectionChanged="ComboDevices_OnSelectionChanged">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Name}"></TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <Image MaxHeight="24" HorizontalAlignment="Center" Source="{Binding IconUrl}"></Image>
+                                <TextBlock Margin="4,0" HorizontalAlignment="Center" Text="{Binding Name}"></TextBlock>
+                            </StackPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <!-- display detailed device info in col 0 -->
+                <!-- Show DeviceInfo labels in col 0 -->
                 <StackPanel Grid.Row="1" Grid.Column="0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Device Id:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedDevice.DeviceId}"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Name:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedDevice.Name}"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Icon:</TextBlock>
-                        <Image Margin="4,0" Source="{Binding SelectedDevice.IconUrl}"></Image>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Status:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedDevice.Status}"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Model:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedDevice.ModelName}"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Serial Number:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedDevice.SerialNumber}"></TextBlock>
-                    </StackPanel>
+                    <TextBlock>Device Id:</TextBlock>
+                    <TextBlock>Name:</TextBlock>
+                    <TextBlock>Status:</TextBlock>
+                    <TextBlock>Model:</TextBlock>
+                    <TextBlock>Serial Number:</TextBlock>
                 </StackPanel>
-                <!-- display detailed sensor info in col 1 -->
+
+                <!-- Show DeviceInfo data in col 1 -->
                 <StackPanel Grid.Row="1" Grid.Column="1">
-                    <TextBlock>Sensor Info</TextBlock>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Model:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedSensor.ModelName}"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Serial:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedSensor.SerialNumber}"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Size:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedSensor.Size}"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Width:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedSensor.Width}"></TextBlock>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>Height:</TextBlock>
-                        <TextBlock Margin="4,0" Text="{Binding SelectedSensor.Height}"></TextBlock>
-                    </StackPanel>
+                    <TextBlock Margin="4,0" Text="{Binding SelectedDevice.DeviceId}"></TextBlock>
+                    <TextBlock Margin="4,0" Text="{Binding SelectedDevice.Name}"></TextBlock>
+                    <TextBlock Margin="4,0" Text="{Binding SelectedDevice.Status}"></TextBlock>
+                    <TextBlock Margin="4,0" Text="{Binding SelectedDevice.ModelName}"></TextBlock>
+                    <TextBlock Margin="4,0" Text="{Binding SelectedDevice.SerialNumber}"></TextBlock>
                 </StackPanel>
             </Grid>
         </GroupBox>
@@ -200,7 +168,7 @@
                     <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical">
                         <CheckBox Margin="4" IsChecked="{Binding AcquisitionInfo.Enable}"></CheckBox>
                         <CheckBox Margin="4" IsChecked="{Binding AcquisitionInfo.ApplyLut}"></CheckBox>
-                        <TextBox Margin="4" Width="120" HorizontalAlignment="Left" Text="{Binding AcquisitionInfo.Rotation}"></TextBox>
+                        <TextBox Margin="4" Width="80" HorizontalAlignment="Left" Text="{Binding AcquisitionInfo.Rotation}"></TextBox>
                     </StackPanel>
                 </Grid>
 
@@ -244,6 +212,7 @@
                         </ComboBox>
                     </StackPanel>
 
+                    <!-- Display the selected image -->
                     <Image Grid.Row="1"
                            Source="{Binding SelectedImage.ImageUrl}"/>
                 </Grid>

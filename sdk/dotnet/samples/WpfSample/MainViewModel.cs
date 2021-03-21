@@ -149,44 +149,20 @@ namespace WpfSample
             }
         }
 
-        private SensorInfo _selectedSensor;
-        public SensorInfo SelectedSensor
-        {
-            get => _selectedSensor;
-            set
-            {
-                if (value != _selectedSensor)
-                {
-                    _selectedSensor = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
 
         public async Task<ObservableCollection<DeviceInfo>> UpdateDeviceList()
         {
             // Disable current selection
             SelectedDevice = null;
-            SelectedSensor = null;
 
             // Get all devices
             var devices = await _serviceProxy.GetAllDevices();
             Devices = new ObservableCollection<DeviceInfo>(devices);
+
+            // Select first one by default
+            SelectedDevice = Devices.FirstOrDefault();
+
             return Devices;
-        }
-
-        public async Task<DeviceInfo> UpdateDeviceInfo(string deviceId)
-        {
-            // Get detailed info for device
-            SelectedDevice = await _serviceProxy.GetDevice(deviceId);
-            return SelectedDevice;
-        }
-
-        public async Task<SensorInfo> UpdateSensorInfo(string deviceId)
-        {
-            // Get detailed info for sensor
-            SelectedSensor = await _serviceProxy.GetSensor(deviceId);
-            return SelectedSensor;
         }
 
         #endregion
