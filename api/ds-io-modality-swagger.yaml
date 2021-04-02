@@ -164,16 +164,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AcquisitionSession'
-        '400':
-          description: Invalid request
         '404':
           description: Device not found
         '409':
           description: Device is in use
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AcquisitionSession'
         '500':
           description: Internal error
         '507':
@@ -229,10 +223,6 @@ paths:
           description: Session not found
         '409':
           description: Device is in use
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AcquisitionSession'
     delete:
       tags: [Images]
       operationId: deleteAcquisitionSession
