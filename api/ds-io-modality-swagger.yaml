@@ -83,7 +83,7 @@ paths:
                   
                   event: message
                   
-                  data: { "action":"changed","deviceInfo":{"deviceId":"-987654321","name":"Schick 33: 213402981","iconUrl":"http://example.com/api/devices/-987654321/icon.png","hasSensor":false,"status":"Available","interfaceType":"usb","modelName":"Schick AE USB Interface","serialNumber":"34-05921813233","version":"1.2","battery":null} }
+                  data: { "action":"changed","deviceInfo":{"deviceId":"bc91c079-dabe-0170-1c5e-6ee92b3f4a35","name":"Schick 33: 213402981","iconUrl":"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png","hasSensor":false,"status":"Available","interfaceType":"usb","modelName":"Schick AE USB Interface","serialNumber":"34-05921813233","version":"1.2","battery":null} }
 
   /devices/{deviceId}:
     get:
@@ -484,7 +484,7 @@ components:
         deviceId:
           description: Unique Id of the device
           type: string
-          example: -987654321
+          example: bc91c079-dabe-0170-1c5e-6ee92b3f4a35
         name:
           description: Descriptive name of the device 
           type: string
@@ -492,7 +492,7 @@ components:
         iconUrl:
           description: Url for an icon representing the device
           type: string
-          example: http://example.com/api/devices/-987654321/icon.png
+          example: http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png
         hasSensor:
           description: Flag indicating if a sensor is connected to this device
           type: boolean
@@ -559,7 +559,7 @@ components:
         family:
           description: Product family of sensor
           type: string
-          example: Synergy
+          example: Supreme
         size:
           description: Sensor size
           type: number
@@ -588,7 +588,7 @@ components:
         deviceId:
           description: Unique Id of the device
           type: string
-          example: -987654321
+          example: bc91c079-dabe-0170-1c5e-6ee92b3f4a35
         clientName:
           description: A client provided string used to identify the client that created the session
           type: string
@@ -609,7 +609,7 @@ components:
         deviceId:
           description: Unique Id of the device
           type: string
-          example: -987654321
+          example: bc91c079-dabe-0170-1c5e-6ee92b3f4a35
         clientName:
           description: A client provided string used to identify the client that created this session
           type: string
