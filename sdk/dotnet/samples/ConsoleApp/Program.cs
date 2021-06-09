@@ -59,6 +59,17 @@ namespace ConsoleApp
                         }
                     }
 
+                    // retrieve a list of active sessions
+                    var sessions = (await service.GetAcquisitionSessions())?.ToList();
+                    if (sessions != null)
+                    {
+                        Console.WriteLine($"Found {sessions.Count} active sessions");
+                        foreach (var session in sessions)
+                        {
+                            Console.WriteLine($"Session {session.SessionId} is using Device {session.DeviceId}");
+                        }
+                    }
+
                     // Subscribe to the Device Events
                     Console.WriteLine("Subscribing to device events...");
                     var subscription = await service.SubscribeToDeviceEvents(data =>

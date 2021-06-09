@@ -173,6 +173,25 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         }
 
         /// <summary>
+        /// Retrieve a list of active Acquisition Sessions. The call may be optionally
+        /// filtered by supplying a deviceId.
+        /// </summary>
+        /// <returns>A list of <see cref="AcquisitionSession" /> objects</returns>
+        public async Task<IEnumerable<AcquisitionSession>> GetAcquisitionSessions(string deviceId = null)
+        {
+            var uri = "acquisition/";
+            if (!string.IsNullOrEmpty(deviceId))
+            {
+                // Add deviceId to query
+                uri += $"?deviceId={deviceId}";
+            }
+
+            var response = await Client.GetAsync(uri);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<IEnumerable<AcquisitionSession>>();
+        }
+
+        /// <summary>
         /// Updates a session with new information. This method can be used to change
         /// The device used to acquire images in the session.
         /// </summary>
