@@ -172,6 +172,27 @@ paths:
           description: Internal error
         '507':
           description: Not enough storage available
+    get:
+      tags: [Images]
+      operationId: getSessions
+      summary: Get Acquisition Sessions
+      description: Retrieve a list of `AcquisitionSession` objects previously created that have yet not been deleted. The query may be filtered for sessions containing a given device using the optional `deviceId` parameter. If this parameter is supplied, the response will contain exactly one `AcquisitionSession` or an empty array if no matching session is found.
+      parameters:
+        - name: deviceId
+          in: query
+          description: Optional id of a device that will be used to filter the results.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AcquisitionSession'
 
   /acquisition/{sessionId}:
     get:
