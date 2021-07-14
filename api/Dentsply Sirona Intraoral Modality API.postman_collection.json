@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "51fe6330-763c-4305-afea-6962333e58b7",
+		"_postman_id": "464f0abd-8d92-4103-84c5-e3019e05204d",
 		"name": "Dentsply Sirona Intraoral Modality API",
 		"description": "This API is used for acquisition and control of Intraoral sensors. The Devices section provides methods for retrieving information about available intraoral devices (i.e., USB or WiFi interfaces). The Acquisition section provides methods for acquisition of images from a device.\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -57,7 +57,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n {\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n  \"hasSensor\": false,\n  \"status\": \"Available\",\n  \"interfaceType\": \"usb\",\n  \"modelName\": \"Schick AE USB Interface\",\n  \"serialNumber\": \"34-05921813233\",\n  \"version\": \"eu in deserunt ea id\",\n  \"battery\": {\n   \"hasBattery\": true,\n   \"percentRemaining\": 78,\n   \"level\": \"Good\"\n  }\n },\n {\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n  \"hasSensor\": true,\n  \"status\": \"Available\",\n  \"interfaceType\": \"usb\",\n  \"modelName\": \"Schick AE USB Interface\",\n  \"serialNumber\": \"34-05921813233\",\n  \"version\": \"dolore\",\n  \"battery\": {\n   \"hasBattery\": true,\n   \"percentRemaining\": 78,\n   \"level\": \"Good\"\n  }\n }\n]"
+							"body": "[\n {\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n  \"hasSensor\": false,\n  \"status\": \"Available\",\n  \"interfaceType\": \"usb\",\n  \"modelName\": \"Schick AE USB Interface\",\n  \"serialNumber\": \"34-05921813233\",\n  \"version\": \"dolor culpa\",\n  \"battery\": {\n   \"hasBattery\": true,\n   \"percentRemaining\": 78,\n   \"level\": \"Good\"\n  }\n },\n {\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n  \"hasSensor\": false,\n  \"status\": \"Available\",\n  \"interfaceType\": \"usb\",\n  \"modelName\": \"Schick AE USB Interface\",\n  \"serialNumber\": \"34-05921813233\",\n  \"version\": \"sit\",\n  \"battery\": {\n   \"hasBattery\": true,\n   \"percentRemaining\": 78,\n   \"level\": \"Good\"\n  }\n }\n]"
 						}
 					]
 				},
@@ -145,7 +145,7 @@
 							"variable": [
 								{
 									"key": "deviceId",
-									"value": "velit sunt",
+									"value": "ullamco sunt in",
 									"description": "(Required) The Id of the device"
 								}
 							]
@@ -190,7 +190,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"name\": \"Schick 33: 213402981\",\n \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n \"hasSensor\": false,\n \"status\": \"Available\",\n \"interfaceType\": \"usb\",\n \"modelName\": \"Schick AE USB Interface\",\n \"serialNumber\": \"34-05921813233\",\n \"version\": \"veniam i\",\n \"battery\": {\n  \"hasBattery\": true,\n  \"percentRemaining\": 78,\n  \"level\": \"Good\"\n }\n}"
+							"body": "{\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"name\": \"Schick 33: 213402981\",\n \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n \"hasSensor\": true,\n \"status\": \"Available\",\n \"interfaceType\": \"usb\",\n \"modelName\": \"Schick AE USB Interface\",\n \"serialNumber\": \"34-05921813233\",\n \"version\": \"incididunt\",\n \"battery\": {\n  \"hasBattery\": true,\n  \"percentRemaining\": 78,\n  \"level\": \"Good\"\n }\n}"
 						},
 						{
 							"name": "Device not found",
@@ -251,7 +251,7 @@
 							"variable": [
 								{
 									"key": "deviceId",
-									"value": "velit sunt",
+									"value": "ullamco sunt in",
 									"description": "(Required) The Id of the device"
 								}
 							]
@@ -297,7 +297,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"modelName\": \"Schick 33\",\n \"serialNumber\": \"ea aliquip culpa\",\n \"brand\": \"Schick\",\n \"family\": \"Supreme\",\n \"size\": 2,\n \"width\": 2400,\n \"height\": 1708,\n \"supportsBinning\": true,\n \"version\": \"mollit irure\"\n}"
+							"body": "{\n \"modelName\": \"Schick 33\",\n \"serialNumber\": \"nisi qui \",\n \"brand\": \"Schick\",\n \"family\": \"Supreme\",\n \"size\": 2,\n \"width\": 2400,\n \"height\": 1708,\n \"supportsBinning\": true,\n \"version\": \"exerci\"\n}"
 						},
 						{
 							"name": "Device not found",
@@ -408,7 +408,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"clientName\": \"OP4 Workstation\",\n \"createdOn\": \"1981-10-23T10:33:59.893Z\",\n \"context\": {}\n}"
+							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"clientName\": \"OP4 Workstation\",\n \"createdOn\": \"1982-04-11T09:13:31.383Z\",\n \"context\": {}\n}"
 						},
 						{
 							"name": "Device not found",
@@ -566,7 +566,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/acquisition?deviceId=velit sunt",
+							"raw": "{{baseUrl}}/acquisition?deviceId=ullamco sunt in",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -576,7 +576,7 @@
 							"query": [
 								{
 									"key": "deviceId",
-									"value": "velit sunt",
+									"value": "ullamco sunt in",
 									"description": "Optional id of a device that will be used to filter the results."
 								}
 							]
@@ -596,7 +596,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/acquisition?deviceId=velit sunt",
+									"raw": "{{baseUrl}}/acquisition?deviceId=ullamco sunt in",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -606,7 +606,7 @@
 									"query": [
 										{
 											"key": "deviceId",
-											"value": "velit sunt"
+											"value": "ullamco sunt in"
 										}
 									]
 								}
@@ -621,7 +621,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n {\n  \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"clientName\": \"OP4 Workstation\",\n  \"createdOn\": \"1941-06-26T22:02:41.611Z\",\n  \"context\": {}\n },\n {\n  \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"clientName\": \"OP4 Workstation\",\n  \"createdOn\": \"1969-03-21T18:24:04.549Z\",\n  \"context\": {}\n }\n]"
+							"body": "[\n {\n  \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"clientName\": \"OP4 Workstation\",\n  \"createdOn\": \"1990-02-11T20:44:51.256Z\",\n  \"context\": {}\n },\n {\n  \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"clientName\": \"OP4 Workstation\",\n  \"createdOn\": \"1999-04-14T02:19:41.401Z\",\n  \"context\": {}\n }\n]"
 						}
 					]
 				},
@@ -642,7 +642,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "velit sunt",
+									"value": "ullamco sunt in",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -687,7 +687,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"clientName\": \"OP4 Workstation\",\n \"createdOn\": \"1981-10-23T10:33:59.893Z\",\n \"context\": {}\n}"
+							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"clientName\": \"OP4 Workstation\",\n \"createdOn\": \"1982-04-11T09:13:31.383Z\",\n \"context\": {}\n}"
 						},
 						{
 							"name": "Session not found",
@@ -756,7 +756,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "velit sunt",
+									"value": "ullamco sunt in",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -805,7 +805,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"clientName\": \"OP4 Workstation\",\n \"createdOn\": \"1981-10-23T10:33:59.893Z\",\n \"context\": {}\n}"
+							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"clientName\": \"OP4 Workstation\",\n \"createdOn\": \"1982-04-11T09:13:31.383Z\",\n \"context\": {}\n}"
 						},
 						{
 							"name": "Session not found",
@@ -912,7 +912,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "velit sunt",
+									"value": "ullamco sunt in",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -1018,7 +1018,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "velit sunt",
+									"value": "ullamco sunt in",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -1134,7 +1134,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "velit sunt",
+									"value": "ullamco sunt in",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -1256,7 +1256,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "velit sunt",
+									"value": "ullamco sunt in",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -1373,7 +1373,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "velit sunt",
+									"value": "ullamco sunt in",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -1489,7 +1489,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "velit sunt",
+									"value": "ullamco sunt in",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -1535,7 +1535,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"createdOn\": \"1952-03-17T16:31:42.878Z\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"deviceInfo\": {\n   \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n   \"name\": \"Schick 33: 213402981\",\n   \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n   \"hasSensor\": false,\n   \"status\": \"Available\",\n   \"interfaceType\": \"usb\",\n   \"modelName\": \"Schick AE USB Interface\",\n   \"serialNumber\": \"34-05921813233\",\n   \"version\": \"laborum ea minim\",\n   \"battery\": {\n    \"hasBattery\": true,\n    \"percentRemaining\": 78,\n    \"level\": \"Good\"\n   }\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": \"ut laboris anim mollit in\",\n   \"brand\": \"Schick\",\n   \"family\": \"Supreme\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"supportsBinning\": true,\n   \"version\": \"laborum ad\"\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true,\n   \"context\": {}\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"min\": -1,\n   \"max\": 1,\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n },\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"createdOn\": \"1942-05-27T08:28:39.078Z\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"deviceInfo\": {\n   \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n   \"name\": \"Schick 33: 213402981\",\n   \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n   \"hasSensor\": true,\n   \"status\": \"Available\",\n   \"interfaceType\": \"usb\",\n   \"modelName\": \"Schick AE USB Interface\",\n   \"serialNumber\": \"34-05921813233\",\n   \"version\": \"ad ut\",\n   \"battery\": {\n    \"hasBattery\": true,\n    \"percentRemaining\": 78,\n    \"level\": \"Good\"\n   }\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": \"magna sed\",\n   \"brand\": \"Schick\",\n   \"family\": \"Supreme\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"supportsBinning\": true,\n   \"version\": \"amet\"\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true,\n   \"context\": {}\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"min\": -1,\n   \"max\": 1,\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n }\n]"
+							"body": "[\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"createdOn\": \"1984-08-22T15:32:36.067Z\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"deviceInfo\": {\n   \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n   \"name\": \"Schick 33: 213402981\",\n   \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n   \"hasSensor\": false,\n   \"status\": \"Available\",\n   \"interfaceType\": \"usb\",\n   \"modelName\": \"Schick AE USB Interface\",\n   \"serialNumber\": \"34-05921813233\",\n   \"version\": \"voluptate ipsum\",\n   \"battery\": {\n    \"hasBattery\": true,\n    \"percentRemaining\": 78,\n    \"level\": \"Good\"\n   }\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": \"nulla id velit ea\",\n   \"brand\": \"Schick\",\n   \"family\": \"Supreme\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"supportsBinning\": false,\n   \"version\": \"quis\"\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true,\n   \"context\": {}\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"min\": -1,\n   \"max\": 1,\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n },\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"createdOn\": \"1953-09-06T02:12:03.273Z\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"deviceInfo\": {\n   \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n   \"name\": \"Schick 33: 213402981\",\n   \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n   \"hasSensor\": true,\n   \"status\": \"Available\",\n   \"interfaceType\": \"usb\",\n   \"modelName\": \"Schick AE USB Interface\",\n   \"serialNumber\": \"34-05921813233\",\n   \"version\": \"esse pariatur qui sint\",\n   \"battery\": {\n    \"hasBattery\": true,\n    \"percentRemaining\": 78,\n    \"level\": \"Good\"\n   }\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": \"consequat occaecat\",\n   \"brand\": \"Schick\",\n   \"family\": \"Supreme\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"supportsBinning\": true,\n   \"version\": \"cillum exercitation do in\"\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true,\n   \"context\": {}\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"min\": -1,\n   \"max\": 1,\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n }\n]"
 						},
 						{
 							"name": "Session not found",
@@ -1598,12 +1598,12 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "velit sunt",
+									"value": "ullamco sunt in",
 									"description": "(Required) The session Id"
 								},
 								{
 									"key": "imageId",
-									"value": "velit sunt",
+									"value": "ullamco sunt in",
 									"description": "(Required) The image Id"
 								}
 							]
@@ -1653,7 +1653,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n \"createdOn\": \"1964-03-05T12:46:30.479Z\",\n \"width\": 2400,\n \"height\": 1708,\n \"bitsPerPixel\": 12,\n \"bytesPerPixel\": 2,\n \"pixelSizeX\": 0.015,\n \"pixelSizeY\": 0.015,\n \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n \"pixelHash\": {\n  \"alg\": \"MD5\",\n  \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n },\n \"deviceInfo\": {\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n  \"hasSensor\": false,\n  \"status\": \"Available\",\n  \"interfaceType\": \"usb\",\n  \"modelName\": \"Schick AE USB Interface\",\n  \"serialNumber\": \"34-05921813233\",\n  \"version\": \"et ea sit\",\n  \"battery\": {\n   \"hasBattery\": true,\n   \"percentRemaining\": 78,\n   \"level\": \"Good\"\n  }\n },\n \"sensorInfo\": {\n  \"modelName\": \"Schick 33\",\n  \"serialNumber\": \"culpa dolore\",\n  \"brand\": \"Schick\",\n  \"family\": \"Supreme\",\n  \"size\": 2,\n  \"width\": 2400,\n  \"height\": 1708,\n  \"supportsBinning\": false,\n  \"version\": \"dolore aliqua\"\n },\n \"acquisitionInfo\": {\n  \"enable\": true,\n  \"rotation\": 90,\n  \"binning\": \"Unbinned\",\n  \"applyLut\": true,\n  \"context\": {}\n },\n \"lutInfo\": {\n  \"gamma\": 2.3,\n  \"slope\": 65535,\n  \"offset\": 0,\n  \"totalGrays\": 4096,\n  \"minimumGray\": 3612,\n  \"maximumGray\": 418\n },\n \"exposureInfo\": {\n  \"min\": -1,\n  \"max\": 1,\n  \"low\": -0.5,\n  \"high\": 0.5,\n  \"optimum\": 0,\n  \"value\": -0.24723\n }\n}"
+							"body": "{\n \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n \"createdOn\": \"1962-09-20T13:43:30.407Z\",\n \"width\": 2400,\n \"height\": 1708,\n \"bitsPerPixel\": 12,\n \"bytesPerPixel\": 2,\n \"pixelSizeX\": 0.015,\n \"pixelSizeY\": 0.015,\n \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n \"pixelHash\": {\n  \"alg\": \"MD5\",\n  \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n },\n \"deviceInfo\": {\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n  \"hasSensor\": true,\n  \"status\": \"Available\",\n  \"interfaceType\": \"usb\",\n  \"modelName\": \"Schick AE USB Interface\",\n  \"serialNumber\": \"34-05921813233\",\n  \"version\": \"officia aute\",\n  \"battery\": {\n   \"hasBattery\": true,\n   \"percentRemaining\": 78,\n   \"level\": \"Good\"\n  }\n },\n \"sensorInfo\": {\n  \"modelName\": \"Schick 33\",\n  \"serialNumber\": \"dolor Duis in ullamco\",\n  \"brand\": \"Schick\",\n  \"family\": \"Supreme\",\n  \"size\": 2,\n  \"width\": 2400,\n  \"height\": 1708,\n  \"supportsBinning\": true,\n  \"version\": \"Excepteur Duis Ut dolor\"\n },\n \"acquisitionInfo\": {\n  \"enable\": true,\n  \"rotation\": 90,\n  \"binning\": \"Unbinned\",\n  \"applyLut\": true,\n  \"context\": {}\n },\n \"lutInfo\": {\n  \"gamma\": 2.3,\n  \"slope\": 65535,\n  \"offset\": 0,\n  \"totalGrays\": 4096,\n  \"minimumGray\": 3612,\n  \"maximumGray\": 418\n },\n \"exposureInfo\": {\n  \"min\": -1,\n  \"max\": 1,\n  \"low\": -0.5,\n  \"high\": 0.5,\n  \"optimum\": 0,\n  \"value\": -0.24723\n }\n}"
 						},
 						{
 							"name": "Session or image not found",
@@ -1676,6 +1676,256 @@
 										":sessionId",
 										"images",
 										":imageId"
+									],
+									"variable": [
+										{
+											"key": "sessionId"
+										},
+										{
+											"key": "imageId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Get Image Media",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/acquisition/:sessionId/images/:imageId/media",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"acquisition",
+								":sessionId",
+								"images",
+								":imageId",
+								"media"
+							],
+							"variable": [
+								{
+									"key": "sessionId",
+									"value": "ullamco sunt in",
+									"description": "(Required) The session Id"
+								},
+								{
+									"key": "imageId",
+									"value": "ullamco sunt in",
+									"description": "(Required) The image Id"
+								}
+							]
+						},
+						"description": "Returns the media representing the specified image"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/acquisition/:sessionId/images/:imageId/media",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition",
+										":sessionId",
+										"images",
+										":imageId",
+										"media"
+									],
+									"variable": [
+										{
+											"key": "sessionId"
+										},
+										{
+											"key": "imageId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "image/*"
+								}
+							],
+							"cookie": [],
+							"body": "ullamco sunt in"
+						},
+						{
+							"name": "Session or image not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/acquisition/:sessionId/images/:imageId/media",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition",
+										":sessionId",
+										"images",
+										":imageId",
+										"media"
+									],
+									"variable": [
+										{
+											"key": "sessionId"
+										},
+										{
+											"key": "imageId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Get Image Preview Media",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/acquisition/:sessionId/images/:imageId/preview",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"acquisition",
+								":sessionId",
+								"images",
+								":imageId",
+								"preview"
+							],
+							"variable": [
+								{
+									"key": "sessionId",
+									"value": "ullamco sunt in",
+									"description": "(Required) The session Id"
+								},
+								{
+									"key": "imageId",
+									"value": "ullamco sunt in",
+									"description": "(Required) The image Id"
+								}
+							]
+						},
+						"description": "Returns the media representing a thumbnail of specified image"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/acquisition/:sessionId/images/:imageId/preview",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition",
+										":sessionId",
+										"images",
+										":imageId",
+										"preview"
+									],
+									"variable": [
+										{
+											"key": "sessionId"
+										},
+										{
+											"key": "imageId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "image/*"
+								}
+							],
+							"cookie": [],
+							"body": "ullamco sunt in"
+						},
+						{
+							"name": "Session or image not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/acquisition/:sessionId/images/:imageId/preview",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition",
+										":sessionId",
+										"images",
+										":imageId",
+										"preview"
 									],
 									"variable": [
 										{

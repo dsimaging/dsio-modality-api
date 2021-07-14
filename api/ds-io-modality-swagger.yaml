@@ -444,6 +444,66 @@ paths:
         '404':
           description: Session or image not found
 
+  /acquisition/{sessionId}/images/{imageId}/media:
+    get:
+      tags: [Images]
+      operationId: getImageMedia
+      summary: Get Image Media
+      description: Returns the media representing the specified image
+      parameters:
+        - name: sessionId
+          in: path
+          description: The session Id
+          required: true
+          schema:
+            type: string
+        - name: imageId
+          in: path
+          description: The image Id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Session or image not found
+
+  /acquisition/{sessionId}/images/{imageId}/preview:
+    get:
+      tags: [Images]
+      operationId: getImagePreview
+      summary: Get Image Preview Media
+      description: Returns the media representing a thumbnail of specified image
+      parameters:
+        - name: sessionId
+          in: path
+          description: The session Id
+          required: true
+          schema:
+            type: string
+        - name: imageId
+          in: path
+          description: The image Id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Session or image not found
+
 security:
   - BasicAuth: []
 
