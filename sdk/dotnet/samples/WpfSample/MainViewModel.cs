@@ -370,6 +370,32 @@ namespace WpfSample
             }
         }
 
+        public void ShowActiveSessions()
+        {
+            // retrieve and show all active sessions
+            _serviceProxy.GetAcquisitionSessions()
+                .ContinueWith(task =>
+                {
+                    if (task.IsFaulted)
+                    {
+                        MessageBox.Show(task.Exception?.Message);
+                    }
+                    else if (task.IsCompleted)
+                    {
+                        var sessions = task.Result.ToList();
+                        string message = sessions?.Count() > 0 ? "" : "No sessions";
+                        foreach (var session in sessions)
+                        {
+                            message += $"Session {session.SessionId} is using Device {session.DeviceId}\n";
+                        }
+
+                        // Show the message
+                        MessageBox.Show(message, "Active Sessions");
+                    }
+
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+
         public void UpdateAcquisitionInfo()
         {
             // Set AcquisitionInfo for the next exposure using the

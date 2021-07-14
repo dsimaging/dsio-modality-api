@@ -70,6 +70,12 @@ namespace WpfSample
             ViewModel.CreateSession(ViewModel.SelectedDevice?.DeviceId);
         }
 
+        private void BtnGetSessions_OnClick(object sender, RoutedEventArgs e)
+        {
+            // retrieve and show all session
+            ViewModel.ShowActiveSessions();
+        }
+
         private void BtnDeleteSession_OnClick(object sender, RoutedEventArgs e)
         {
             // delete session

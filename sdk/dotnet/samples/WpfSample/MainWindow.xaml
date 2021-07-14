@@ -128,6 +128,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -137,8 +138,12 @@
                             Grid.Row="0" Grid.Column="0"
                             Margin="6,0"
                             Click="BtnCreateSession_OnClick">Create Session</Button>
-                    <Button x:Name="BtnDeleteSession"
+                    <Button x:Name="BtnGetSessions"
                             Grid.Row="1" Grid.Column="0"
+                            Margin="6,0"
+                            Click="BtnGetSessions_OnClick">Active Sessions</Button>
+                    <Button x:Name="BtnDeleteSession"
+                            Grid.Row="2" Grid.Column="0"
                             Margin="6,0"
                             Click="BtnDeleteSession_OnClick">Delete Session</Button>
                     <TextBlock Grid.Row="0" Grid.Column="1" Margin="4" Text="Session Id"></TextBlock>
