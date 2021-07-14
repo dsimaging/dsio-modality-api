@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Sockets;
@@ -300,6 +301,32 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
             var response = await Client.GetAsync($"acquisition/{sessionId}/images/{imageId}");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<ImageInfo>();
+        }
+
+        /// <summary>
+        /// Retrieves the media for an image
+        /// </summary>
+        /// <param name="sessionId">The Id of the session</param>
+        /// <param name="imageId">The Id of the image to retrieve</param>
+        /// <returns>A BitmapImage representing the media</returns>
+        public async Task<Stream> GetImageMedia(string sessionId, string imageId)
+        {
+            var response = await Client.GetAsync($"acquisition/{sessionId}/images/{imageId}/media");
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStreamAsync();
+        }
+
+        /// <summary>
+        /// Retrieves the preview media for an image
+        /// </summary>
+        /// <param name="sessionId">The Id of the session</param>
+        /// <param name="imageId">The Id of the image to retrieve</param>
+        /// <returns>A BitmapImage representing the preview media</returns>
+        public async Task<Stream> GetImagePreview(string sessionId, string imageId)
+        {
+            var response = await Client.GetAsync($"acquisition/{sessionId}/images/{imageId}/preview");
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStreamAsync();
         }
 
         #endregion

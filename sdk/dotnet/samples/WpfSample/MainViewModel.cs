@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using DSIO.Modality.Api.Sdk.Client.V1;
 using DSIO.Modality.Api.Sdk.Types.V1;
 
@@ -250,6 +252,29 @@ namespace WpfSample
                 if (value != _selectedImage)
                 {
                     _selectedImage = value;
+
+                    // Update the image bitmap when the selected image changes
+                    SelectedImageBitmap = null;
+                    if (_selectedImage != null)
+                    {
+                        UpdateSelectedImageBitmap(_selectedImage.Id);
+                    }
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private BitmapSource _selectedImageBitmap;
+
+        public BitmapSource SelectedImageBitmap
+        {
+            get => _selectedImageBitmap;
+            set
+            {
+                if (value != _selectedImageBitmap)
+                {
+                    _selectedImageBitmap = value;
                     OnPropertyChanged();
                 }
             }
@@ -413,6 +438,34 @@ namespace WpfSample
                     // Update the list and show latest image
                     UpdateImageList(status.LastImageId);
                 });
+            }
+        }
+
+        private void UpdateSelectedImageBitmap(string imageId)
+        {
+            SelectedImageBitmap = null;
+            if (Session != null)
+            {
+                _serviceProxy.GetImageMedia(Session.SessionId, imageId)
+                    .ContinueWith(task =>
+                    {
+                        if (task.IsFaulted)
+                        {
+                            MessageBox.Show(task.Exception?.Message);
+                        }
+                        else if (task.IsCompleted)
+                        {
+                            // Create a Bitmap image from the stream
+                            var bitmap = new BitmapImage();
+                            bitmap.BeginInit();
+                            bitmap.StreamSource = task.Result;
+                            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                            bitmap.EndInit();
+                            bitmap.Freeze();
+
+                            SelectedImageBitmap = bitmap;
+                        }
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
             }
         }
     }

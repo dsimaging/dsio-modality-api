@@ -214,7 +214,7 @@
 
                     <!-- Display the selected image -->
                     <Image Grid.Row="1"
-                           Source="{Binding SelectedImage.ImageUrl}"/>
+                           Source="{Binding SelectedImageBitmap}"/>
                 </Grid>
             </Grid>
         </GroupBox>
