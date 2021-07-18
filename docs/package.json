@@ -11,8 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
-    "redoc": "^2.0.0-rc.40",
-    "redoc-cli": "^0.9.12",
+    "redoc": "^2.0.0-rc.55",
+    "redoc-cli": "^0.12.2",
     "swagger-ui-express": "^4.1.4",
     "yamljs": "^0.3.0"
   }
