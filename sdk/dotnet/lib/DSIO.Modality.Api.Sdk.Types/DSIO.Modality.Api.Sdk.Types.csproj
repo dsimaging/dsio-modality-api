@@ -3,6 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>Dentsply Sirona</Company>
+    <Product>DSIO Modality Api SDK</Product>
+    <Authors>Dentsply Sirona</Authors>
+    <RepositoryUrl>https://github.com/dsimaging/dsio-modality-api</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/dsimaging/dsio-modality-api</PackageProjectUrl>
+    <Description>Contains definitions of types used in the Dentsply Sirona Intraoral Imaging Modality API.</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
