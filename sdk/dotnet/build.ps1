@@ -14,7 +14,7 @@ if ($null -ne $git_description) {
         $VersionSuffix = $Matches[3]
 
         # when building from source that exactly matches a release tag, remove suffix
-        if (($Commits -eq '0') -and ($VersionPrefix -match '^[\d\.]*$') -and (!$Matches[3].Contains('dirty'))) {
+        if (($Commits -eq '0') -and ($VersionPrefix -match '^[\d\.]*$') -and (!$VersionSuffix.Contains('dirty'))) {
             $VersionSuffix = ''
         }
     } else {
@@ -26,6 +26,7 @@ if ($null -ne $git_description) {
     $VersionSuffix = "no-git";
 }
 
+# Create a version string to display during build
 $VersionString = $VersionPrefix
 if ($VersionSuffix) {
     $VersionString = "$VersionPrefix-$VersionSuffix"
@@ -46,4 +47,4 @@ dotnet build --configuration $Configuration -p:VersionPrefix=$VersionPrefix -p:V
 dotnet build --configuration $Configuration -p:VersionPrefix=$VersionPrefix -p:VersionSuffix=$VersionSuffix `
         .\samples\WpfSample\WpfSample.csproj
 
-Write-Host "Finished building SDK with Version $VersionString and Configuration $Configuration"
+Write-Host "Finished building SDK with Version: $VersionString and Configuration: $Configuration"
