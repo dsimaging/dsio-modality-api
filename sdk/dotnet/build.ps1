@@ -13,8 +13,8 @@ if ($null -ne $git_description) {
         $Commits = $Matches[2]
         $VersionSuffix = $Matches[3]
 
-        # when building source that exactly matches tag, remove suffix
-        if (($Commits -eq '0') -and (!$Matches[3].Contains('dirty'))) {
+        # when building from source that exactly matches a release tag, remove suffix
+        if (($Commits -eq '0') -and ($VersionPrefix -match '^[\d\.]*$') -and (!$Matches[3].Contains('dirty'))) {
             $VersionSuffix = ''
         }
     } else {
