@@ -35,4 +35,4 @@ Use the swagger-ui and express-js to locally serve the documentation using the s
 The console will inform you when the server is running. Open a browser and navigate to the url indicated. This provides an interactive Swagger UI documentation. It can be used to directly interact with a running instance of an IO Modality Service.
 
 ## SDK
-The SDK folder contains language specific libraries and sample code. The SDK is not required for using the API, but they may be helpful in getting started.
+The SDK folder contains language specific libraries and sample code. The SDK is not required for using the API, but they may be helpful in getting started. Build scripts are provided for building the SDK.
