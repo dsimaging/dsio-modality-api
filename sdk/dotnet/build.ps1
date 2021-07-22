@@ -4,7 +4,7 @@ $VersionSuffix= ""
 $Configuration = "Release"
 
 # Get version from git tag
-$git_description = git describe --long --tags --always
+$git_description = git describe --long --tags --always --dirty
 if ($null -ne $git_description) {
     # Parse for tag and commit
     if ($git_description -match '[v](.*?)-(.*)') {
