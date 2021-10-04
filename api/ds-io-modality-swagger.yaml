@@ -389,6 +389,8 @@ paths:
                 $ref: '#/components/schemas/AcquisitionInfo'
         '404':
           description: Session not found
+        '423':
+          description: Locked - AcquisitionInfo cannot be modified while reading an exposure.
 
   /acquisition/{sessionId}/images:
     get:
