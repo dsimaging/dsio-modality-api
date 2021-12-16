@@ -11,10 +11,10 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
 {
     public class DeviceEventSubscription : ISubscription
     {
-        private Stream _stream;
-        private Action<DeviceEventData> _onDeviceEvent;
+        private readonly Stream _stream;
+        private readonly Action<DeviceEventData> _onDeviceEvent;
         private CancellationTokenSource _cancellationTokenSource;
-        private Task _messagesTask;
+        private Thread _messagesThread;
 
         public DeviceEventSubscription(Stream stream, Action<DeviceEventData> onDeviceEvent)
         {
@@ -27,16 +27,18 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
         public void Start()
         {
             _cancellationTokenSource = new CancellationTokenSource();
-            _messagesTask = Task.Factory.StartNew(WaitForMessages);
+            _messagesThread = new Thread(new ThreadStart(WaitForMessages)) { IsBackground = true };
+            _messagesThread.Start();
         }
 
         public void Stop()
         {
             this._cancellationTokenSource?.Cancel();
+            this._messagesThread.Join(200);
             this._stream.Close();
         }
 
-        private async Task WaitForMessages()
+        private void WaitForMessages()
         {
             using (var reader = new StreamReader(_stream))
             {
@@ -44,18 +46,32 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
                 cancelToken.ThrowIfCancellationRequested();
                 while (!reader.EndOfStream && !cancelToken.IsCancellationRequested)
                 {
-                    var message = await reader.ReadLineAsync();
+                    // Wait for the next message
+                    var readTask = reader.ReadLineAsync();
+                    readTask.Wait(cancelToken);
+                    if (!readTask.IsCompleted)
+                        break;
+
+                    // Extract the message we just read
+                    var message = readTask.Result;
+                    if (string.IsNullOrEmpty(message))
+                        continue;   // we should not get an empty message
 
                     // Process this line
                     if (message.StartsWith("event: message"))
                     {
                         // DeviceEventData follows
-                        message = await reader.ReadLineAsync();
-                        int jsonPosition = message.IndexOf("data: ");
+                        readTask = reader.ReadLineAsync();
+                        readTask.Wait(cancelToken);
+                        if (!readTask.IsCompleted)
+                            break;
+
+                        message = readTask.Result;
+                        var jsonPosition = message?.IndexOf("data: ", StringComparison.InvariantCultureIgnoreCase);
                         if (jsonPosition >= 0)
                         {
                             var length = "data: ".Length;
-                            var json = message.Substring(jsonPosition + length);
+                            var json = message.Substring(jsonPosition.Value + length);
                             var data = JsonConvert.DeserializeObject<DeviceEventData>(json);
                             _onDeviceEvent(data);
                         }
@@ -63,12 +79,17 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
                     else if (message.StartsWith("event: heartbeat"))
                     {
                         // Heartbeat follows
-                        message = await reader.ReadLineAsync();
-                        int jsonPosition = message.IndexOf("data: ");
+                        readTask = reader.ReadLineAsync();
+                        readTask.Wait(cancelToken);
+                        if (!readTask.IsCompleted)
+                            break;
+
+                        message = readTask.Result;
+                        var jsonPosition = message?.IndexOf("data: ", StringComparison.InvariantCultureIgnoreCase);
                         if (jsonPosition >= 0)
                         {
                             var length = "data: ".Length;
-                            var json = message.Substring(jsonPosition + length);
+                            var json = message.Substring(jsonPosition.Value + length);
                             var data = JsonConvert.DeserializeObject<Heartbeat>(json);
                             OnHeartbeat(data);
                         }
