@@ -86,6 +86,18 @@ namespace ConsoleApp
                         Console.WriteLine($"\nHeartbeat timeout: {data.HeartbeatTimeout}ms");
                     });
 
+                    subscription.OnStarted += () => {
+                        Console.WriteLine("\nDevice Event Subscription started");
+                    };
+
+                    subscription.OnStopped += () => {
+                        Console.WriteLine("\nDevice Event Subscription stopped");
+                    };
+
+                    subscription.OnError += (ex) => {
+                        Console.WriteLine("$\nDevice Event Subscription encountered an error\n{ex}");
+                    };
+
                     // Start listening to events
                     subscription.Start();
 

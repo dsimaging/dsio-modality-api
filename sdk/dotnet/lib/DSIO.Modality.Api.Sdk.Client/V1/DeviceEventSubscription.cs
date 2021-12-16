@@ -22,6 +22,15 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
             this._onDeviceEvent = onDeviceEvent;
         }
 
+        // The OnStarted event is sent once when the subscription is started
+        public event Action OnStarted = delegate {};
+
+        // The OnStopped event is sent once when the subscription is stopped
+        public event Action OnStopped = delegate {};
+
+        // The OnError event is sent along with Exception details when an exception occurs
+        public event Action<Exception> OnError = delegate {};
+
         public event Action<Heartbeat> OnHeartbeat = delegate {};
 
         public void Start()
@@ -44,58 +53,79 @@ namespace DSIO.Modality.Api.Sdk.Client.V1
             {
                 var cancelToken = _cancellationTokenSource.Token;
                 cancelToken.ThrowIfCancellationRequested();
-                while (!reader.EndOfStream && !cancelToken.IsCancellationRequested)
+
+                // Fire the OnStarted event
+                OnStarted();
+
+                while (!cancelToken.IsCancellationRequested)
                 {
-                    // Wait for the next message
-                    var readTask = reader.ReadLineAsync();
-                    readTask.Wait(cancelToken);
-                    if (!readTask.IsCompleted)
-                        break;
-
-                    // Extract the message we just read
-                    var message = readTask.Result;
-                    if (string.IsNullOrEmpty(message))
-                        continue;   // we should not get an empty message
-
-                    // Process this line
-                    if (message.StartsWith("event: message"))
+                    try
                     {
-                        // DeviceEventData follows
-                        readTask = reader.ReadLineAsync();
+                        // Wait for the next message
+                        var readTask = reader.ReadLineAsync();
                         readTask.Wait(cancelToken);
-                        if (!readTask.IsCompleted)
+                        if (readTask.IsFaulted || readTask.IsCanceled)
                             break;
 
-                        message = readTask.Result;
-                        var jsonPosition = message?.IndexOf("data: ", StringComparison.InvariantCultureIgnoreCase);
-                        if (jsonPosition >= 0)
+                        // Extract the message we just read
+                        var message = readTask.Result;
+                        if (string.IsNullOrEmpty(message))
+                            continue;   // we should not get an empty message
+
+                        // Process this line
+                        if (message.StartsWith("event: message"))
                         {
-                            var length = "data: ".Length;
-                            var json = message.Substring(jsonPosition.Value + length);
-                            var data = JsonConvert.DeserializeObject<DeviceEventData>(json);
-                            _onDeviceEvent(data);
+                            // DeviceEventData follows
+                            readTask = reader.ReadLineAsync();
+                            readTask.Wait(cancelToken);
+                            if (readTask.IsFaulted || readTask.IsCanceled)
+                                break;
+
+                            message = readTask.Result;
+                            var jsonPosition = message?.IndexOf("data: ", StringComparison.InvariantCultureIgnoreCase);
+                            if (jsonPosition >= 0)
+                            {
+                                var length = "data: ".Length;
+                                var json = message.Substring(jsonPosition.Value + length);
+                                var data = JsonConvert.DeserializeObject<DeviceEventData>(json);
+                                _onDeviceEvent(data);
+                            }
+                        }
+                        else if (message.StartsWith("event: heartbeat"))
+                        {
+                            // Heartbeat follows
+                            readTask = reader.ReadLineAsync();
+                            readTask.Wait(cancelToken);
+                            if (readTask.IsFaulted || readTask.IsCanceled)
+                                break;
+
+                            message = readTask.Result;
+                            var jsonPosition = message?.IndexOf("data: ", StringComparison.InvariantCultureIgnoreCase);
+                            if (jsonPosition >= 0)
+                            {
+                                var length = "data: ".Length;
+                                var json = message.Substring(jsonPosition.Value + length);
+                                var data = JsonConvert.DeserializeObject<Heartbeat>(json);
+                                OnHeartbeat(data);
+                            }
                         }
                     }
-                    else if (message.StartsWith("event: heartbeat"))
+                    catch (OperationCanceledException)
                     {
-                        // Heartbeat follows
-                        readTask = reader.ReadLineAsync();
-                        readTask.Wait(cancelToken);
-                        if (!readTask.IsCompleted)
-                            break;
-
-                        message = readTask.Result;
-                        var jsonPosition = message?.IndexOf("data: ", StringComparison.InvariantCultureIgnoreCase);
-                        if (jsonPosition >= 0)
-                        {
-                            var length = "data: ".Length;
-                            var json = message.Substring(jsonPosition.Value + length);
-                            var data = JsonConvert.DeserializeObject<Heartbeat>(json);
-                            OnHeartbeat(data);
-                        }
+                        // Handle the Cancellation exception and squash it. We will simply exit the loop
+                        break;
+                    }
+                    catch(Exception ex)
+                    {
+                        // Handle other exceptions in this thread and pass along to the client using our error event
+                        OnError(ex);
                     }
                 }
             }
+
+            // Thread is ending, fire the OnStopped event
+            OnStopped();
+
         }
     }
 }
