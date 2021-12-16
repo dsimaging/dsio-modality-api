@@ -169,7 +169,7 @@ namespace WpfSample
                 {
                     MessageBox.Show(task.Exception?.Message);
                 }
-                else if (task.IsCompletedSuccessfully)
+                else if (task.Status == TaskStatus.RanToCompletion)
                 {
                     var devices = task.Result;
                     Devices = new ObservableCollection<DeviceInfo>(devices);
