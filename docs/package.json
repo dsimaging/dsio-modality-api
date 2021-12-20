@@ -10,10 +10,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
-    "redoc": "^2.0.0-rc.57",
+    "express": "^4.17.2",
+    "redoc": "^2.0.0-rc.59",
     "redoc-cli": "^0.12.3",
-    "swagger-ui-express": "^4.1.4",
+    "swagger-ui-express": "^4.3.0",
     "yamljs": "^0.3.0"
   }
 }
