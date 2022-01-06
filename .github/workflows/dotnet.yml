@@ -1,4 +1,4 @@
-name: .NET
+name: .NET SDK
 
 on:
   push:
