@@ -774,14 +774,22 @@ components:
               1. A bitewing on the patient's left side should set this value to 90.
               1. An anterior PA of the patient's mandible should set this value to 180 (sensor is *upside down*).
               1. A bitewing on the patient's right side should set this value to 270.
+              
+              A value of null may be used for this property which indicates no rotation is applied (effectively the same as 0). In cases where null is supplied for an update API, the current value of rotation will not be changed.
           
           type: number
           enum: [0, 90, 180, 270]
+          nullable: true
           example: 90
         binning:
-          description: The binning mode used to acquire the image. When binning mode is set to Binned2x2, the sensor combines 4 pixels in a 2x2 neighborhood to create a single pixel. The resulting image is 1/4th the size of an Unbinned image, but with lower resolution. Note that some sensors may not support binning, in which case the binning property cannot be changed.
+          description: >
+            The binning mode used to acquire the image. When binning mode is set to Binned2x2, the sensor combines 4 pixels in a 2x2 neighborhood to create a single pixel. The resulting image is 1/4th the size of an Unbinned image, but with lower resolution. Note that some sensors may not support binning, in which case the binning property cannot be changed.
+            
+              A value of null may be used for this property which indicates that the service will use the default binning mode for the attached sensor. In cases where null is supplied for an update API, the current value of binning will not be changed.
+          
           type: string
           enum: [Unbinned, Binned2x2]
+          nullable: true
           example: Unbinned
         applyLut:
           description: Flag to indicate if a dynamic gamma map should be applied to the image to optimize contrast. When this value is true, the image will be enhanced with a nonlinear map described by `LutInfo`.
