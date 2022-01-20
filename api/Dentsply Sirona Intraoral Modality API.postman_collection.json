@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "464f0abd-8d92-4103-84c5-e3019e05204d",
+		"_postman_id": "bde5584b-6ced-47c7-a346-ab4f3431eb03",
 		"name": "Dentsply Sirona Intraoral Modality API",
 		"description": "This API is used for acquisition and control of Intraoral sensors. The Devices section provides methods for retrieving information about available intraoral devices (i.e., USB or WiFi interfaces). The Acquisition section provides methods for acquisition of images from a device.\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -57,7 +57,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n {\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n  \"hasSensor\": false,\n  \"status\": \"Available\",\n  \"interfaceType\": \"usb\",\n  \"modelName\": \"Schick AE USB Interface\",\n  \"serialNumber\": \"34-05921813233\",\n  \"version\": \"dolor culpa\",\n  \"battery\": {\n   \"hasBattery\": true,\n   \"percentRemaining\": 78,\n   \"level\": \"Good\"\n  }\n },\n {\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n  \"hasSensor\": false,\n  \"status\": \"Available\",\n  \"interfaceType\": \"usb\",\n  \"modelName\": \"Schick AE USB Interface\",\n  \"serialNumber\": \"34-05921813233\",\n  \"version\": \"sit\",\n  \"battery\": {\n   \"hasBattery\": true,\n   \"percentRemaining\": 78,\n   \"level\": \"Good\"\n  }\n }\n]"
+							"body": "[\n {\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n  \"hasSensor\": false,\n  \"status\": \"Available\",\n  \"interfaceType\": \"usb\",\n  \"modelName\": \"Schick AE USB Interface\",\n  \"serialNumber\": \"34-05921813233\",\n  \"version\": \"esse cupidatat\",\n  \"battery\": {\n   \"hasBattery\": true,\n   \"percentRemaining\": 78,\n   \"level\": \"Good\"\n  }\n },\n {\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n  \"hasSensor\": false,\n  \"status\": \"Available\",\n  \"interfaceType\": \"usb\",\n  \"modelName\": \"Schick AE USB Interface\",\n  \"serialNumber\": \"34-05921813233\",\n  \"version\": \"do id elit dolor sint\",\n  \"battery\": {\n   \"hasBattery\": true,\n   \"percentRemaining\": 78,\n   \"level\": \"Good\"\n  }\n }\n]"
 						}
 					]
 				},
@@ -145,7 +145,7 @@
 							"variable": [
 								{
 									"key": "deviceId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The Id of the device"
 								}
 							]
@@ -175,7 +175,9 @@
 									],
 									"variable": [
 										{
-											"key": "deviceId"
+											"key": "deviceId",
+											"value": "occaecat ad",
+											"description": "(Required) The Id of the device"
 										}
 									]
 								}
@@ -190,7 +192,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"name\": \"Schick 33: 213402981\",\n \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n \"hasSensor\": true,\n \"status\": \"Available\",\n \"interfaceType\": \"usb\",\n \"modelName\": \"Schick AE USB Interface\",\n \"serialNumber\": \"34-05921813233\",\n \"version\": \"incididunt\",\n \"battery\": {\n  \"hasBattery\": true,\n  \"percentRemaining\": 78,\n  \"level\": \"Good\"\n }\n}"
+							"body": "{\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"name\": \"Schick 33: 213402981\",\n \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n \"hasSensor\": true,\n \"status\": \"Available\",\n \"interfaceType\": \"usb\",\n \"modelName\": \"Schick AE USB Interface\",\n \"serialNumber\": \"34-05921813233\",\n \"version\": \"consectetur cupidatat\",\n \"battery\": {\n  \"hasBattery\": true,\n  \"percentRemaining\": 78,\n  \"level\": \"Good\"\n }\n}"
 						},
 						{
 							"name": "Device not found",
@@ -214,7 +216,9 @@
 									],
 									"variable": [
 										{
-											"key": "deviceId"
+											"key": "deviceId",
+											"value": "occaecat ad",
+											"description": "(Required) The Id of the device"
 										}
 									]
 								}
@@ -251,7 +255,7 @@
 							"variable": [
 								{
 									"key": "deviceId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The Id of the device"
 								}
 							]
@@ -282,7 +286,9 @@
 									],
 									"variable": [
 										{
-											"key": "deviceId"
+											"key": "deviceId",
+											"value": "occaecat ad",
+											"description": "(Required) The Id of the device"
 										}
 									]
 								}
@@ -297,7 +303,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"modelName\": \"Schick 33\",\n \"serialNumber\": \"nisi qui \",\n \"brand\": \"Schick\",\n \"family\": \"Supreme\",\n \"size\": 2,\n \"width\": 2400,\n \"height\": 1708,\n \"supportsBinning\": true,\n \"version\": \"exerci\"\n}"
+							"body": "{\n \"modelName\": \"Schick 33\",\n \"serialNumber\": \"sed sint anim dolore id\",\n \"brand\": \"Schick\",\n \"family\": \"Supreme\",\n \"size\": 2,\n \"width\": 2400,\n \"height\": 1708,\n \"supportsBinning\": false,\n \"version\": \"Lorem laboris\"\n}"
 						},
 						{
 							"name": "Device not found",
@@ -322,7 +328,9 @@
 									],
 									"variable": [
 										{
-											"key": "deviceId"
+											"key": "deviceId",
+											"value": "occaecat ad",
+											"description": "(Required) The Id of the device"
 										}
 									]
 								}
@@ -359,7 +367,12 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}"
+							"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/acquisition",
@@ -386,7 +399,12 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}"
+									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition",
@@ -408,7 +426,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"clientName\": \"OP4 Workstation\",\n \"createdOn\": \"1982-04-11T09:13:31.383Z\",\n \"context\": {}\n}"
+							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"clientName\": \"OP4 Workstation\",\n \"createdOn\": \"1951-05-02T08:28:51.365Z\",\n \"context\": {}\n}"
 						},
 						{
 							"name": "Device not found",
@@ -423,7 +441,12 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}"
+									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition",
@@ -460,7 +483,12 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}"
+									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition",
@@ -497,7 +525,12 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}"
+									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition",
@@ -534,7 +567,12 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}"
+									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition",
@@ -566,7 +604,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/acquisition?deviceId=ullamco sunt in",
+							"raw": "{{baseUrl}}/acquisition?deviceId=occaecat ad",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -576,7 +614,7 @@
 							"query": [
 								{
 									"key": "deviceId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "Optional id of a device that will be used to filter the results."
 								}
 							]
@@ -596,7 +634,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/acquisition?deviceId=ullamco sunt in",
+									"raw": "{{baseUrl}}/acquisition?deviceId=occaecat ad",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -606,7 +644,7 @@
 									"query": [
 										{
 											"key": "deviceId",
-											"value": "ullamco sunt in"
+											"value": "occaecat ad"
 										}
 									]
 								}
@@ -621,7 +659,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n {\n  \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"clientName\": \"OP4 Workstation\",\n  \"createdOn\": \"1990-02-11T20:44:51.256Z\",\n  \"context\": {}\n },\n {\n  \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"clientName\": \"OP4 Workstation\",\n  \"createdOn\": \"1999-04-14T02:19:41.401Z\",\n  \"context\": {}\n }\n]"
+							"body": "[\n {\n  \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"clientName\": \"OP4 Workstation\",\n  \"createdOn\": \"1977-05-12T17:29:47.833Z\",\n  \"context\": {}\n },\n {\n  \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"clientName\": \"OP4 Workstation\",\n  \"createdOn\": \"2008-06-07T19:26:11.817Z\",\n  \"context\": {}\n }\n]"
 						}
 					]
 				},
@@ -642,7 +680,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -672,7 +710,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -687,7 +727,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"clientName\": \"OP4 Workstation\",\n \"createdOn\": \"1982-04-11T09:13:31.383Z\",\n \"context\": {}\n}"
+							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"clientName\": \"OP4 Workstation\",\n \"createdOn\": \"1951-05-02T08:28:51.365Z\",\n \"context\": {}\n}"
 						},
 						{
 							"name": "Session not found",
@@ -711,7 +751,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -742,7 +784,12 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}"
+							"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/acquisition/:sessionId",
@@ -756,7 +803,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -777,7 +824,12 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}"
+									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition/:sessionId",
@@ -790,7 +842,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -805,7 +859,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"clientName\": \"OP4 Workstation\",\n \"createdOn\": \"1982-04-11T09:13:31.383Z\",\n \"context\": {}\n}"
+							"body": "{\n \"sessionId\": \"be362e71-9c18-4f3c-a9ab-d536d7a8b4fd\",\n \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n \"clientName\": \"OP4 Workstation\",\n \"createdOn\": \"1951-05-02T08:28:51.365Z\",\n \"context\": {}\n}"
 						},
 						{
 							"name": "Session not found",
@@ -820,7 +874,12 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}"
+									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition/:sessionId",
@@ -833,7 +892,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -863,7 +924,12 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}"
+									"raw": "{\n    \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n    \"clientName\": \"OP4 Workstation\",\n    \"context\": {}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition/:sessionId",
@@ -876,7 +942,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -912,7 +980,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -942,7 +1010,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -981,7 +1051,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -1018,7 +1090,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -1049,7 +1121,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -1089,7 +1163,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -1134,7 +1210,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -1172,7 +1248,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -1219,7 +1297,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -1256,7 +1336,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -1287,7 +1367,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -1327,7 +1409,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -1358,7 +1442,12 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"enable\": true,\n    \"rotation\": 90,\n    \"binning\": \"Unbinned\",\n    \"applyLut\": true,\n    \"context\": {}\n}"
+							"raw": "{\n    \"enable\": true,\n    \"rotation\": 90,\n    \"binning\": \"Unbinned\",\n    \"applyLut\": true,\n    \"context\": {}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}/acquisition/:sessionId/info",
@@ -1373,7 +1462,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -1394,7 +1483,12 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"enable\": true,\n    \"rotation\": 90,\n    \"binning\": \"Unbinned\",\n    \"applyLut\": true,\n    \"context\": {}\n}"
+									"raw": "{\n    \"enable\": true,\n    \"rotation\": 90,\n    \"binning\": \"Unbinned\",\n    \"applyLut\": true,\n    \"context\": {}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition/:sessionId/info",
@@ -1408,7 +1502,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -1438,7 +1534,12 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"enable\": true,\n    \"rotation\": 90,\n    \"binning\": \"Unbinned\",\n    \"applyLut\": true,\n    \"context\": {}\n}"
+									"raw": "{\n    \"enable\": true,\n    \"rotation\": 90,\n    \"binning\": \"Unbinned\",\n    \"applyLut\": true,\n    \"context\": {}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
 								},
 								"url": {
 									"raw": "{{baseUrl}}/acquisition/:sessionId/info",
@@ -1452,13 +1553,66 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
 							},
 							"status": "Not Found",
 							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Locked - AcquisitionInfo cannot be modified while reading an exposure.",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"enable\": true,\n    \"rotation\": 90,\n    \"binning\": \"Unbinned\",\n    \"applyLut\": true,\n    \"context\": {}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/acquisition/:sessionId/info",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"acquisition",
+										":sessionId",
+										"info"
+									],
+									"variable": [
+										{
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
+										}
+									]
+								}
+							},
+							"status": "Locked (WebDAV) (RFC 4918)",
+							"code": 423,
 							"_postman_previewlanguage": "text",
 							"header": [
 								{
@@ -1489,7 +1643,7 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The session Id"
 								}
 							]
@@ -1520,7 +1674,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -1535,7 +1691,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"createdOn\": \"1984-08-22T15:32:36.067Z\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"deviceInfo\": {\n   \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n   \"name\": \"Schick 33: 213402981\",\n   \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n   \"hasSensor\": false,\n   \"status\": \"Available\",\n   \"interfaceType\": \"usb\",\n   \"modelName\": \"Schick AE USB Interface\",\n   \"serialNumber\": \"34-05921813233\",\n   \"version\": \"voluptate ipsum\",\n   \"battery\": {\n    \"hasBattery\": true,\n    \"percentRemaining\": 78,\n    \"level\": \"Good\"\n   }\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": \"nulla id velit ea\",\n   \"brand\": \"Schick\",\n   \"family\": \"Supreme\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"supportsBinning\": false,\n   \"version\": \"quis\"\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true,\n   \"context\": {}\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"min\": -1,\n   \"max\": 1,\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n },\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"createdOn\": \"1953-09-06T02:12:03.273Z\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"deviceInfo\": {\n   \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n   \"name\": \"Schick 33: 213402981\",\n   \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n   \"hasSensor\": true,\n   \"status\": \"Available\",\n   \"interfaceType\": \"usb\",\n   \"modelName\": \"Schick AE USB Interface\",\n   \"serialNumber\": \"34-05921813233\",\n   \"version\": \"esse pariatur qui sint\",\n   \"battery\": {\n    \"hasBattery\": true,\n    \"percentRemaining\": 78,\n    \"level\": \"Good\"\n   }\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": \"consequat occaecat\",\n   \"brand\": \"Schick\",\n   \"family\": \"Supreme\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"supportsBinning\": true,\n   \"version\": \"cillum exercitation do in\"\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true,\n   \"context\": {}\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"min\": -1,\n   \"max\": 1,\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n }\n]"
+							"body": "[\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"createdOn\": \"2004-08-03T16:50:18.896Z\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"deviceInfo\": {\n   \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n   \"name\": \"Schick 33: 213402981\",\n   \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n   \"hasSensor\": true,\n   \"status\": \"Available\",\n   \"interfaceType\": \"usb\",\n   \"modelName\": \"Schick AE USB Interface\",\n   \"serialNumber\": \"34-05921813233\",\n   \"version\": \"est nisi commodo esse dolore\",\n   \"battery\": {\n    \"hasBattery\": true,\n    \"percentRemaining\": 78,\n    \"level\": \"Good\"\n   }\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": \"ad esse do tempor\",\n   \"brand\": \"Schick\",\n   \"family\": \"Supreme\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"supportsBinning\": false,\n   \"version\": \"laboris ut proident consectetur nostrud\"\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true,\n   \"context\": {}\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"min\": -1,\n   \"max\": 1,\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n },\n {\n  \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n  \"createdOn\": \"1987-11-10T22:52:41.526Z\",\n  \"width\": 2400,\n  \"height\": 1708,\n  \"bitsPerPixel\": 12,\n  \"bytesPerPixel\": 2,\n  \"pixelSizeX\": 0.015,\n  \"pixelSizeY\": 0.015,\n  \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n  \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n  \"pixelHash\": {\n   \"alg\": \"MD5\",\n   \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n  },\n  \"deviceInfo\": {\n   \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n   \"name\": \"Schick 33: 213402981\",\n   \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n   \"hasSensor\": false,\n   \"status\": \"Available\",\n   \"interfaceType\": \"usb\",\n   \"modelName\": \"Schick AE USB Interface\",\n   \"serialNumber\": \"34-05921813233\",\n   \"version\": \"sint quis culpa elit\",\n   \"battery\": {\n    \"hasBattery\": true,\n    \"percentRemaining\": 78,\n    \"level\": \"Good\"\n   }\n  },\n  \"sensorInfo\": {\n   \"modelName\": \"Schick 33\",\n   \"serialNumber\": \"magna reprehenderit eiusmod\",\n   \"brand\": \"Schick\",\n   \"family\": \"Supreme\",\n   \"size\": 2,\n   \"width\": 2400,\n   \"height\": 1708,\n   \"supportsBinning\": false,\n   \"version\": \"enim\"\n  },\n  \"acquisitionInfo\": {\n   \"enable\": true,\n   \"rotation\": 90,\n   \"binning\": \"Unbinned\",\n   \"applyLut\": true,\n   \"context\": {}\n  },\n  \"lutInfo\": {\n   \"gamma\": 2.3,\n   \"slope\": 65535,\n   \"offset\": 0,\n   \"totalGrays\": 4096,\n   \"minimumGray\": 3612,\n   \"maximumGray\": 418\n  },\n  \"exposureInfo\": {\n   \"min\": -1,\n   \"max\": 1,\n   \"low\": -0.5,\n   \"high\": 0.5,\n   \"optimum\": 0,\n   \"value\": -0.24723\n  }\n }\n]"
 						},
 						{
 							"name": "Session not found",
@@ -1560,7 +1716,9 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										}
 									]
 								}
@@ -1598,12 +1756,12 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The session Id"
 								},
 								{
 									"key": "imageId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The image Id"
 								}
 							]
@@ -1635,10 +1793,14 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										},
 										{
-											"key": "imageId"
+											"key": "imageId",
+											"value": "occaecat ad",
+											"description": "(Required) The image Id"
 										}
 									]
 								}
@@ -1653,7 +1815,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n \"createdOn\": \"1962-09-20T13:43:30.407Z\",\n \"width\": 2400,\n \"height\": 1708,\n \"bitsPerPixel\": 12,\n \"bytesPerPixel\": 2,\n \"pixelSizeX\": 0.015,\n \"pixelSizeY\": 0.015,\n \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n \"pixelHash\": {\n  \"alg\": \"MD5\",\n  \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n },\n \"deviceInfo\": {\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n  \"hasSensor\": true,\n  \"status\": \"Available\",\n  \"interfaceType\": \"usb\",\n  \"modelName\": \"Schick AE USB Interface\",\n  \"serialNumber\": \"34-05921813233\",\n  \"version\": \"officia aute\",\n  \"battery\": {\n   \"hasBattery\": true,\n   \"percentRemaining\": 78,\n   \"level\": \"Good\"\n  }\n },\n \"sensorInfo\": {\n  \"modelName\": \"Schick 33\",\n  \"serialNumber\": \"dolor Duis in ullamco\",\n  \"brand\": \"Schick\",\n  \"family\": \"Supreme\",\n  \"size\": 2,\n  \"width\": 2400,\n  \"height\": 1708,\n  \"supportsBinning\": true,\n  \"version\": \"Excepteur Duis Ut dolor\"\n },\n \"acquisitionInfo\": {\n  \"enable\": true,\n  \"rotation\": 90,\n  \"binning\": \"Unbinned\",\n  \"applyLut\": true,\n  \"context\": {}\n },\n \"lutInfo\": {\n  \"gamma\": 2.3,\n  \"slope\": 65535,\n  \"offset\": 0,\n  \"totalGrays\": 4096,\n  \"minimumGray\": 3612,\n  \"maximumGray\": 418\n },\n \"exposureInfo\": {\n  \"min\": -1,\n  \"max\": 1,\n  \"low\": -0.5,\n  \"high\": 0.5,\n  \"optimum\": 0,\n  \"value\": -0.24723\n }\n}"
+							"body": "{\n \"id\": \"160c98f9-d188-4118-94c4-697161fd5caf\",\n \"createdOn\": \"1942-03-27T21:31:35.360Z\",\n \"width\": 2400,\n \"height\": 1708,\n \"bitsPerPixel\": 12,\n \"bytesPerPixel\": 2,\n \"pixelSizeX\": 0.015,\n \"pixelSizeY\": 0.015,\n \"previewUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/preview.jpg\",\n \"imageUrl\": \"http://example.com/api/acquisition/be362e71-9c18-4f3c-a9ab-d536d7a8b4fd/images/160c98f9-d188-4118-94c4-697161fd5caf/image.png\",\n \"pixelHash\": {\n  \"alg\": \"MD5\",\n  \"hash\": \"536c36b632ea8256a50ec6396d4e7ea3\"\n },\n \"deviceInfo\": {\n  \"deviceId\": \"bc91c079-dabe-0170-1c5e-6ee92b3f4a35\",\n  \"name\": \"Schick 33: 213402981\",\n  \"iconUrl\": \"http://example.com/api/devices/bc91c079-dabe-0170-1c5e-6ee92b3f4a35/icon.png\",\n  \"hasSensor\": false,\n  \"status\": \"Available\",\n  \"interfaceType\": \"usb\",\n  \"modelName\": \"Schick AE USB Interface\",\n  \"serialNumber\": \"34-05921813233\",\n  \"version\": \"cupidatat\",\n  \"battery\": {\n   \"hasBattery\": true,\n   \"percentRemaining\": 78,\n   \"level\": \"Good\"\n  }\n },\n \"sensorInfo\": {\n  \"modelName\": \"Schick 33\",\n  \"serialNumber\": \"ad Lorem\",\n  \"brand\": \"Schick\",\n  \"family\": \"Supreme\",\n  \"size\": 2,\n  \"width\": 2400,\n  \"height\": 1708,\n  \"supportsBinning\": false,\n  \"version\": \"est veniam quis velit\"\n },\n \"acquisitionInfo\": {\n  \"enable\": true,\n  \"rotation\": 90,\n  \"binning\": \"Unbinned\",\n  \"applyLut\": true,\n  \"context\": {}\n },\n \"lutInfo\": {\n  \"gamma\": 2.3,\n  \"slope\": 65535,\n  \"offset\": 0,\n  \"totalGrays\": 4096,\n  \"minimumGray\": 3612,\n  \"maximumGray\": 418\n },\n \"exposureInfo\": {\n  \"min\": -1,\n  \"max\": 1,\n  \"low\": -0.5,\n  \"high\": 0.5,\n  \"optimum\": 0,\n  \"value\": -0.24723\n }\n}"
 						},
 						{
 							"name": "Session or image not found",
@@ -1679,10 +1841,14 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										},
 										{
-											"key": "imageId"
+											"key": "imageId",
+											"value": "occaecat ad",
+											"description": "(Required) The image Id"
 										}
 									]
 								}
@@ -1721,12 +1887,12 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The session Id"
 								},
 								{
 									"key": "imageId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The image Id"
 								}
 							]
@@ -1759,10 +1925,14 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										},
 										{
-											"key": "imageId"
+											"key": "imageId",
+											"value": "occaecat ad",
+											"description": "(Required) The image Id"
 										}
 									]
 								}
@@ -1777,7 +1947,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "ullamco sunt in"
+							"body": "occaecat ad"
 						},
 						{
 							"name": "Session or image not found",
@@ -1804,10 +1974,14 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										},
 										{
-											"key": "imageId"
+											"key": "imageId",
+											"value": "occaecat ad",
+											"description": "(Required) The image Id"
 										}
 									]
 								}
@@ -1846,12 +2020,12 @@
 							"variable": [
 								{
 									"key": "sessionId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The session Id"
 								},
 								{
 									"key": "imageId",
-									"value": "ullamco sunt in",
+									"value": "occaecat ad",
 									"description": "(Required) The image Id"
 								}
 							]
@@ -1884,10 +2058,14 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										},
 										{
-											"key": "imageId"
+											"key": "imageId",
+											"value": "occaecat ad",
+											"description": "(Required) The image Id"
 										}
 									]
 								}
@@ -1902,7 +2080,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "ullamco sunt in"
+							"body": "occaecat ad"
 						},
 						{
 							"name": "Session or image not found",
@@ -1929,10 +2107,14 @@
 									],
 									"variable": [
 										{
-											"key": "sessionId"
+											"key": "sessionId",
+											"value": "occaecat ad",
+											"description": "(Required) The session Id"
 										},
 										{
-											"key": "imageId"
+											"key": "imageId",
+											"value": "occaecat ad",
+											"description": "(Required) The image Id"
 										}
 									]
 								}
