@@ -95,7 +95,7 @@ namespace ConsoleApp
                     };
 
                     subscription.OnError += (ex) => {
-                        Console.WriteLine("$\nDevice Event Subscription encountered an error\n{ex}");
+                        Console.WriteLine($"\nDevice Event Subscription encountered an error\n{ex}");
                     };
 
                     // Start listening to events
