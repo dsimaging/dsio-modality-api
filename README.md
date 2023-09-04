@@ -15,7 +15,7 @@ Additionally, this folder contains a Postman collection in Json format. You can 
 ## Documentation
 To get started with learning how to use the API, we suggest that you consult the [Wiki](https://github.com/dsimaging/dsio-modality-api/wiki) pages of this project. There you will find an overview and detailed information about the API. Other sources of API documentation can be found in the docs folder.
 
-NodeJS programs to generate documentation are in the docs folder. Switch to the ./docs folder before executing any node or npm commands. Be sure to install local node modules requiresd for the NodeJS programs by executing the following:
+NodeJS programs to generate documentation are in the docs folder. Switch to the ./docs folder before executing any node or npm commands. Be sure to install local node modules required for the NodeJS programs by executing the following:
 
 `npm install`
 
